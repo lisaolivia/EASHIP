@@ -1,6 +1,7 @@
 # EaShip
 NAMA APLIKASI : EASHIP 
-deskripsi singkat aplikasi : Aplikasi perantara persewaan kapal tongkang antara pemilik dengan perusahaan yang membutuhkan jasa logistik kapal. Aplikasi ini terintegrasi dengan administrasi, legalitas, dan operasional penyewaan kapal sehingga proses pemesanan (boo
+deskripsi singkat aplikasi : Aplikasi perantara persewaan kapal tongkang antara pemilik dengan perusahaan yang membutuhkan jasa logistik kapal. Aplikasi ini terintegrasi dengan administrasi, legalitas, dan operasional penyewaan kapal sehingga proses pemesanan
+(booking rent), verifikasi dokumen jaminan, hingga pelacakan pengiriman dan kapal dapat dilakukan secara transparan dan efisien.
   
 NAMA KELOMPOK ANDA : Tongkang 
 Ketua Kelompok: Lisa Olivia Putri Maharani (Front end) 
