@@ -4,5 +4,6 @@ NAMA APLIKASI : EASHIP
   
 NAMA KELOMPOK ANDA : Tongkang 
 <br> Ketua Kelompok: Lisa Olivia Putri Maharani (Front end) 
-<br> Anggota 1: Rahma Putri Anjani (Software Arch) 
+<br> Anggota 1: Rahma Putri Anjani (Software Arch) 23/519131/TK/57233
+
 <br> Anggota 2: Ameliana Hardiati Utari (Back End) 
