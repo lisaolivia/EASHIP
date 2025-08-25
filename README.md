@@ -4,6 +4,6 @@ deskripsi singkat aplikasi : Aplikasi perantara persewaan kapal tongkang antara 
 (booking rent), verifikasi dokumen jaminan, hingga pelacakan pengiriman dan kapal dapat dilakukan secara transparan dan efisien.
   
 NAMA KELOMPOK ANDA : Tongkang 
-Ketua Kelompok: Lisa Olivia Putri Maharani (Front end) 
-Anggota 1: Rahma Putri Anjani (Software Arch) 
-Anggota 2: Ameliana Hardiati Utari (Back End) 
+<br> Ketua Kelompok: Lisa Olivia Putri Maharani (Front end) 
+<br> Anggota 1: Rahma Putri Anjani (Software Arch) 
+<br> Anggota 2: Ameliana Hardiati Utari (Back End) 
