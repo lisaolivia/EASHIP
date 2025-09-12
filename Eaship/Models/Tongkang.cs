@@ -16,7 +16,7 @@ public class Tongkang
     public int KapasitasDWT { get; set; }
 
     // true jika booking mensyaratkan tugboat
-    public bool IncludeTugboat { get; set; }
+    public bool IncludeTugboat { get; private set; }
 
     
     public TongkangStatus Status { get; private set; } = TongkangStatus.Available;
@@ -49,10 +49,16 @@ public class Tongkang
     public void AttachTugboat(Tugboat tug)
     {
         if (tug is null) throw new ArgumentNullException(nameof(tug));
+        if (tug.CekStatus() == TugboatStatus.Maintenance)
+            throw new InvalidOperationException("Tugboat sedang maintenance.");
+
         _tugboatIds.Add(tug.TugboatId);
-        IncludeTugboat = _tugboatIds.Count > 0;
+        IncludeTugboat = true;
         Status = TongkangStatus.Assigned;
+
+        tug.SetAssigned(); // method internal/protected di Tugboat
     }
+
 
     public void DetachTugboat(Tugboat tug)
     {

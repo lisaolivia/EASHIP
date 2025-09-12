@@ -2,82 +2,135 @@
 
 public enum ContractStatus
 {
-    
-    Pending,
-    Approved,
-    Rejected,
-    Cancelled
-
+    Pending,   // menunggu tanda tangan
+    Approved,  // kedua pihak sudah tanda tangan
+    Rejected,  // ditolak oleh salah satu pihak
+    Cancelled  // dibatalkan (sebelum Approved)
 }
 
 public class Contract
 {
+
+    private Contract() { }
+
     public int ContractId { get; set; }
-    public int BookingId { get; set; }
-    public string PdfUrl { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public ContractStatus Status { get; set; } = ContractStatus.Pending;
-    public string ApprovedBy { get; set; } = string.Empty;
-    public DateTime? ApprovedAt { get; set; }
+    public int BookingId { get; private set; }
+
+    public string PdfUrl { get; private set; } = string.Empty;
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; private set; }
+
+    public ContractStatus Status { get; private set; } = ContractStatus.Pending;
 
 
+    // Tanda tangan renter
+    public bool RenterSigned { get; private set; }
+    public string? RenterSigner { get; private set; }
+    public DateTime? RenterSignedAt { get; private set; }
 
-    //method
+    // Tanda tangan owner/company (diwakili admin)
+    public bool OwnerSigned { get; private set; }
+    public string? OwnerSigner { get; private set; }
+    public DateTime? OwnerSignedAt { get; private set; }
 
-    public void Approve(string approver)
+    // Waktu final approved (setelah kedua pihak sign)
+    public DateTime? ApprovedAt { get; private set; }
+
+    public static Contract CreateFrom(Booking booking, string pdfUrl)
     {
-        if (Status != ContractStatus.Pending)
-            throw new InvalidOperationException("Hanya kontrak Pending yang bisa di-approve.");
+        if (booking is null) throw new ArgumentNullException(nameof(booking));
+        if (booking.Status != BookingStatus.CONFIRMED)
+            throw new InvalidOperationException("Contract hanya dari Booking yang CONFIRMED.");
+        if (string.IsNullOrWhiteSpace(pdfUrl))
+            throw new ArgumentException("PDF URL wajib diisi.", nameof(pdfUrl));
 
-        Status = ContractStatus.Approved;
-        ApprovedBy = approver;
-        ApprovedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Renter menolak kontrak.
-    /// </summary>
-    public void Reject(string approver)
-    {
-        if (Status != ContractStatus.Pending)
-            throw new InvalidOperationException("Hanya kontrak Pending yang bisa ditolak.");
-
-        Status = ContractStatus.Rejected;
-        ApprovedBy = approver;
-        ApprovedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Admin/system membatalkan kontrak (hanya jika belum Approved).
-    /// </summary>
-    public void CancelContract()
-    {
-        if (Status == ContractStatus.Approved)
-            throw new InvalidOperationException("Kontrak yang sudah Approved tidak bisa dibatalkan.");
-
-        Status = ContractStatus.Cancelled;
-    }
-    /// <summary>
-    /// Admin mengirim kontrak ke renter → status jadi Pending.
-    /// </summary>
-    public void SendForApproval()
-    {
-        if (Status != ContractStatus.Pending)
-            throw new InvalidOperationException("Hanya kontrak Pending yang bisa dikirim.");
-        if (string.IsNullOrEmpty(PdfUrl))
-            throw new InvalidOperationException("PDF harus dibuat sebelum kontrak dikirim.");
-
-        Status = ContractStatus.Pending;
+        return new Contract
+        {
+            BookingId = booking.BookingId,
+            PdfUrl = pdfUrl.Trim(),
+            Status = ContractStatus.Pending
+        };
     }
 
     public void GeneratePdf(string pdfUrl)
     {
+        if (Status != ContractStatus.Pending)
+            throw new InvalidOperationException("PDF hanya bisa dibuat saat Pending.");
+        if (RenterSigned || OwnerSigned)
+            throw new InvalidOperationException("Tidak bisa ganti PDF setelah ada tanda tangan.");
         if (string.IsNullOrWhiteSpace(pdfUrl))
-            throw new ArgumentException("PDF URL wajib diisi.");
-        PdfUrl = pdfUrl;
+            throw new ArgumentException("PDF URL wajib diisi.", nameof(pdfUrl));
+
+        PdfUrl = pdfUrl.Trim();
+        Touch();
+    }
+
+    public void SignByRenter(string renterName /*, User renter untuk role-check */)
+    {
+        EnsurePending();
+        EnsurePdf();
+        if (RenterSigned) return;
+
+        RenterSigned = true;
+        RenterSigner = renterName;
+        RenterSignedAt = DateTime.UtcNow;
+        Touch();
+        MaybeApprove();
+    }
+
+    public void SignByOwner(string adminName /*, User admin untuk role-check */)
+    {
+        EnsurePending();
+        EnsurePdf();
+        if (OwnerSigned) return;
+
+        OwnerSigned = true;
+        OwnerSigner = adminName;
+        OwnerSignedAt = DateTime.UtcNow;
+        Touch();
+        MaybeApprove();
+    }
+
+    public void Reject(string by /*, User user untuk role-check */, string reason = "")
+    {
+        EnsurePending();
+        Status = ContractStatus.Rejected;
+        // (opsional) simpan reason & siapa yang reject ke field terpisah
+        Touch();
+    }
+
+    public void Cancel(string by /*, User admin untuk role-check */)
+    {
+        if (Status == ContractStatus.Approved)
+            throw new InvalidOperationException("Kontrak yang sudah Approved tidak bisa dibatalkan.");
+        Status = ContractStatus.Cancelled;
+        Touch();
+    }
+
+    // --- helpers ---
+    private void MaybeApprove()
+    {
+        if (RenterSigned && OwnerSigned)
+        {
+            Status = ContractStatus.Approved;
+            ApprovedAt = DateTime.UtcNow;
+            Touch();
+        }
     }
 
 
 
+    private void EnsurePending()
+    {
+        if (Status != ContractStatus.Pending)
+            throw new InvalidOperationException("Aksi ini hanya untuk kontrak Pending.");
+    }
 
+    private void EnsurePdf()
+    {
+        if (string.IsNullOrWhiteSpace(PdfUrl))
+            throw new InvalidOperationException("PDF harus dibuat sebelum tanda tangan.");
+    }
+
+    private void Touch() => UpdatedAt = DateTime.UtcNow;
 }

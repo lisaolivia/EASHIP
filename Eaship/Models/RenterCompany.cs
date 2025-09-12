@@ -1,41 +1,47 @@
-namespace Eaship.Models;
+public enum CompanyStatus { Draft, Validating, Active, Rejected }
 
 public class RenterCompany
 {
-    public int RenterCompanyId { get; set; }
-    public string Nama { get; set; } = string.Empty;
-    public string NPWP { get; set; } = string.Empty;
-    public string Contact { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
+    public int RenterCompanyId { get; private set; }
+    public string Nama { get; private set; } = string.Empty;
+    public string NPWP { get; private set; } = string.Empty;
+    public string Contact { get; private set; } = string.Empty;
+    public string Address { get; private set; } = string.Empty;
 
-    // Method
+    public CompanyStatus Status { get; private set; } = CompanyStatus.Draft;
 
-
-    public string GetCompanyDetails()
+    public void SubmitForValidation()
     {
-        return $"ID: {RenterCompanyId}, Nama: {Nama}, NPWP: {NPWP}, Contact: {Contact}, Address: {Address}";
+        if (string.IsNullOrWhiteSpace(Nama) ||
+            string.IsNullOrWhiteSpace(NPWP) ||
+            string.IsNullOrWhiteSpace(Contact) ||
+            string.IsNullOrWhiteSpace(Address))
+        {
+            throw new InvalidOperationException("Data perusahaan belum lengkap.");
+        }
+
+        Status = CompanyStatus.Validating;
     }
 
-    public void RegisterCompany(string nama, string npwp, string contact, string address)
+    public void Approve(User admin)
     {
-        ValidateCompany(nama, npwp, contact, address);
+        if (admin.Role != UserRole.Admin)
+            throw new UnauthorizedAccessException("Hanya admin yang bisa approve.");
 
-        var clean = new string(npwp.Where(char.IsLetterOrDigit).ToArray());
-        Nama = nama.Trim();
-        NPWP = clean;
-        Contact = contact.Trim();
-        Address = address.Trim();
-       
+        if (Status != CompanyStatus.Validating)
+            throw new InvalidOperationException("Perusahaan belum masuk status Validating.");
+
+        Status = CompanyStatus.Active;
     }
 
-    private void ValidateCompany(string nama, string npwp, string contact, string address)
+    public void Reject(User admin)
     {
-        if (string.IsNullOrWhiteSpace(nama)) throw new ArgumentException("Nama perusahaan wajib.");
-        if (string.IsNullOrWhiteSpace(npwp)) throw new ArgumentException("NPWP wajib.");
-        if (string.IsNullOrWhiteSpace(contact)) throw new ArgumentException("Kontak wajib.");
-        if (string.IsNullOrWhiteSpace(address)) throw new ArgumentException("Alamat wajib.");
+        if (admin.Role != UserRole.Admin)
+            throw new UnauthorizedAccessException("Hanya admin yang bisa reject.");
 
-        var clean = new string(npwp.Where(char.IsLetterOrDigit).ToArray());
-        if (clean.Length < 15) throw new ArgumentException("Format NPWP tidak valid.");
+        if (Status != CompanyStatus.Validating)
+            throw new InvalidOperationException("Perusahaan belum masuk status Validating.");
+
+        Status = CompanyStatus.Rejected;
     }
 }

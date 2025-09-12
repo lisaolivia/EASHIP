@@ -10,7 +10,7 @@ public enum UserRole
 
 public class User
 {
-    public int Id { get; set; }
+    public int UserId { get; set; }
     public int? RenterCompanyId { get; set; }
     public string Email { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
@@ -20,7 +20,7 @@ public class User
     public byte[] PasswordHash { get; private set; } = Array.Empty<byte>();
     public byte[] PasswordSalt { get; private set; } = Array.Empty<byte>();
 
-    public DateTime? LastLoginAt { get; private set; }
+  
 
     // ===== Methods penting =====
 

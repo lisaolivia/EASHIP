@@ -13,33 +13,29 @@ public class Tugboat
     public string Name { get; set; } = string.Empty;
     public int TugboatHP { get; set; }
 
-    // Status kapal tunda saat ini
     public TugboatStatus Status { get; private set; } = TugboatStatus.Available;
 
-    // Baca status (boleh juga cukup pakai properti Status tanpa method ini)
     public TugboatStatus CekStatus() => Status;
 
-    // Kirim ke perawatan
     public void SendToMaintenance()
     {
         Status = TugboatStatus.Maintenance;
     }
 
-    // Assign ke tongkang (akan set status -> Assigned)
+    //  Delegasi saja, TANPA set status di sini.
     public void AssignToTongkang(Tongkang tongkang)
     {
-        if (Status == TugboatStatus.Maintenance)
-            throw new InvalidOperationException("Tugboat sedang maintenance.");
-
-        Status = TugboatStatus.Assigned;
-        // Opsional: beritahu Tongkang untuk mencatat relasi
-        tongkang.AttachTugboat(this); // pastikan method ini ada di class Tongkang
+        if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
+        tongkang.AttachTugboat(this); // biarkan Tongkang yang atur semua state
     }
 
-    // Lepas dari tongkang (kembali Available)
     public void ReleaseFromTongkang(Tongkang tongkang)
     {
-        tongkang.DetachTugboat(this); // siapkan method ini di Tongkang
-        Status = TugboatStatus.Available;
+        if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
+        tongkang.DetachTugboat(this); // biarkan Tongkang yang atur semua state
     }
+
+    // HANYA untuk dipanggil dari Tongkang
+    internal void SetAssigned() => Status = TugboatStatus.Assigned;
+    internal void SetAvailable() => Status = TugboatStatus.Available;
 }
