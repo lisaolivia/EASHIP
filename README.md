@@ -6,3 +6,6 @@ NAMA KELOMPOK ANDA : Tongkang
 <br> Ketua Kelompok: Lisa Olivia Putri Maharani (Front end) 23/519241/TK/57250
 <br> Anggota 1: Rahma Putri Anjani (Software Arch) 
 <br> Anggota 2: Ameliana Hardiati Utari (Back End) 23/513968/TK/56455
+
+
+![Class Diagram](start/Diagram/class-diagram.png)
