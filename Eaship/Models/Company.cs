@@ -66,7 +66,7 @@ public class Company
         // Aturan bisnis contoh: hanya boleh hapus jika tidak Assigned
         if (_tongkangs[idx].CekStatus() != TongkangStatus.Available)
             throw new InvalidOperationException("Tongkang sedang tidak tersedia untuk dihapus.");
-        if (_tongkangs.Exists(t => t.Name.Equals(nama.Trim(), StringComparison.OrdinalIgnoreCase)))
+        if (_tongkangs.Exists(t => t.Name.Equals(Name.Trim(), StringComparison.OrdinalIgnoreCase)))
             throw new InvalidOperationException("Nama tongkang sudah dipakai di perusahaan ini.");
 
         _tongkangs.RemoveAt(idx);
