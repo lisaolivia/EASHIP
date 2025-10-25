@@ -1,41 +1,37 @@
-﻿namespace Eaship.Models;
+﻿using NpgsqlTypes;
+
+namespace Eaship.Models;
 
 public enum TugboatStatus
 {
-    Available,
-    Assigned,
-    Maintenance
+    AVAILABLE,
+    ASSIGNED,
+    MAINTENANCE
 }
 
 public class Tugboat
 {
-    public int TugboatId { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public int TugboatHP { get; set; }
-
-    public TugboatStatus Status { get; private set; } = TugboatStatus.Available;
+    public long TugboatId { get; set; }              // bigint
+    public string Nama { get; set; } = string.Empty; // varchar(250)
+    public string TugboatHp { get; set; } = string.Empty; // varchar(250)
+    public TugboatStatus Status { get; private set; } = TugboatStatus.AVAILABLE;
+    public long CompanyId { get; set; }              // bigint
 
     public TugboatStatus CekStatus() => Status;
 
-    public void SendToMaintenance()
-    {
-        Status = TugboatStatus.Maintenance;
-    }
+    public void SendToMaintenance() => Status = TugboatStatus.MAINTENANCE;
 
-    //  Delegasi saja, TANPA set status di sini.
     public void AssignToTongkang(Tongkang tongkang)
     {
         if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
-        tongkang.AttachTugboat(this); // biarkan Tongkang yang atur semua state
+        tongkang.AttachTugboat(this);
     }
-
     public void ReleaseFromTongkang(Tongkang tongkang)
     {
         if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
-        tongkang.DetachTugboat(this); // biarkan Tongkang yang atur semua state
+        tongkang.DetachTugboat(this);
     }
 
-    // HANYA untuk dipanggil dari Tongkang
-    internal void SetAssigned() => Status = TugboatStatus.Assigned;
-    internal void SetAvailable() => Status = TugboatStatus.Available;
+    internal void SetAssigned() => Status = TugboatStatus.ASSIGNED;
+    internal void SetAvailable() => Status = TugboatStatus.AVAILABLE;
 }

@@ -46,7 +46,6 @@ public class Company
         {
             CompanyId = CompanyId,
             Name = nama.Trim(),
-            KapasitasDWT = kapasitasDwt,
           
             // Status default di Tongkang = Available (lihat enum di file Tongkang)
         };

@@ -7,7 +7,7 @@ public class Invoice
     private Invoice() { }
 
     public int InvoiceId { get; private set; }
-    public int ContractId { get; private set; }
+    public long ContractId { get; private set; }
 
     public string Number { get; private set; } = string.Empty;   // di-set via SetNumber()
     public decimal Amount { get; private set; }

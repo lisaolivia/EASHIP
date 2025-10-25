@@ -1,64 +1,55 @@
-﻿namespace Eaship.Models;
+﻿using NpgsqlTypes;
+
+namespace Eaship.Models;
 
 public enum TongkangStatus
 {
-    Available,
-    Assigned,
-    Maintenance,
-    Unavailable
+    [PgName("AVAILABLE")] Available,
+    [PgName("ASSIGNED")] Assigned,
+    [PgName("MAINTENANCE")] Maintenance,
+    [PgName("UNAVAILABLE")] Unavailable
 }
 
 public class Tongkang
 {
-    public int TongkangId { get; set; }
-    public int CompanyId { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public int KapasitasDWT { get; set; }
+    public long TongkangId { get; set; }          // bigint
+    public long CompanyId { get; set; }          // bigint
+    public string Name { get; set; } = string.Empty;     // map ke kolom 'nama'
+    public string KapasitasDwt { get; set; } = string.Empty; // varchar(250)
 
-    // true jika booking mensyaratkan tugboat
     public bool IncludeTugboat { get; private set; }
-
-    
     public TongkangStatus Status { get; private set; } = TongkangStatus.Available;
 
-    // ===== Relasi sederhana ke Tugboat (sementara pakai ID set) =====
-    private readonly HashSet<int> _tugboatIds = new();
-    public IReadOnlyCollection<int> TugboatIds => _tugboatIds;
 
-    // ===== Methods =====
+//method
+    private readonly HashSet<long> _tugboatIds = new();
+    public IReadOnlyCollection<long> TugboatIds => _tugboatIds;
+
     public TongkangStatus CekStatus() => Status;
 
-    /// <summary>
-    /// Hitung harga sewa (contoh sederhana). Pakai decimal untuk uang.
-    /// </summary>
     public decimal HitungHarga(string cargoDesc, int durasiHari)
     {
         if (durasiHari <= 0) throw new ArgumentOutOfRangeException(nameof(durasiHari));
-        if (KapasitasDWT <= 0) throw new InvalidOperationException("KapasitasDWT belum di-set.");
-
-        // TODO: ganti rumus sesuai kebutuhan bisnis
-        decimal baseRatePerDwtPerDay = 100_000m;
-        var harga = KapasitasDWT * durasiHari * baseRatePerDwtPerDay;
-
-        // contoh: ada markup jika include tugboat
+        // jika butuh angka dari KapasitasDwt, parse dulu (mis. "8000 DWT" → 8000)
+        // sementara abaikan untuk contoh singkat
+        decimal baseRate = 100_000m;
+        var kapasitas = 1m; // TODO: parse dari KapasitasDwt
+        var harga = kapasitas * durasiHari * baseRate;
         if (IncludeTugboat) harga *= 1.10m;
-
         return harga;
     }
 
     public void AttachTugboat(Tugboat tug)
     {
         if (tug is null) throw new ArgumentNullException(nameof(tug));
-        if (tug.CekStatus() == TugboatStatus.Maintenance)
+        if (tug.CekStatus() == TugboatStatus.MAINTENANCE)
             throw new InvalidOperationException("Tugboat sedang maintenance.");
 
         _tugboatIds.Add(tug.TugboatId);
         IncludeTugboat = true;
         Status = TongkangStatus.Assigned;
-
-        tug.SetAssigned(); // method internal/protected di Tugboat
+        tug.SetAssigned();
     }
-
 
     public void DetachTugboat(Tugboat tug)
     {

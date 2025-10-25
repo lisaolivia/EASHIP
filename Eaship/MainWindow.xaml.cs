@@ -19,6 +19,7 @@ namespace Eaship
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new Eaship.page.Pagelanding());
         }
     }
 }

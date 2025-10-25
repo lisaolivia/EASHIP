@@ -1,3 +1,5 @@
+namespace Eaship.Models;
+
 public enum CompanyStatus { Draft, Validating, Active, Rejected }
 
 public class RenterCompany
@@ -19,11 +21,10 @@ public class RenterCompany
         {
             throw new InvalidOperationException("Data perusahaan belum lengkap.");
         }
-
         Status = CompanyStatus.Validating;
     }
 
-    public void Approve(User admin)
+    public void Approve(User admin)   // ? ini sekarang pakai Eaship.Models.User
     {
         if (admin.Role != UserRole.Admin)
             throw new UnauthorizedAccessException("Hanya admin yang bisa approve.");
@@ -34,7 +35,7 @@ public class RenterCompany
         Status = CompanyStatus.Active;
     }
 
-    public void Reject(User admin)
+    public void Reject(User admin)    // ? Eaship.Models.User
     {
         if (admin.Role != UserRole.Admin)
             throw new UnauthorizedAccessException("Hanya admin yang bisa reject.");

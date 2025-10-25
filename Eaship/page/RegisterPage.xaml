@@ -3,9 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Eaship.page"
       mc:Ignorable="d" 
-       d:DesignWidth="1200" d:DesignHeight="700"
+      d:DesignWidth="1200" d:DesignHeight="700"
       Title="RegisterPage">
 
     <Grid Background="White">
@@ -19,14 +18,61 @@
         </Grid.RowDefinitions>
 
         <!-- ========== NAVBAR ========== -->
-        <Border Grid.Row="0" Background="#123B61">
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
             <Grid Margin="24,0">
-                <TextBlock Text="⛴ Eaship"
-                           Foreground="White"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges"
+                            Style="{StaticResource NavButton}" 
+                            Content="Barges"
+                            Click="Button_Click"/>
+
+                    <Button x:Name="BtnBookings"
+                            Style="{StaticResource NavButton}" 
+                            Content="My Bookings"  
+                            Margin="6,0,0,0"
+                            Click="Button_Click_1"/>
+
+                    <Button x:Name="BtnInvoice"
+                            Style="{StaticResource NavButton}" 
+                            Content="Invoice"
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnHelp"
+                            Style="{StaticResource NavButton}" 
+                            Content="Help"
+                            Margin="6,0,0,0"
+                            Click="Button_Click_2"/>
+
+                    <Button x:Name="BtnProfile"
+                            Style="{StaticResource OutlineButton}" 
+                            Content="Profile"
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnSignupNav"
+                            Style="{StaticResource OutlineButton}" 
+                            Content="Sign Up"
+                            Margin="6,0,0,0"
+                            Click="SignUp_Click"/>
+
+                    <Button x:Name="BtnLoginNav"
+                            Background="Black" 
+                            Foreground="White" 
+                            Padding="12,6" 
+                            Content="Log In"
+                            Margin="6,0,0,0"
+                            Click="Login_Click"/>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -37,7 +83,7 @@
                         HorizontalAlignment="Center">
 
                 <!-- Judul -->
-                <TextBlock Text="Sign Up"
+                <TextBlock Text="Create Account"
                            FontSize="32"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
@@ -47,78 +93,67 @@
                 <Border BorderBrush="#C7CBD1"
                         BorderThickness="1"
                         Padding="24"
-                        CornerRadius="8">
-                    <StackPanel>
-                        <!-- Role -->
-                        <TextBlock Text="Select Role"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <ComboBox Height="34"
-                                  Margin="0,0,0,12"
-                                  BorderBrush="#9CA3AF"
-                                  BorderThickness="1" SelectionChanged="ComboBox_SelectionChanged">
-                            <ComboBoxItem Content="Owner"/>
-                            <ComboBoxItem Content="Renter"/>
-                            <ComboBoxItem Content="Admin"/>
-                        </ComboBox>
+                        CornerRadius="8"
+                        Height="502"
+                        Width="542">
 
-                        <!-- Full name -->
-                        <TextBlock Text="Full Name"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <TextBox Height="34"
-                                 Margin="0,0,0,12"
-                                 BorderBrush="#9CA3AF"
+                    <StackPanel Width="460" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center">
+
+                        <!-- FULL NAME -->
+                        <TextBlock Text="Full Name" Margin="0,0,0,6"/>
+                        <TextBox x:Name="txtFullName"
+                                 Height="34" 
+                                 BorderBrush="#9CA3AF" 
                                  BorderThickness="1"
-                                 Background="#F5F6F8"/>
+                                 Background="#F5F6F8" 
+                                 Margin="0,0,0,12"/>
 
-                        <!-- Email -->
-                        <TextBlock Text="Email Id"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <TextBox Height="34"
-                                 Margin="0,0,0,12"
-                                 BorderBrush="#9CA3AF"
+                        <!-- EMAIL -->
+                        <TextBlock Text="Email" Margin="0,0,0,6"/>
+                        <TextBox x:Name="txtEmail"
+                                 Height="34" 
+                                 BorderBrush="#9CA3AF" 
                                  BorderThickness="1"
-                                 Background="#F5F6F8"/>
+                                 Background="#F5F6F8" 
+                                 Margin="0,0,0,12"/>
 
-                        <!-- Phone -->
-                        <TextBlock Text="Number Phone"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <TextBox Height="34"
-                                 Margin="0,0,0,12"
-                                 BorderBrush="#9CA3AF"
-                                 BorderThickness="1"
-                                 Background="#F5F6F8"/>
-
-                        <!-- Password -->
-                        <TextBlock Text="Password"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <PasswordBox Height="34"
-                                     Margin="0,0,0,12"
-                                     BorderBrush="#9CA3AF"
+                        <!-- PASSWORD -->
+                        <TextBlock Text="Password" Margin="0,0,0,6"/>
+                        <PasswordBox x:Name="txtPassword"
+                                     Height="34" 
+                                     BorderBrush="#9CA3AF" 
                                      BorderThickness="1"
-                                     Background="#F5F6F8"/>
+                                     Background="#F5F6F8" 
+                                     Margin="0,0,0,12"/>
 
-                        <!-- Confirm -->
-                        <TextBlock Text="Confirm Password"
-                                   Margin="0,0,0,6"
-                                   FontWeight="SemiBold"/>
-                        <PasswordBox Height="34"
-                                     Margin="0,0,0,20"
-                                     BorderBrush="#9CA3AF"
+                        <!-- CONFIRM PASSWORD -->
+                        <TextBlock Text="Confirm Password" Margin="0,0,0,6"/>
+                        <PasswordBox x:Name="txtConfirm"
+                                     Height="34" 
+                                     BorderBrush="#9CA3AF" 
                                      BorderThickness="1"
-                                     Background="#F5F6F8"/>
+                                     Background="#F5F6F8" 
+                                     Margin="0,0,0,16"/>
 
-                        <!-- Tombol -->
-                        <Button Content="Sign Up"
-                                Height="38"
+                        <!-- REGISTER BUTTON -->
+                        <Button x:Name="BtnRegister"
+                                Content="Register" 
+                                Height="38" 
                                 Background="#123B61"
-                                Foreground="White"
-                                BorderThickness="0"
-                                FontWeight="SemiBold"/>
+                                Foreground="White" 
+                                BorderThickness="0" 
+                                FontWeight="SemiBold"
+                                Click="Register_Click"/>
+
+                        <!-- BACK TO LOGIN -->
+                        <Button x:Name="BtnGoLogin"
+                                Content="Back to Login" 
+                                Margin="0,12,0,0"
+                                Style="{StaticResource NavButton}"
+                                Foreground="{StaticResource NavyBrush}"
+                                Click="GoLogin_Click"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -134,4 +169,3 @@
         </Border>
     </Grid>
 </Page>
-

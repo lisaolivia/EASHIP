@@ -20,7 +20,9 @@ public class User
     public byte[] PasswordHash { get; private set; } = Array.Empty<byte>();
     public byte[] PasswordSalt { get; private set; } = Array.Empty<byte>();
 
-  
+
+    // waktu terakhir login
+    public DateTime? LastLoginAt { get; private set; }
 
     // ===== Methods penting =====
 
