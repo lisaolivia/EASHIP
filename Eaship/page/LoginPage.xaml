@@ -17,35 +17,116 @@
             <!-- footer -->
         </Grid.RowDefinitions>
 
-        <!-- NAVBAR  -->
-        <Border Grid.Row="0" Background="#123B61">
-            <TextBlock Text="⛴ Eaship" Foreground="White" FontSize="18" FontWeight="Bold"
-                 VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Barges" 
+                            Click="Button_Click"/>
+
+                    <Button x:Name="BtnBookings" 
+                            Style="{StaticResource NavButton}" 
+                            Content="My Bookings"  
+                            Margin="6,0,0,0" 
+                            Click="Button_Click_1"/>
+
+                    <Button x:Name="BtnInvoice" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Invoice"      
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnHelp" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Help"         
+                            Margin="6,0,0,0" 
+                            Click="Button_Click_2"/>
+
+                    <Button x:Name="BtnProfile" 
+                            Style="{StaticResource OutlineButton}" 
+                            Content="Profile"  
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnSignUpNav" 
+                            Style="{StaticResource OutlineButton}" 
+                            Content="Sign Up"   
+                            Margin="6,0,0,0" 
+                            Click="SignUp_Click"/>
+
+                    <Button x:Name="BtnLoginNav"
+                            Background="Black" 
+                            Foreground="White" 
+                            Padding="12,6" 
+                            Content="Log In"
+                            Margin="6,0,0,0" 
+                            Click="Login_Click"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- CONTENT -->
         <Grid Grid.Row="1">
             <StackPanel Width="420" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Log In" FontSize="28" FontWeight="Bold"
-                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
+                <!-- EMAIL -->
                 <TextBlock Text="Email" Margin="0,0,0,6"/>
-                <TextBox Height="34" BorderBrush="#9CA3AF" BorderThickness="1"
-                 Background="#F5F6F8" Margin="0,0,0,12"/>
+                <TextBox x:Name="txtEmail" 
+                         Height="34" 
+                         BorderBrush="#9CA3AF" 
+                         BorderThickness="1"
+                         Background="#F5F6F8" 
+                         Margin="0,0,0,12"/>
 
+                <!-- PASSWORD -->
                 <TextBlock Text="Password" Margin="0,0,0,6"/>
-                <PasswordBox Height="34" BorderBrush="#9CA3AF" BorderThickness="1"
-                     Background="#F5F6F8" Margin="0,0,0,16"/>
+                <PasswordBox x:Name="txtPassword" 
+                             Height="34" 
+                             BorderBrush="#9CA3AF" 
+                             BorderThickness="1"
+                             Background="#F5F6F8" 
+                             Margin="0,0,0,16"/>
 
-                <Button Content="Login" Height="38" Background="#123B61"
-                Foreground="White" BorderThickness="0" FontWeight="SemiBold"/>
+                <!-- LOGIN BUTTON -->
+                <Button x:Name="BtnLoginSubmit" 
+                        Content="Login" 
+                        Height="38" 
+                        Background="#123B61"
+                        Foreground="White" 
+                        BorderThickness="0" 
+                        FontWeight="SemiBold"
+                        Click="Login_Click"/>
+
+                <!-- SIGN UP LINK -->
+                <Button x:Name="BtnGoSignUp"
+                        Content="Sign Up" 
+                        Margin="0,12,0,0"
+                        Style="{StaticResource NavButton}"
+                        Foreground="{StaticResource NavyBrush}"
+                        Click="GoRegister_Click"/>
             </StackPanel>
         </Grid>
 
         <!-- FOOTER -->
         <Border Grid.Row="2" Background="#D9E8F4">
-            <TextBlock Text="© Company" HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Foreground="#4B5563" FontSize="12"/>
+            <TextBlock Text="© Company" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Foreground="#4B5563" 
+                       FontSize="12"/>
         </Border>
     </Grid>
 </Page>

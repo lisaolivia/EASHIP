@@ -13,8 +13,8 @@ public class Contract
 
     private Contract() { }
 
-    public int ContractId { get; set; }
-    public int BookingId { get; private set; }
+    public long ContractId { get; set; }
+    public long BookingId { get; private set; }
 
     public string PdfUrl { get; private set; } = string.Empty;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
@@ -39,7 +39,7 @@ public class Contract
     public static Contract CreateFrom(Booking booking, string pdfUrl)
     {
         if (booking is null) throw new ArgumentNullException(nameof(booking));
-        if (booking.Status != BookingStatus.CONFIRMED)
+        if (booking.Status != BookingStatus.Confirmed)
             throw new InvalidOperationException("Contract hanya dari Booking yang CONFIRMED.");
         if (string.IsNullOrWhiteSpace(pdfUrl))
             throw new ArgumentException("PDF URL wajib diisi.", nameof(pdfUrl));
