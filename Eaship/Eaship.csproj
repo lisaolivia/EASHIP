@@ -8,6 +8,8 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Assets\gambar1.png" />
+	  <None Remove="Assets\gambar2.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="appsettings.json">
@@ -25,5 +27,10 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.10" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Assets\gambar1.png" />
+	  <Resource Include="Assets\gambar2.png" />
 	</ItemGroup>
 </Project>

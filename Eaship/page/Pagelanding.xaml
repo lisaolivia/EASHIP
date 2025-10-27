@@ -124,10 +124,19 @@
                     </StackPanel>
 
                     <!-- Illustration -->
-                    <Border Grid.Column="1" Height="204" Background="{StaticResource SkyBrush}"
-                            CornerRadius="12" VerticalAlignment="Top" Margin="79,0,10,0">
-                        <Image Source="/Assets/gambar1.png" Stretch="Uniform" Margin="0,0,6,0"/>
+                    <!-- Illustration -->
+                    <Border Grid.Column="1"
+                    Height="204"
+                    Background="{StaticResource SkyBrush}"
+                    CornerRadius="12"
+                    VerticalAlignment="Top"
+                    Margin="79,0,10,0">
+
+                      <Image Source="pack://application:,,,/Assets/gambar1.png"
+                       Stretch="Uniform"
+                       Margin="0,0,6,0"/>   
                     </Border>
+
                 </Grid>
 
                 <!-- Spacer ~48 -->

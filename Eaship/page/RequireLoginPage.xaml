@@ -95,7 +95,7 @@
                            HorizontalAlignment="Center"
                            Margin="0,0,0,10"/>
 
-                <Image Source="/Eaship;component/Assets/gambar2.png"
+                <Image Source="pack://application:,,,/Assets/gambar2.png"
                        Width="404"
                        Height="214"
                        Stretch="Uniform"
