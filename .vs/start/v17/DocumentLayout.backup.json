@@ -1,0 +1,196 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\companyformpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\companyformpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\requestsent.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\requestsent.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\requestsent.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\requestsent.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\joincompanyform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\joincompanyform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\companyformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\companyformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\joincompanyform.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\joincompanyform.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\loginpage - copy (2).xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\loginpage - copy (2).xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\dashboard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\dashboard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|c:\\users\\lenovo\\source\\repos\\eaship\\eaship\\page\\picformpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3B22E862-90D1-C414-FC93-62AA5EF346BB}|Eaship\\Eaship.csproj|solutionrelative:eaship\\page\\picformpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 229,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JoinCompanyForm.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\JoinCompanyForm.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\JoinCompanyForm.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\JoinCompanyForm.xaml",
+              "RelativeToolTip": "Eaship\\page\\JoinCompanyForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T05:45:17.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CompanyFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\CompanyFormPage.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\CompanyFormPage.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\CompanyFormPage.xaml",
+              "RelativeToolTip": "Eaship\\page\\CompanyFormPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T04:19:36.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RequestSent.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\RequestSent.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\RequestSent.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\RequestSent.xaml",
+              "RelativeToolTip": "Eaship\\page\\RequestSent.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-04T02:56:40.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginPage - Copy (2).xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\LoginPage - Copy (2).xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\LoginPage - Copy (2).xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\LoginPage - Copy (2).xaml",
+              "RelativeToolTip": "Eaship\\page\\LoginPage - Copy (2).xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T05:29:56.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\Dashboard.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\Dashboard.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\Dashboard.xaml",
+              "RelativeToolTip": "Eaship\\page\\Dashboard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T05:42:21.389Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 229,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\Dashboard.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\Dashboard.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\Dashboard.xaml",
+              "RelativeToolTip": "Eaship\\page\\Dashboard.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T05:43:52.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RequestSent.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\RequestSent.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\RequestSent.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\RequestSent.xaml",
+              "RelativeToolTip": "Eaship\\page\\RequestSent.xaml",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAowFYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-04T02:56:13.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CompanyFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\CompanyFormPage.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\CompanyFormPage.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\CompanyFormPage.xaml",
+              "RelativeToolTip": "Eaship\\page\\CompanyFormPage.xaml",
+              "ViewState": "AgIAAMcBAAAAAAAAAAAAANsBAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T04:19:42.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JoinCompanyForm.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\JoinCompanyForm.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\JoinCompanyForm.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\JoinCompanyForm.xaml",
+              "RelativeToolTip": "Eaship\\page\\JoinCompanyForm.xaml",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAUwFQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T05:47:29.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PICFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\PICFormPage.xaml",
+              "RelativeDocumentMoniker": "Eaship\\page\\PICFormPage.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\source\\repos\\EASHIP\\Eaship\\page\\PICFormPage.xaml",
+              "RelativeToolTip": "Eaship\\page\\PICFormPage.xaml",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAwwEcBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T04:06:26.826Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

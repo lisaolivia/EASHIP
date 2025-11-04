@@ -1,0 +1,205 @@
+﻿<Page x:Class="Eaship.page.LogoutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="LogoutPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Barges" 
+                        Click="Button_Click"/>
+
+                    <Button x:Name="BtnBookings" 
+                        Style="{StaticResource NavButton}" 
+                        Content="My Bookings"  
+                        Margin="6,0,0,0" 
+                        Click="Button_Click_1"/>
+
+                    <Button x:Name="BtnInvoice" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Invoice"      
+                        Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnHelp" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Help"         
+                        Margin="6,0,0,0" 
+                        Click="Button_Click_2"/>
+
+                    <Button x:Name="BtnProfile" 
+                        Style="{StaticResource OutlineButton}" 
+                        Content="Profile"  
+                        Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnSignUpNav" 
+                        Style="{StaticResource OutlineButton}" 
+                        Content="Sign Up"   
+                        Margin="6,0,0,0" 
+                        Click="SignUp_Click"/>
+
+                    <Button x:Name="BtnLoginNav"
+                        Background="Black" 
+                        Foreground="White" 
+                        Padding="12,6" 
+                        Content="Log In"
+                        Margin="6,0,0,0" 
+                        Click="Login_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1">
+            <!-- Logout Confirmation Dialog -->
+            <Border Background="#F8FAFB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                CornerRadius="12"
+                Width="420"
+                Height="240"
+                Padding="40">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" 
+                                Opacity="0.1" 
+                                BlurRadius="20" 
+                                ShadowDepth="0"/>
+                </Border.Effect>
+
+                <StackPanel VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
+                    <!-- Title -->
+                    <TextBlock Text="Are you sure want to log out?" 
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="#2C3E50"
+                           TextAlignment="Center"
+                           Margin="0,0,0,16"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Your unfinished transactions will be lost." 
+                           FontSize="14"
+                           Foreground="#6B7280"
+                           TextAlignment="Center"
+                           Margin="0,0,0,32"/>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                        <!-- Cancel Button -->
+                        <Button x:Name="BtnCancel"
+                            Content="Cancel"
+                            Width="140"
+                            Height="44"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            Background="White"
+                            Foreground="#2C3E50"
+                            BorderBrush="#CBD5E0"
+                            BorderThickness="2"
+                            Cursor="Hand"
+                            Margin="0,0,12,0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    CornerRadius="8">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#F7FAFC"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Yes Button -->
+                        <Button x:Name="BtnYes"
+                            Content="Yes"
+                            Width="140"
+                            Height="44"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            Background="#2C3E50"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="8">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#1A252F"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                       Text="© 2000 - Company, Inc. All rights reserved. Address Address"/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                       Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
