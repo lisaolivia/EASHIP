@@ -1,0 +1,311 @@
+﻿<Page x:Class="Eaship.page.RequestSent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="RequestSent">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Barges" 
+                        Click="Button_Click"/>
+
+                    <Button x:Name="BtnBookings" 
+                        Style="{StaticResource NavButton}" 
+                        Content="My Bookings"  
+                        Margin="6,0,0,0" 
+                        Click="Button_Click_1"/>
+
+                    <Button x:Name="BtnInvoice" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Invoice"      
+                        Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnHelp" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Help"         
+                        Margin="6,0,0,0" 
+                        Click="Button_Click_2"/>
+
+                    <Button x:Name="BtnProfile" 
+                        Style="{StaticResource OutlineButton}" 
+                        Content="Profile"  
+                        Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnSignUpNav" 
+                        Style="{StaticResource OutlineButton}" 
+                        Content="Sign Up"   
+                        Margin="6,0,0,0" 
+                        Click="SignUp_Click"/>
+
+                    <Button x:Name="BtnLoginNav"
+                        Background="Black" 
+                        Foreground="White" 
+                        Padding="12,6" 
+                        Content="Log In"
+                        Margin="6,0,0,0" 
+                        Click="Login_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,60" Grid.RowSpan="2">
+            <Grid>
+                <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Top" 
+                        Margin="0,40,0,40">
+
+                    <!-- Title -->
+                    <TextBlock Text="Join Existing Company" 
+                           FontSize="36"
+                           FontWeight="Bold"
+                           Foreground="#2C3E50"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Form Card -->
+                    <Border BorderBrush="#C0C0C0" 
+                        BorderThickness="2"
+                        CornerRadius="12"
+                        Background="White"
+                        Width="500"
+                        Padding="20">
+
+
+                        <StackPanel>
+                            <!-- Name -->
+                            <TextBlock Text="Name" 
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtCompanyName"
+                                 Height="44"
+                                 Padding="12,0"
+                                 FontSize="14"
+                                 Background="White"
+                                 BorderBrush="#CBD5E0"
+                                 BorderThickness="1"
+                                 Margin="0,0,0,5">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </TextBox.Resources>
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="6">
+                                                        <Grid>
+                                                            <TextBlock Text="Search Role" 
+                                                                   Foreground="#9CA3AF"
+                                                                   Margin="12,0"
+                                                                   VerticalAlignment="Center"
+                                                                   IsHitTestVisible="False">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <ScrollViewer x:Name="PART_ContentHost" 
+                                                                    Margin="12,0"
+                                                                    VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+
+                            <!-- NPWP -->
+                            <TextBlock Text="NPWP" 
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtNPWP"
+                                 Height="44"
+                                 Padding="12,0"
+                                 FontSize="14"
+                                 Background="White"
+                                 BorderBrush="#CBD5E0"
+                                 BorderThickness="1"
+                                 Margin="0,0,0,20">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="6">
+                                                        <Grid>
+                                                            <TextBlock Text="First name" 
+                                                                   Foreground="#9CA3AF"
+                                                                   Margin="12,0"
+                                                                   VerticalAlignment="Center"
+                                                                   IsHitTestVisible="False">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <ScrollViewer x:Name="PART_ContentHost" 
+                                                                    Margin="12,0"
+                                                                    VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+
+                            <!-- Request Sent Button -->
+                            <Button x:Name="BtnRequestSent"
+                                Content="Request Sent!"
+                                Height="50"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Background="White"
+                                Foreground="#2C3E50"
+                                BorderBrush="#CBD5E0"
+                                BorderThickness="1"
+                                Cursor="Hand"
+                                Margin="0,0,0,20">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="8">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#F7FAFC"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+                            <!-- Info Text -->
+                            <TextBlock Text="You'll join automatically after your request gets approved."
+                                   FontSize="14"
+                                   Foreground="#4A5568"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                            <!-- Refresh Button -->
+                            <Button x:Name="BtnRefresh"
+                                Content="Refresh"
+                                Height="50"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Background="#2C3E50"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="BtnNext_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="8">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#1A252F"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                       Text="© 2000 - Company, Inc. All rights reserved. Address Address"/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                       Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
