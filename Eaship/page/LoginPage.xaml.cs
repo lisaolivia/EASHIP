@@ -94,5 +94,10 @@ namespace Eaship.page
         {
             Main?.Navigate(new RegisterPage());
         }
+
+        private void txtForgetPassword_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Forgot Password diklik! (coming soon)");
+        }
     }
 }
