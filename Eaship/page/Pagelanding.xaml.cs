@@ -11,30 +11,38 @@ namespace Eaship.page
             InitializeComponent();
         }
 
-        // helper biar singkat
+        // Helper property for main frame navigation
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
 
         // PROFILE (navbar -> Profile)
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Profile_Click(object sender, RoutedEventArgs e)
         {
             if (!Session.IsLoggedIn)
             {
                 Main?.Navigate(new RequireLoginPage());
                 return;
             }
-
-            // TODO: ganti ke halaman profile kamu
-            MessageBox.Show("Profile diklik! (coming soon)");
+            // TODO: Navigate to profile page
+            MessageBox.Show("Profile clicked! (coming soon)");
         }
 
-        // HELP (navbar -> Help) atau INVOICE kalau kamu mapping ke sini
+        // HELP (navbar -> Help)
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            // Help doesn't require login, just display info:
+            MessageBox.Show("Help clicked! (coming soon)");
+        }
+
+        // INVOICE (navbar -> Invoice)
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            // kalau Help ga perlu login, tinggal tampilkan info:
-            MessageBox.Show("Help diklik! (coming soon)");
-            // Jika kamu pakai ini untuk Invoice yang butuh login, pakai blok berikut:
-            // if (!Session.IsLoggedIn) { Main?.Navigate(new RequireLoginPage()); return; }
-            // MessageBox.Show("Invoice diklik! (coming soon)");
+            if (!Session.IsLoggedIn)
+            {
+                Main?.Navigate(new RequireLoginPage());
+                return;
+            }
+            // TODO: Navigate to invoice page
+            MessageBox.Show("Invoice clicked! (coming soon)");
         }
 
         // BARGES (navbar -> Barges)
@@ -45,9 +53,8 @@ namespace Eaship.page
                 Main?.Navigate(new RequireLoginPage());
                 return;
             }
-
-            // TODO: ganti ke halaman daftar barges / booking
-            MessageBox.Show("Barges diklik! (stub sementara)");
+            // TODO: Navigate to barges list/booking page
+            MessageBox.Show("Barges clicked! (stub)");
         }
 
         // MY BOOKINGS (navbar -> My Bookings)
@@ -58,21 +65,27 @@ namespace Eaship.page
                 Main?.Navigate(new RequireLoginPage());
                 return;
             }
-
-            // TODO: ganti ke halaman bookings user
-            MessageBox.Show("My Bookings diklik! (stub sementara)");
+            // TODO: Navigate to user bookings page
+            MessageBox.Show("My Bookings clicked! (stub)");
         }
 
-        // LOG IN (navbar -> Log In)
+        // LOG IN (navbar -> Login button)
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new LoginPage());
         }
 
-        // SIGN UP (navbar -> Sign Up)
+        // SIGN UP (navbar -> SignUp button)
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new RegisterPage());
+        }
+
+        // BOOK SHIP BUTTON (CTA -> Book Ship → button)
+        // This now navigates to Login Page as requested
+        private void BookShip_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new LoginPage());
         }
     }
 }

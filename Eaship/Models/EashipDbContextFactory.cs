@@ -19,7 +19,7 @@ namespace Eaship.Models
 
             // kalau dipanggil dari Tools, basePath = folder project
             var config = new ConfigurationBuilder()
-                .SetBasePath(basePath)
+                .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                 .Build();
 

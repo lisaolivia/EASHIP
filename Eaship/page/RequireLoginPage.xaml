@@ -19,11 +19,8 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
-            <!-- NAVBAR -->
             <RowDefinition/>
-            <!-- CONTENT -->
             <RowDefinition Height="120"/>
-            <!-- FOOTER -->
         </Grid.RowDefinitions>
 
         <!-- ========== NAVBAR ========== -->
@@ -88,21 +85,24 @@
         </Border>
 
         <!-- ========== CONTENT ========== -->
-        <Grid Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Let’s Start Sailing!"
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="56,36">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Let’s Start Sailing!"
                            Style="{StaticResource H1}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,10"/>
 
-                <Image Source="pack://application:,,,/Assets/gambar2.png"
-                       Width="404"
-                       Height="214"
-                       Stretch="Uniform"
-                       HorizontalAlignment="Center"
-                       Margin="0,16,0,0"/>
+            
 
-                <TextBlock Text="You need to log in first to start booking your ships and barges."
+                    <Image Source="pack://application:,,,/Assets/gambar2.png"
+                           Width="404"
+                           Height="214"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           Margin="0,16,0,0"/>
+
+                    <TextBlock Text="You need to log in first to start booking your ships and barges."
                            FontSize="18"
                            Foreground="{StaticResource TextBrush}"
                            TextAlignment="Center"
@@ -110,28 +110,28 @@
                            Margin="0,20,0,0"
                            Width="600"/>
 
-                <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             Margin="0,24,0,0">
 
-                    <Button x:Name="BtnLoginNow"
+                        <Button x:Name="BtnLoginNow"
                             Style="{StaticResource PrimaryButton}"
                             Content="Login →"
                             Width="160"
-                            Height="40"
+                            Height="49"
                             Click="Login_Click"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
+            </Grid>
+        </ScrollViewer>
 
         <!-- ========== FOOTER ========== -->
         <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
-                           Text="© 2025 Eaship Company. All rights reserved."/>
+                           Text="© 2000 - Company, Inc. All rights reserved. Address Address"/>
                 <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
-                           Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com"
-                           Margin="0,6,0,0"/>
+                           Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com" Margin="0,6,0,0"/>
             </StackPanel>
         </Border>
     </Grid>

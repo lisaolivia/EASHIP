@@ -6,7 +6,7 @@ namespace Eaship.Services
     public interface IUserService
     {
         Task<bool> EmailExistsAsync(string email);
-        Task<int> RegisterAsync(string fullName, string email, string password);
+        Task<int> RegisterAsync(string fullName, string email, string password, string role, string phone);
         Task<Eaship.Models.User?> LoginAsync(string email, string password);
     }
 
@@ -18,22 +18,28 @@ namespace Eaship.Services
         public Task<bool> EmailExistsAsync(string email)
             => _db.Set<Eaship.Models.User>().AnyAsync(u => u.Email == email);
 
-        public async Task<int> RegisterAsync(string fullName, string email, string password)
+        public async Task<int> RegisterAsync(string fullName, string email, string password, string role, string phone)
         {
             if (await EmailExistsAsync(email))
                 throw new InvalidOperationException("Email sudah terdaftar.");
 
-            var user = new Eaship.Models.User();   // <- pastikan ctor kosong ada
+            var user = new Eaship.Models.User();
             user.FullName = fullName;
             user.Email = email;
-            // set Role hanya jika setter public; jika private, hapus baris ini
-            user.Role = Eaship.Models.UserRole.Renter;
+            user.Register(password);
 
-            user.Register(password);               // method dari model kamu
+            // convert string role ke enum
+            if (Enum.TryParse<UserRole>(role, out var parsedRole))
+                user.Role = parsedRole;
+            else
+                user.Role = UserRole.Renter; // default fallback
 
-            _db.Set<Eaship.Models.User>().Add(user);
+          
+            user.Phone = phone;
+
+            _db.Set<User>().Add(user);
             await _db.SaveChangesAsync();
-            return user.UserId;                    // Register => kembalikan ID
+            return user.UserId;
         }
 
         public async Task<Eaship.Models.User?> LoginAsync(string email, string password)

@@ -1,8 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Eaship.Models;
 using Eaship.Services;
-using Eaship.Models;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eaship.page
 {
@@ -93,6 +94,11 @@ namespace Eaship.page
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new RegisterPage());
+        }
+
+        private void txtForgetPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Fungsi lupa password belum tersedia.");
         }
     }
 }

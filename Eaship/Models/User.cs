@@ -15,6 +15,8 @@ public class User
     public string Email { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
     public UserRole Role { get; set; } = UserRole.Renter;
+    public string Phone { get; set; } = string.Empty;
+
 
     // password aman (hash + salt)
     public byte[] PasswordHash { get; private set; } = Array.Empty<byte>();

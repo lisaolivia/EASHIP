@@ -7,14 +7,19 @@
       d:DesignWidth="1200" d:DesignHeight="800"
       Title="LoginPage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
-            <!-- navbar -->
             <RowDefinition/>
-            <!-- content -->
-            <RowDefinition Height="80"/>
-            <!-- footer -->
+            <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
 
         <!-- NAVBAR -->
@@ -77,56 +82,98 @@
         </Border>
 
         <!-- CONTENT -->
-        <Grid Grid.Row="1">
-            <StackPanel Width="420" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Log In" FontSize="28" FontWeight="Bold"
-                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="56,36">
+                <StackPanel Width="420" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Log In" FontSize="28" FontWeight="Bold"
+                               HorizontalAlignment="Center" Margin="0,0,0,24"/>
 
-                <!-- EMAIL -->
-                <TextBlock Text="Email" Margin="0,0,0,6"/>
-                <TextBox x:Name="txtEmail" 
-                         Height="34" 
+                    <!-- FORM CONTAINER -->
+                    <Border BorderBrush="#D1D5DB" 
+        BorderThickness="2"
+        Padding="24"
+        CornerRadius="8"
+        Background="White"
+        Margin="0,0,0,20">
+                        <Grid>
+                            <StackPanel Margin="12">
+                                <!-- EMAIL ID -->
+                                <TextBlock Text="Email Id" Margin="0,0,0,6" FontWeight="Normal"/>
+                                <TextBox x:Name="txtEmail" 
+                     Height="40" 
+                     BorderBrush="#9CA3AF" 
+                     BorderThickness="1"
+                     Background="White" 
+                     Padding="12,0"
+                     FontSize="14"
+                     Margin="0,0,0,16"/>
+
+                                <!-- PASSWORDS -->
+                                <TextBlock Text="Passwords" Margin="0,0,0,6" FontWeight="Normal"/>
+                                <PasswordBox x:Name="txtPassword" 
+                         Height="40" 
                          BorderBrush="#9CA3AF" 
                          BorderThickness="1"
-                         Background="#F5F6F8" 
+                         Background="White" 
+                         Padding="12,0"
+                         FontSize="14"
                          Margin="0,0,0,12"/>
 
-                <!-- PASSWORD -->
-                <TextBlock Text="Password" Margin="0,0,0,6"/>
-                <PasswordBox x:Name="txtPassword" 
-                             Height="34" 
-                             BorderBrush="#9CA3AF" 
-                             BorderThickness="1"
-                             Background="#F5F6F8" 
-                             Margin="0,0,0,16"/>
+                                <!-- FORGET PASSWORD LINK -->
+                                <TextBlock x:Name="txtForgetPassword"
+                       Text="Forget password?" 
+                       Foreground="#123B61"
+                       FontSize="14"
+                       TextDecorations="Underline"
+                       Cursor="Hand"
+                       Margin="0,0,0,20"
+                       MouseDown="txtForgetPassword_MouseDown"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
 
-                <!-- LOGIN BUTTON -->
-                <Button x:Name="BtnLoginSubmit" 
-                        Content="Login" 
-                        Height="38" 
-                        Background="#123B61"
-                        Foreground="White" 
-                        BorderThickness="0" 
-                        FontWeight="SemiBold"
-                        Click="Login_Click"/>
 
-                <!-- SIGN UP LINK -->
-                <Button x:Name="BtnGoSignUp"
-                        Content="Sign Up" 
-                        Margin="0,12,0,0"
-                        Style="{StaticResource NavButton}"
-                        Foreground="{StaticResource NavyBrush}"
-                        Click="GoRegister_Click"/>
-            </StackPanel>
-        </Grid>
+                    <!-- LOGIN BUTTON -->
+                    <Button x:Name="BtnLoginSubmit" 
+                            Content="Login" 
+                            Height="42" 
+                            Background="#123B61"
+                            Foreground="White" 
+                            BorderThickness="0" 
+                            FontWeight="SemiBold"
+                            FontSize="16"
+                            Click="Login_Click"
+                            Margin="0,0,0,16"/>
+
+                    <!-- DON'T HAVE ACCOUNT -->
+                    <TextBlock Text="Don't have an account?" 
+                               FontSize="14"
+                               Foreground="#4B5563"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8"/>
+
+                    <!-- SIGN UP NOW BUTTON -->
+                    <Button x:Name="BtnGoSignUp"
+                            Content="Sign Up Now" 
+                            Height="42"
+                            Background="#E6F0FA"
+                            Foreground="#123B61"
+                            FontWeight="SemiBold"
+                            FontSize="16"
+                            BorderThickness="0"
+                            Click="GoRegister_Click"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
 
         <!-- FOOTER -->
-        <Border Grid.Row="2" Background="#D9E8F4">
-            <TextBlock Text="© Company" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"
-                       Foreground="#4B5563" 
-                       FontSize="12"/>
+        <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="© 2000 - Company, Inc. All rights reserved. Address Address"/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com" Margin="0,6,0,0"/>
+            </StackPanel>
         </Border>
     </Grid>
 </Page>

@@ -49,6 +49,9 @@ namespace Eaship.Models
 
                 e.Property(x => x.PasswordHash).HasColumnName("password_hash");
                 e.Property(x => x.PasswordSalt).HasColumnName("password_salt");
+                e.Property(x => x.Phone).HasColumnName("phone").HasMaxLength(50);
+
+
 
                 e.Property(x => x.Role).HasColumnName("role").HasConversion<string>();
                 e.Property(x => x.LastLoginAt).HasColumnName("last_login_at");
