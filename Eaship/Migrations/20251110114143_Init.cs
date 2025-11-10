@@ -15,9 +15,6 @@ namespace Eaship.Migrations
             migrationBuilder.EnsureSchema(
                 name: "eaship");
 
-            migrationBuilder.EnsureSchema(
-                name: "public");
-
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:eaship.user_role", "renter,admin")
                 .Annotation("Npgsql:PostgresExtension:citext", ",,");
@@ -118,9 +115,15 @@ namespace Eaship.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nama = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     npwp = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
-                    contact = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     address = table.Column<string>(type: "text", nullable: false),
-                    status = table.Column<string>(type: "text", nullable: false)
+                    CityProvince = table.Column<string>(type: "text", nullable: false),
+                    EmailBilling = table.Column<string>(type: "text", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    PICName = table.Column<string>(type: "text", nullable: false),
+                    PICPosition = table.Column<string>(type: "text", nullable: false),
+                    PICEmail = table.Column<string>(type: "text", nullable: false),
+                    status = table.Column<string>(type: "text", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -146,7 +149,7 @@ namespace Eaship.Migrations
 
             migrationBuilder.CreateTable(
                 name: "users",
-                schema: "public",
+                schema: "eaship",
                 columns: table => new
                 {
                     user_id = table.Column<int>(type: "integer", nullable: false)
@@ -155,6 +158,7 @@ namespace Eaship.Migrations
                     email = table.Column<string>(type: "citext", nullable: false),
                     full_name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     role = table.Column<string>(type: "text", nullable: false),
+                    phone = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     password_hash = table.Column<byte[]>(type: "bytea", nullable: false),
                     password_salt = table.Column<byte[]>(type: "bytea", nullable: false),
                     last_login_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -341,7 +345,7 @@ namespace Eaship.Migrations
 
             migrationBuilder.DropTable(
                 name: "users",
-                schema: "public");
+                schema: "eaship");
 
             migrationBuilder.DropTable(
                 name: "booking",

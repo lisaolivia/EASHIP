@@ -88,13 +88,65 @@
                         VerticalAlignment="Top" 
                         Margin="0,40,0,40">
 
-                    <!-- Title -->
-                    <TextBlock Text="Company Information" 
+
+                    <!-- HEADER BAR -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Back button di kiri -->
+                        <Button x:Name="BtnBack"
+                                    Content="⟵  Back"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Padding="16,6"
+                                    Background="#E9EFF5"
+                                    Foreground="#2C3E50"
+                                    BorderBrush="#D1D5DB"
+                                    BorderThickness="1"
+                                    Cursor="Hand"
+                                    Margin="0,6,0,0"
+                                    Width="90"
+                                    Height="36"
+                                    VerticalAlignment="Top"
+                                    Click="BtnBack_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#D6E3F2"/>
+                                            <Setter Property="Foreground" Value="#1E3A8A"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Judul di tengah -->
+                        <TextBlock Grid.Column="1"
+                           Text="Sign Up Company"
                            FontSize="36"
                            FontWeight="Bold"
                            Foreground="#2C3E50"
                            HorizontalAlignment="Center"
-                           Margin="0,0,0,20"/>
+                           VerticalAlignment="Center" Width="340"/>
+                    </Grid>
 
                     <!-- Form Card -->
                     <Border BorderBrush="#C0C0C0" 
@@ -377,14 +429,14 @@
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtCompanyPhone"
+                            <TextBox x:Name="TxtPhoneNumber"
                                  Height="44"
                                  Padding="12,0"
                                  FontSize="14"
                                  Background="White"
                                  BorderBrush="#CBD5E0"
                                  BorderThickness="1"
-                                 Margin="0,0,0,5">
+                                 Margin="0,0,0,5" >
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="Template">
@@ -444,7 +496,7 @@
                                 Background="#2C3E50"
                                 Foreground="White"
                                 BorderThickness="0"
-                                Cursor="Hand">
+                                Cursor="Hand" Click="BtnNext_Click">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Template">

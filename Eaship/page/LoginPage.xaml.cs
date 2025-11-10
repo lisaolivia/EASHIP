@@ -1,8 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Eaship.Models;
 using Eaship.Services;
-using Eaship.Models;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eaship.page
 {
@@ -45,7 +46,7 @@ namespace Eaship.page
                 MessageBox.Show($"Selamat datang, {user.FullName}!", "Login Berhasil", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Navigasi ke landing page
-                Main?.Navigate(new Pagelanding());
+                Main?.Navigate(new Dashboard());
             }
             catch (System.Exception ex)
             {
@@ -94,6 +95,7 @@ namespace Eaship.page
         {
             Main?.Navigate(new RegisterPage());
         }
+
 
         private void txtForgetPassword_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

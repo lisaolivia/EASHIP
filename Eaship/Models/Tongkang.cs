@@ -14,18 +14,28 @@ public class Tongkang
 {
     public long TongkangId { get; set; }          // bigint
     public long CompanyId { get; set; }          // bigint
-    public string Name { get; set; } = string.Empty;     // map ke kolom 'nama'
-    public string KapasitasDwt { get; set; } = string.Empty; // varchar(250)
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set => _name = string.IsNullOrWhiteSpace(value)
+            ? throw new ArgumentException("Nama tongkang tidak boleh kosong.")
+            : value;
+    }
+    public string KapasitasDwt { get; set; } = string.Empty;
+
 
     public bool IncludeTugboat { get; private set; }
     public TongkangStatus Status { get; private set; } = TongkangStatus.Available;
 
 
-//method
+
     private readonly HashSet<long> _tugboatIds = new();
     public IReadOnlyCollection<long> TugboatIds => _tugboatIds;
 
     public TongkangStatus CekStatus() => Status;
+
+    //method
 
     public decimal HitungHarga(string cargoDesc, int durasiHari)
     {

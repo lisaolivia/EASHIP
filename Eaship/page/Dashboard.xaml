@@ -32,7 +32,7 @@
 
                 <!-- Brand -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png" Width="86" Height="59"/>
                 </StackPanel>
 
                 <!-- Menu -->
@@ -64,41 +64,38 @@
                             Content="Profile"  
                             Margin="6,0,0,0"/>
 
-                    <Button x:Name="BtnSignUpNav" 
-                            Style="{StaticResource OutlineButton}" 
-                            Content="Sign Up"   
-                            Margin="6,0,0,0" 
-                            Click="SignUp_Click"/>
-
-                    <Button x:Name="BtnLoginNav"
-                            Background="Black" 
-                            Foreground="White" 
+                    <Button x:Name="BtnLogout"
+                            Background="White" 
+                            Foreground="Navy" 
                             Padding="12,6" 
-                            Content="Log In"
+                            Content="Log Out"
                             Margin="6,0,0,0" 
-                            Click="Login_Click"/>
+                            Click="BtnLogout_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- CONTENT -->
+        <!-- ================= CONTENT ================= -->
         <Grid Grid.Row="1" Margin="60,40,60,0">
-            <!-- Welcome Card -->
-            <Border Background="#DCE7F0" 
+
+            <!-- ========== Section 1: Welcome (Default) ========== -->
+            <Border x:Name="SectionWelcome"
+                    Background="#DCE7F0" 
                     CornerRadius="16"
                     Padding="50,40"
                     VerticalAlignment="Top"
-                    MaxWidth="1080">
+                    MaxWidth="1080"
+                    Visibility="Visible">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" 
-                                    Opacity="0.08" 
-                                    BlurRadius="15" 
-                                    ShadowDepth="2"/>
+                                      Opacity="0.08" 
+                                      BlurRadius="15" 
+                                      ShadowDepth="2"/>
                 </Border.Effect>
 
                 <StackPanel>
                     <!-- Title -->
-                    <TextBlock Text="Welcome Abroad!" 
+                    <TextBlock Text="Welcome Aboard!" 
                                FontSize="42"
                                FontWeight="Bold"
                                Foreground="#2C3E50"
@@ -118,7 +115,6 @@
                     <!-- Buttons -->
                     <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Right">
-                        <!-- Create Company Button -->
                         <Button x:Name="BtnCreateCompany"
                                 Content="Create Company"
                                 Width="200"
@@ -130,32 +126,8 @@
                                 BorderBrush="#2C3E50"
                                 BorderThickness="2"
                                 Cursor="Hand"
-                                Margin="0,0,16,0">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                    VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#F7FAFC"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                                Margin="0,0,16,0" Click="BtnCreateCompany_Click"/>
 
-                        <!-- Join Existing Button -->
                         <Button x:Name="BtnJoinExisting"
                                 Content="Join Existing"
                                 Width="200"
@@ -165,31 +137,63 @@
                                 Background="#2C3E50"
                                 Foreground="White"
                                 BorderThickness="0"
-                                Cursor="Hand">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                    VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#1A252F"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                                Cursor="Hand" 
+                                Click="BtnJoinExisting_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
+
+            <!-- ========== Section 2: Waiting (Company sedang divalidasi admin) ========== -->
+            <Border x:Name="SectionWaiting"
+        Background="#DCE7F0"
+        CornerRadius="16"
+        Padding="60,50"
+        VerticalAlignment="Top"
+        MaxWidth="1080"
+        Visibility="Collapsed">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Title -->
+                    <TextBlock Text="Please Wait!" 
+                   FontSize="40"
+                   FontWeight="Bold"
+                   Foreground="#2C3E50"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Our Admin will confirm your company soon."
+                   FontSize="20"
+                   Foreground="#2C3E50"
+                   TextAlignment="Center"
+                   Margin="0,0,0,30"/>
+
+                    <!-- Illustration -->
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/image_wait.png"
+                        Width="420" Height="260"
+                        Margin="0,0,0,30"/>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar IsIndeterminate="True"
+                     Width="400"
+                     Height="8"
+                     Foreground="#2C3E50"
+                     Margin="0,0,0,25"/>
+
+                    <!-- Additional text -->
+                    <TextBlock Text="Your company information has been submitted and is waiting for admin validation."
+                   FontSize="16"
+                   Foreground="#4A5568"
+                   TextWrapping="Wrap"
+                   Width="600"
+                   TextAlignment="Center"
+                   Margin="0,0,0,10"/>
+                </StackPanel>
+            </Border>
+
         </Grid>
 
         <!-- FOOTER -->
@@ -203,3 +207,4 @@
         </Border>
     </Grid>
 </Page>
+    

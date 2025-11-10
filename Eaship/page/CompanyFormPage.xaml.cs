@@ -73,5 +73,30 @@ namespace Eaship.page
             MessageBox.Show("You are already Log In!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void BtnNext_Click(object sender, RoutedEventArgs e)
+        {
+            Session.TempCompanyData = new Dictionary<string, string>
+            {
+                ["Nama"] = TxtCompanyName.Text.Trim(),
+                ["NPWP"] = TxtNPWP.Text.Trim(),
+                ["Address"] = TxtCompanyAddress.Text.Trim(),
+                ["CityProvince"] = TxtCityProvince.Text.Trim(),
+                ["EmailBilling"] = TxtEmailBilling.Text.Trim(),
+                ["PhoneNumber"] = TxtPhoneNumber.Text.Trim()
+            };
+
+            Main?.Navigate(new PICFormPage());
+        }
+
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+            else
+                MessageBox.Show("Tidak ada halaman sebelumnya.");
+        }
+
+
     }
 }

@@ -49,6 +49,9 @@ namespace Eaship.Models
 
                 e.Property(x => x.PasswordHash).HasColumnName("password_hash");
                 e.Property(x => x.PasswordSalt).HasColumnName("password_salt");
+                e.Property(x => x.Phone).HasColumnName("phone").HasMaxLength(50);
+
+
 
                 e.Property(x => x.Role).HasColumnName("role").HasConversion<string>();
                 e.Property(x => x.LastLoginAt).HasColumnName("last_login_at");
@@ -140,7 +143,7 @@ namespace Eaship.Models
                 e.Property(x => x.RenterCompanyId).HasColumnName("renter_company_id");
                 e.Property(x => x.Nama).HasColumnName("nama").HasMaxLength(200);
                 e.Property(x => x.NPWP).HasColumnName("npwp").HasMaxLength(250);
-                e.Property(x => x.Contact).HasColumnName("contact").HasMaxLength(250);
+                e.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber").HasMaxLength(250);
                 e.Property(x => x.Address).HasColumnName("address").HasColumnType("text");
                 e.Property(x => x.Status).HasColumnName("status").HasConversion<string>();
             });

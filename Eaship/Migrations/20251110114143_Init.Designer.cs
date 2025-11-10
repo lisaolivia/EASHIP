@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eaship.Migrations
 {
     [DbContext(typeof(EashipDbContext))]
-    [Migration("20251023184233_Init")]
+    [Migration("20251110114143_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Eaship.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("public")
+                .HasDefaultSchema("eaship")
                 .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -274,6 +274,71 @@ namespace Eaship.Migrations
                     b.ToTable("invoice", "eaship");
                 });
 
+            modelBuilder.Entity("Eaship.Models.RenterCompany", b =>
+                {
+                    b.Property<int>("RenterCompanyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("renter_company_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RenterCompanyId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address");
+
+                    b.Property<string>("CityProvince")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EmailBilling")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NPWP")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("npwp");
+
+                    b.Property<string>("Nama")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("nama");
+
+                    b.Property<string>("PICEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PICName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PICPosition")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("PhoneNumber");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.HasKey("RenterCompanyId");
+
+                    b.ToTable("renter_company", "eaship");
+                });
+
             modelBuilder.Entity("Eaship.Models.Tongkang", b =>
                 {
                     b.Property<long>("TongkangId")
@@ -413,6 +478,12 @@ namespace Eaship.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("password_salt");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("phone");
+
                     b.Property<int?>("RenterCompanyId")
                         .HasColumnType("integer")
                         .HasColumnName("renter_company_id");
@@ -424,49 +495,7 @@ namespace Eaship.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("users", "public");
-                });
-
-            modelBuilder.Entity("RenterCompany", b =>
-                {
-                    b.Property<int>("RenterCompanyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("renter_company_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RenterCompanyId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("address");
-
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)")
-                        .HasColumnName("contact");
-
-                    b.Property<string>("NPWP")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)")
-                        .HasColumnName("npwp");
-
-                    b.Property<string>("Nama")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("nama");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("status");
-
-                    b.HasKey("RenterCompanyId");
-
-                    b.ToTable("renter_company", "eaship");
+                    b.ToTable("users", "eaship");
                 });
 
             modelBuilder.Entity("Eaship.Models.BookingTongkang", b =>

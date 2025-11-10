@@ -52,7 +52,8 @@ namespace Eaship.page
             {
                 // Register with the service (you may need to update IUserService to accept role and phone)
                 // For now, we're just passing name, email, and password
-                await _users.RegisterAsync(name, email, pass);
+                await _users.RegisterAsync(name, email, pass, selectedRole, phone);
+
 
                 // TODO: If you want to store role and phone, update your IUserService.RegisterAsync method
                 // Example: await _users.RegisterAsync(name, email, pass, selectedRole, phone);
