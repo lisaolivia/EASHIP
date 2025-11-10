@@ -53,11 +53,11 @@
                             Content="Invoice"      
                             Margin="6,0,0,0"/>
 
-                    <Button x:Name="BtnHelp" 
-                            Style="{StaticResource NavButton}" 
-                            Content="Help"         
-                            Margin="6,0,0,0" 
-                            Click="Button_Click_2"/>
+                    <Button x:Name="Btnnotifikasi" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Notifikasi"         
+                        Margin="6,0,0,0" 
+                        Click="Buttonnotifikasi_Click"/>
 
                     <Button x:Name="BtnProfile" 
                             Style="{StaticResource OutlineButton}" 

@@ -54,30 +54,25 @@
                         Content="Invoice"      
                         Margin="6,0,0,0"/>
 
-                    <Button x:Name="BtnHelp" 
+                    <Button x:Name="Btnnotifikasi" 
                         Style="{StaticResource NavButton}" 
-                        Content="Help"         
+                        Content="Notifikasi"         
                         Margin="6,0,0,0" 
-                        Click="Button_Click_2"/>
+                        Click="Buttonnotifikasi_Click"/>
 
                     <Button x:Name="BtnProfile" 
                         Style="{StaticResource OutlineButton}" 
                         Content="Profile"  
-                        Margin="6,0,0,0"/>
+                        Margin="6,0,0,0" Click="BtnProfile_Click"/>
 
-                    <Button x:Name="BtnSignUpNav" 
-                        Style="{StaticResource OutlineButton}" 
-                        Content="Sign Up"   
-                        Margin="6,0,0,0" 
-                        Click="SignUp_Click"/>
 
-                    <Button x:Name="BtnLoginNav"
-                        Background="Black" 
-                        Foreground="White" 
-                        Padding="12,6" 
-                        Content="Log In"
-                        Margin="6,0,0,0" 
-                        Click="Login_Click"/>
+                    <Button x:Name="BtnLogoutNav"
+                         Background="White" 
+                         Foreground="Navy" 
+                         Padding="12,6" 
+                         Content="Log out"
+                         Margin="6,0,0,0" 
+                         Click="Logout_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

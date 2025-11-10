@@ -54,28 +54,22 @@ namespace Eaship.page
             MessageBox.Show("My Bookings diklik! (stub sementara)");
         }
 
-        // ====== NAVBAR: Help ======
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Help diklik! (coming soon)");
-        }
 
-        // ====== NAVBAR: Sign Up ======
-        private void SignUp_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("You are already Sign Up!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        // ====== NAVBAR: Log In ======
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("You are already Log In!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
 
         // ====== REQUEST BUTTON ======
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new RequestSent());
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

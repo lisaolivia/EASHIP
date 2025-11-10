@@ -105,10 +105,11 @@ namespace Eaship.page
             MessageBox.Show("My Bookings clicked! (stub)", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        // ====== NAVBAR: Help ======
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Help clicked! (coming soon)", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
     }
 }

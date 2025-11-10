@@ -55,11 +55,6 @@ namespace Eaship.page
             MessageBox.Show("My Bookings diklik! (stub sementara)");
         }
 
-        // ====== NAVBAR: Help ======
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Help diklik! (coming soon)");
-        }
 
         // ====== NAVBAR: Sign Up ======
         private void SignUp_Click(object sender, RoutedEventArgs e)
@@ -71,6 +66,11 @@ namespace Eaship.page
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("You are already Log In!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
