@@ -30,9 +30,10 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
+               
                 <!-- Brand -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/Assets/logoputih.png" Width="86" Height="59"/>
+                    <Image  Source="pack://application:,,,/Eaship;component/Assets/logo2.png" Width="86" Height="59"/>
                 </StackPanel>
 
                 <!-- Menu -->
