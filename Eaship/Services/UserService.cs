@@ -53,21 +53,5 @@ namespace Eaship.Services
             return user;                             // Login => kembalikan User
         }
     }
-    public static class Session
-    {
-        private static Models.User? _currentUser;
 
-        public static Models.User? CurrentUser => _currentUser;
-        public static bool IsLoggedIn => _currentUser != null;
-
-        public static void Set(Models.User user)
-        {
-            _currentUser = user;
-        }
-
-        public static void Clear()
-        {
-            _currentUser = null;
-        }
-    }
 }

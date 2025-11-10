@@ -143,7 +143,7 @@ namespace Eaship.Models
                 e.Property(x => x.RenterCompanyId).HasColumnName("renter_company_id");
                 e.Property(x => x.Nama).HasColumnName("nama").HasMaxLength(200);
                 e.Property(x => x.NPWP).HasColumnName("npwp").HasMaxLength(250);
-                e.Property(x => x.Contact).HasColumnName("contact").HasMaxLength(250);
+                e.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber").HasMaxLength(250);
                 e.Property(x => x.Address).HasColumnName("address").HasColumnType("text");
                 e.Property(x => x.Status).HasColumnName("status").HasConversion<string>();
             });

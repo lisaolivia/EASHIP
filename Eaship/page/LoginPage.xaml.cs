@@ -46,7 +46,7 @@ namespace Eaship.page
                 MessageBox.Show($"Selamat datang, {user.FullName}!", "Login Berhasil", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Navigasi ke landing page
-                Main?.Navigate(new Pagelanding());
+                Main?.Navigate(new Dashboard());
             }
             catch (System.Exception ex)
             {
@@ -96,9 +96,10 @@ namespace Eaship.page
             Main?.Navigate(new RegisterPage());
         }
 
-        private void txtForgetPassword_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void txtForgetPassword_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MessageBox.Show("Fungsi lupa password belum tersedia.");
+            MessageBox.Show("Forgot Password diklik! (coming soon)");
         }
     }
 }

@@ -1,0 +1,210 @@
+﻿<Page x:Class="Eaship.page.Dashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="Dashboard">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png" Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Barges" 
+                            Click="Button_Click"/>
+
+                    <Button x:Name="BtnBookings" 
+                            Style="{StaticResource NavButton}" 
+                            Content="My Bookings"  
+                            Margin="6,0,0,0" 
+                            Click="Button_Click_1"/>
+
+                    <Button x:Name="BtnInvoice" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Invoice"      
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnHelp" 
+                            Style="{StaticResource NavButton}" 
+                            Content="Help"         
+                            Margin="6,0,0,0" 
+                            Click="Button_Click_2"/>
+
+                    <Button x:Name="BtnProfile" 
+                            Style="{StaticResource OutlineButton}" 
+                            Content="Profile"  
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnLogout"
+                            Background="White" 
+                            Foreground="Navy" 
+                            Padding="12,6" 
+                            Content="Log Out"
+                            Margin="6,0,0,0" 
+                            Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ================= CONTENT ================= -->
+        <Grid Grid.Row="1" Margin="60,40,60,0">
+
+            <!-- ========== Section 1: Welcome (Default) ========== -->
+            <Border x:Name="SectionWelcome"
+                    Background="#DCE7F0" 
+                    CornerRadius="16"
+                    Padding="50,40"
+                    VerticalAlignment="Top"
+                    MaxWidth="1080"
+                    Visibility="Visible">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" 
+                                      Opacity="0.08" 
+                                      BlurRadius="15" 
+                                      ShadowDepth="2"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <!-- Title -->
+                    <TextBlock Text="Welcome Aboard!" 
+                               FontSize="42"
+                               FontWeight="Bold"
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,16"/>
+
+                    <!-- Description -->
+                    <TextBlock FontSize="18"
+                               Foreground="#4A5568"
+                               TextWrapping="Wrap"
+                               LineHeight="28"
+                               Margin="0,0,0,40">
+                        <Run Text="Create a new company profile or join an existing one to start booking barges"/>
+                        <LineBreak/>
+                        <Run Text="and ships."/>
+                    </TextBlock>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Right">
+                        <Button x:Name="BtnCreateCompany"
+                                Content="Create Company"
+                                Width="200"
+                                Height="50"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Background="White"
+                                Foreground="#2C3E50"
+                                BorderBrush="#2C3E50"
+                                BorderThickness="2"
+                                Cursor="Hand"
+                                Margin="0,0,16,0" Click="BtnCreateCompany_Click"/>
+
+                        <Button x:Name="BtnJoinExisting"
+                                Content="Join Existing"
+                                Width="200"
+                                Height="50"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Background="#2C3E50"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Cursor="Hand" 
+                                Click="BtnJoinExisting_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- ========== Section 2: Waiting (Company sedang divalidasi admin) ========== -->
+            <Border x:Name="SectionWaiting"
+        Background="#DCE7F0"
+        CornerRadius="16"
+        Padding="60,50"
+        VerticalAlignment="Top"
+        MaxWidth="1080"
+        Visibility="Collapsed">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Title -->
+                    <TextBlock Text="Please Wait!" 
+                   FontSize="40"
+                   FontWeight="Bold"
+                   Foreground="#2C3E50"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Our Admin will confirm your company soon."
+                   FontSize="20"
+                   Foreground="#2C3E50"
+                   TextAlignment="Center"
+                   Margin="0,0,0,30"/>
+
+                    <!-- Illustration -->
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/image_wait.png"
+                        Width="420" Height="260"
+                        Margin="0,0,0,30"/>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar IsIndeterminate="True"
+                     Width="400"
+                     Height="8"
+                     Foreground="#2C3E50"
+                     Margin="0,0,0,25"/>
+
+                    <!-- Additional text -->
+                    <TextBlock Text="Your company information has been submitted and is waiting for admin validation."
+                   FontSize="16"
+                   Foreground="#4A5568"
+                   TextWrapping="Wrap"
+                   Width="600"
+                   TextAlignment="Center"
+                   Margin="0,0,0,10"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="© 2000 - Company, Inc. All rights reserved. Address Address"/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
+    

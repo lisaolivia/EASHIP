@@ -285,11 +285,16 @@ namespace Eaship.Migrations
                         .HasColumnType("text")
                         .HasColumnName("address");
 
-                    b.Property<string>("Contact")
+                    b.Property<string>("CityProvince")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)")
-                        .HasColumnName("contact");
+                        .HasColumnType("text");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EmailBilling")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("NPWP")
                         .IsRequired()
@@ -302,6 +307,24 @@ namespace Eaship.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
                         .HasColumnName("nama");
+
+                    b.Property<string>("PICEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PICName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PICPosition")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("PhoneNumber");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -454,7 +477,9 @@ namespace Eaship.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("phone");
 
                     b.Property<int?>("RenterCompanyId")
                         .HasColumnType("integer")
