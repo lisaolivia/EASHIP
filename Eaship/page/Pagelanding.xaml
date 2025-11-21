@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+      mc:Ignorable="d"   
+      d:DesignWidth="1200" d:DesignHeight="800"
       Title="EaShip - Landing">
 
     <Page.Resources>
@@ -53,8 +54,11 @@
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_3"/>
                     <Button x:Name="BtnInvoice" Content="Invoice" Foreground="White" Background="Transparent" 
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_1"/>
-                    <Button x:Name="BtnHelp" Content="Help" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Help_Click"/>
+                    <Button x:Name="Btnnotifikasi" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Notifikasi"         
+                        Margin="6,0,0,0" 
+                        Click="Buttonnotifikasi_Click"/>
                     <Button x:Name="BtnProfile" Content="Profile" Foreground="White" Background="Transparent" 
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Profile_Click"/>
                 </StackPanel>

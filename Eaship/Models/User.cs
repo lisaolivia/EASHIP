@@ -62,7 +62,6 @@ public class User
 
         return (hash, salt);
     }
-
     private bool VerifyPassword(string raw)
     {
         if (PasswordHash.Length == 0 || PasswordSalt.Length == 0) return false;

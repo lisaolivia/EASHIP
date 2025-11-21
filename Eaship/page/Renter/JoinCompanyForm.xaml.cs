@@ -18,14 +18,13 @@ using System.Windows.Shapes;
 namespace Eaship.page
 {
     /// <summary>
-    /// Interaction logic for LogoutPage.xaml
+    /// Interaction logic for JoinCompanyForm.xaml
     /// </summary>
-    public partial class LogoutPage : Page
+    public partial class JoinCompanyForm : Page
     {
         private readonly IUserService _users;
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
-
-        public LogoutPage()
+        public JoinCompanyForm()
         {
             InitializeComponent();
             _users = App.Services.GetRequiredService<IUserService>();
@@ -56,16 +55,19 @@ namespace Eaship.page
         }
 
 
-        // ====== NAVBAR: Sign Up ======
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+
+        // ====== REQUEST BUTTON ======
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("You are already Sign Up!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
-        // ====== NAVBAR: Log In ======
-        private void Login_Click(object sender, RoutedEventArgs e)
+
+
+        private void JoinCompany_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("You are already Log In!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Request Access clicked!");
         }
 
         private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)

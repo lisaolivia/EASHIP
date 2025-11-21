@@ -11,6 +11,7 @@ namespace Eaship.Models
         public long TongkangId { get; set; }
         public long TugboatId { get; set; }
 
+
         // optional: navigasi (biar EF bisa include data)
         public Tongkang? Tongkang { get; set; }
         public Tugboat? Tugboat { get; set; }

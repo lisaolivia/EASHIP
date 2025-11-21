@@ -1,0 +1,139 @@
+﻿<Page x:Class="Eaship.page.Admin.ListCompany"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="ListCompany">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Status Badge -->
+            <DataTemplate x:Key="StatusTemplate">
+                <Border CornerRadius="12" Padding="6 2" Background="{Binding StatusColor}">
+                    <TextBlock Text="{Binding Status}"
+                               Foreground="White"
+                               FontWeight="SemiBold"
+                               FontSize="12"/>
+                </Border>
+            </DataTemplate>
+
+            <!-- Header Style -->
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="10 6"/>
+                <Setter Property="Background" Value="#EAECEF"/>
+                <Setter Property="Foreground" Value="#111827"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <!-- Row Style -->
+            <Style TargetType="DataGridRow">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="White"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
+            <StackPanel Margin="24,40" VerticalAlignment="Stretch">
+
+                <Image Source="/Assets/logo2.png"
+                       Width="92" Height="49"
+                       Margin="0,0,0,40"/>
+
+                <StackPanel>
+                    <Button Style="{StaticResource NavButton}" Content="Fleet Management" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Reports" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,4"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
+                    <Button Content="Log Out"
+                            Background="White"
+                            Foreground="{StaticResource NavyBrush}"
+                            FontWeight="SemiBold"
+                            Padding="10,6"
+                            BorderBrush="Transparent"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- MAIN CONTENT -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+
+                <!-- Header -->
+                <TextBlock Text="List Company"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource NavyBrush}"
+                           Margin="0,0,0,20"/>
+
+                <!-- Table Box -->
+                <Border 
+                    Width="1051"
+                    Height="754"
+                    Background="White"
+                    BorderBrush="#D6E4F0"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Padding="20"
+                    Effect="{StaticResource Shadow}">
+
+                    <!-- DATAGRID -->
+                    <DataGrid x:Name="CompanyTable"
+                              AutoGenerateColumns="False"
+                              Background="White"
+                              BorderThickness="0"
+                              GridLinesVisibility="None"
+                              HeadersVisibility="Column"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              SelectionMode="Single"
+                              ColumnHeaderHeight="45"
+                              RowHeight="40" Margin="0,0,181,114">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Nama Perusahaan" Binding="{Binding Name}" Width="*" />
+
+                            <DataGridTextColumn Header="NPWP" Binding="{Binding NPWP}" Width="200"/>
+
+                            <DataGridTextColumn Header="Kota/Provinsi" Binding="{Binding CityProvince}" Width="200"/>
+
+                            <DataGridTextColumn Header="Telepon" Binding="{Binding Phone}" Width="160"/>
+
+                            <DataGridTemplateColumn Header="Status" Width="120"
+                                                    CellTemplate="{StaticResource StatusTemplate}"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Windows;
 using Eaship.Models;
-using Eaship.Services;   // <<— ini penting
+using Eaship.Services;
 
 namespace Eaship
 {
     public partial class App : Application
     {
         public static ServiceProvider Services { get; private set; } = default!;
+        public static User? CurrentUser { get; set; }
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -27,7 +29,9 @@ namespace Eaship
             sc.AddDbContext<EashipDbContext>(opt =>
                 opt.UseNpgsql(config.GetConnectionString("DefaultConnection")));
 
+            // REGISTER ALL SERVICES DI SINI
             sc.AddScoped<IUserService, UserService>();
+            sc.AddScoped<ICompanyService, CompanyService>();  // <<— INI YANG MISSING !!
 
             Services = sc.BuildServiceProvider();
 
@@ -35,6 +39,5 @@ namespace Eaship
             var db = scope.ServiceProvider.GetRequiredService<EashipDbContext>();
             db.Database.EnsureCreated();
         }
-
     }
 }

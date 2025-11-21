@@ -11,6 +11,9 @@
     <SolidColorBrush x:Key="SkyBrush" Color="{StaticResource Sky}"/>
     <SolidColorBrush x:Key="TextBrush" Color="#0E1726"/>
     <SolidColorBrush x:Key="MutedBrush" Color="#5B7083"/>
+    <SolidColorBrush x:Key="LightBrush" Color="#F7F9FC"/>
+
+
 
     <!-- ===== TYPOGRAPHY ===== -->
     <Style x:Key="H1" TargetType="TextBlock">
@@ -91,4 +94,53 @@
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Margin" Value="0,0,12,0"/>
     </Style>
+
+    <!-- ===== SHADOW EFFECT ===== -->
+    <DropShadowEffect x:Key="Shadow"
+                  Color="#20000000"
+                  BlurRadius="14"
+                  ShadowDepth="3"
+                  Direction="270"/>
+    <SolidColorBrush x:Key="CardBrush" Color="#FFFFFFFF"/>
+    <LinearGradientBrush x:Key="BannerBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#E6F0FA" Offset="0"/>
+        <GradientStop Color="#FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- ===== Placeholder textboxt ===== -->
+        <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#D6D6D6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                            <TextBlock x:Name="Placeholder"
+                                   Text="{TemplateBinding Tag}"
+                                   Foreground="#999"
+                                   Margin="5,0,0,0"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="*">
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
 </ResourceDictionary>
+

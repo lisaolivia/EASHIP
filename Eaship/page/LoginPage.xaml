@@ -21,11 +21,11 @@
             <RowDefinition/>
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
-
-        <!-- NAVBAR -->
-        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
-            <Grid Margin="24,0">
+        <!-- ========== NAVBAR ========== -->
+        <Border Background="#1E3A5F" Grid.Row="0">
+            <Grid Margin="48,0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
@@ -35,48 +35,34 @@
                     <Image  Source="pack://application:,,,/Eaship;component/Assets/logo2.png" Width="86" Height="59"/>
                 </StackPanel>
 
-                <!-- Menu -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button x:Name="BtnBarges" 
-                            Style="{StaticResource NavButton}" 
-                            Content="Barges" 
-                            Click="Button_Click"/>
+                <!-- Center Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges" Content="Barges" Foreground="White" Background="Transparent" 
+                           BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click"/>
+                    <Button x:Name="BtnBookings" Content="My Bookings" Foreground="White" Background="Transparent" 
+                           BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_1"/>
+                    <Button x:Name="BtnInvoice" Content="Invoice" Foreground="White" Background="Transparent" 
+                           BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
+                    <Button x:Name="Btnnotifikasi" 
+                       Style="{StaticResource NavButton}" 
+                       Content="Notifikasi"         
+                       Margin="6,0,0,0" 
+                       Click="Buttonnotifikasi_Click"/>
+                    <Button x:Name="BtnProfile" Content="Profile" Foreground="White" Background="Transparent" 
+                           BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
+                </StackPanel>
 
-                    <Button x:Name="BtnBookings" 
-                            Style="{StaticResource NavButton}" 
-                            Content="My Bookings"  
-                            Margin="6,0,0,0" 
-                            Click="Button_Click_1"/>
-
-                    <Button x:Name="BtnInvoice" 
-                            Style="{StaticResource NavButton}" 
-                            Content="Invoice"      
-                            Margin="6,0,0,0"/>
-
-                    <Button x:Name="BtnHelp" 
-                            Style="{StaticResource NavButton}" 
-                            Content="Help"         
-                            Margin="6,0,0,0" 
-                            Click="Button_Click_2"/>
-
-                    <Button x:Name="BtnProfile" 
-                            Style="{StaticResource OutlineButton}" 
-                            Content="Profile"  
-                            Margin="6,0,0,0"/>
-
-                    <Button x:Name="BtnSignUpNav" 
-                            Style="{StaticResource OutlineButton}" 
-                            Content="Sign Up"   
-                            Margin="6,0,0,0" 
-                            Click="SignUp_Click"/>
-
-                    <Button x:Name="BtnLoginNav"
-                            Background="Black" 
-                            Foreground="White" 
-                            Padding="12,6" 
-                            Content="Log In"
-                            Margin="6,0,0,0" 
-                            Click="Login_Click"/>
+                <!-- Right Menu -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnSignupNav" Content="SignUp" Foreground="White" Background="Transparent" 
+                           BorderBrush="White" BorderThickness="1" Padding="20,8" FontSize="14" 
+                           Cursor="Hand" Margin="0,0,12,0" Click="SignUp_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>

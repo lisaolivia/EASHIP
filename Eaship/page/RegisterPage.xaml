@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignWidth="1280" d:DesignHeight="720"
+      d:DesignWidth="1200" d:DesignHeight="800"
       Title="RegisterPage">
 
     <Grid Background="White">
@@ -36,24 +36,18 @@
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_1"/>
                     <Button x:Name="BtnInvoice" Content="Invoice" Foreground="White" Background="Transparent" 
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
-                    <Button x:Name="BtnHelp" Content="Help" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_2"/>
+                    <Button x:Name="Btnnotifikasi" 
+                        Style="{StaticResource NavButton}" 
+                        Content="Notifikasi"         
+                        Margin="6,0,0,0" 
+                        Click="Buttonnotifikasi_Click"/>
                     <Button x:Name="BtnProfile" Content="Profile" Foreground="White" Background="Transparent" 
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
                 </StackPanel>
 
                 <!-- Right Menu -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button x:Name="BtnSignupNav" Content="SignUp" Foreground="White" Background="Transparent" 
-                            BorderBrush="White" BorderThickness="1" Padding="20,8" FontSize="14" 
-                            Cursor="Hand" Margin="0,0,12,0" Click="SignUp_Click">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button x:Name="BtnLoginNav" Content="Login" Foreground="White" Background="#000000" 
+                    <Button x:Name="BtnLoginNav" Content="Login" Foreground="navy" Background="White" 
                             BorderThickness="0" Padding="24,8" FontSize="14" Cursor="Hand" Click="Login_Click">
                         <Button.Resources>
                             <Style TargetType="Border">

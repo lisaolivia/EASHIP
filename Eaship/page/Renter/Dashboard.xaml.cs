@@ -59,12 +59,6 @@ namespace Eaship.page
             MessageBox.Show("My Bookings diklik! (stub sementara)");
         }
 
-        // ====== NAVBAR: Help ======
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Help diklik! (coming soon)");
-        }
-
 
         private void Dashboard_Loaded(object sender, RoutedEventArgs e)
         {
@@ -112,13 +106,18 @@ namespace Eaship.page
 
         private void BtnJoinExisting_Click(object sender, RoutedEventArgs e)
         {
-            Main?.Navigate(new RequestSent());
+            Main?.Navigate(new JoinCompanyForm());
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
             Session.Clear();
             Main?.Navigate(new LogoutPage());
+        }
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

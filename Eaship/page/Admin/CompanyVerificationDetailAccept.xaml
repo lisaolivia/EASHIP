@@ -1,0 +1,271 @@
+﻿<Page x:Class="Eaship.page.Admin.CompanyVerificationDetailAccept"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="CompanyVerificationDetailAccept">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
+            <StackPanel Margin="24,40" VerticalAlignment="Stretch">
+
+                <Image Source="/Assets/logo2.png"
+                       Width="92" Height="49"
+                       Margin="0,0,0,40"/>
+
+                <StackPanel>
+                    <Button Style="{StaticResource NavButton}" Content="Fleet Management" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Reports" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,4"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
+                    <Button Content="Log Out"
+                            Background="White"
+                            Foreground="{StaticResource NavyBrush}"
+                            FontWeight="SemiBold"
+                            Padding="10,6"
+                            BorderBrush="Transparent"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- MAIN CONTENT -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+
+                <!-- Header -->
+                <TextBlock Text="Detail Company"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource NavyBrush}"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="Company Information"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource NavyBrush}"
+                           Margin="0,0,0,20"/>
+
+                <!-- FORM BORDER -->
+                <Border
+                    Width="816"
+                    Height="299"
+                    Background="White"
+                    BorderBrush="#D6E4F0"
+                    BorderThickness="1"
+                    CornerRadius="25"
+                    Padding="25"
+                    Margin="0,0,0,30"
+                    Effect="{StaticResource Shadow}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="240*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- FIELD 1 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Nama Perusahaan"
+                                   Margin="0,7,15,0"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7"
+                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+
+                        <!-- FIELD 2 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="NPWP"
+                                   Margin="0,7,15,0"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7"
+                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+
+                        <!-- FIELD 3 -->
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Alamat"
+                                   Margin="0,7,15,0"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7"
+                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+
+                        <!-- FIELD 4 -->
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="Kota/Provinsi"
+                                   Margin="0,7,15,0"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox Grid.Row="3" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7"
+                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+
+                        <!-- FIELD 5 -->
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="Email Billing"
+                                   Margin="0,7,15,0"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7"
+                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+
+                        <!-- FIELD 6 -->
+                        <TextBlock Grid.Row="5" Grid.Column="0"
+                                   Text="Telepon"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox Grid.Row="5" Grid.Column="1"
+                                 Height="30"
+                                 Background="#F7F7F7" Grid.ColumnSpan="2"/>
+
+                    </Grid>
+                </Border>
+
+                <!-- PIC INFORMATION TITLE -->
+                <TextBlock Text="PIC Information"
+           FontSize="20"
+           FontWeight="SemiBold"
+           Foreground="{StaticResource NavyBrush}"
+           Margin="0,0,0,20"/>
+
+                <!-- PIC INFORMATION BORDER -->
+                <Border
+        Width="816"
+        Background="White"
+        BorderBrush="#D6E4F0"
+        BorderThickness="1"
+        CornerRadius="25"
+        Padding="25"
+        Margin="0,0,0,20"
+        Effect="{StaticResource Shadow}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- FIELD 1 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                   Text="Nama PIC"
+                   Margin="0,7,15,0"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                 Height="30"
+                 Background="#F7F7F7"
+                 Margin="0,0,0,15"/>
+
+                        <!-- FIELD 2 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="Jabatan"
+                   Margin="0,7,15,0"/>
+
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                 Height="30"
+                 Background="#F7F7F7"
+                 Margin="0,0,0,15"/>
+
+                        <!-- FIELD 3 -->
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                   Text="Email PIC"
+                   Margin="0,7,15,0"/>
+
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                 Height="30"
+                 Background="#F7F7F7"/>
+                    </Grid>
+                </Border>
+
+                <!-- ACTION BUTTONS — DI LUAR BORDER -->
+                <StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Margin="0,10,0,0">
+
+                    <!-- DECLINE -->
+                    <Button Content="Decline"
+            Width="149"
+            Height="42"
+            Cursor="Hand"
+            FontSize="16"
+            FontWeight="SemiBold"
+            Foreground="White"
+            Background="#CC1313"
+            BorderBrush="#D6E4F0"
+            BorderThickness="3"
+            Margin="0,0,20,0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Content="Accept"
+            Width="160"
+            Height="42"
+            Cursor="Hand"
+            FontSize="16"
+            FontWeight="SemiBold"
+            Foreground="#0B3869"
+            Background="#D6E4F0"
+            BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <!-- ACCEPT -->
+
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

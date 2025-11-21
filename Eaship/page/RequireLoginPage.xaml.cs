@@ -43,14 +43,8 @@ namespace Eaship.page
                             MessageBoxImage.Information);
         }
 
-        // ====== NAVBAR: Help ======
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Help diklik! (coming soon)",
-                            "Info",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-        }
+
+
 
         // ====== NAVBAR: Profile ======
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -59,6 +53,11 @@ namespace Eaship.page
                             "Login Diperlukan",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+        }
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

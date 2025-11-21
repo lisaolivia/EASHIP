@@ -26,12 +26,6 @@ namespace Eaship.page
             MessageBox.Show("Profile clicked! (coming soon)");
         }
 
-        // HELP (navbar -> Help)
-        private void Help_Click(object sender, RoutedEventArgs e)
-        {
-            // Help doesn't require login, just display info:
-            MessageBox.Show("Help clicked! (coming soon)");
-        }
 
         // INVOICE (navbar -> Invoice)
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -86,6 +80,11 @@ namespace Eaship.page
         private void BookShip_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new LoginPage());
+        }
+
+        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿<Page x:Class="Eaship.page.CompanyFormPage"
+﻿<Page x:Class="Eaship.page.PICFormPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       d:DesignWidth="1200" d:DesignHeight="800"
-      Title="CompanyFormPage">
+      Title="PICFormPage">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -52,42 +52,34 @@
                         Style="{StaticResource NavButton}" 
                         Content="Invoice"      
                         Margin="6,0,0,0"/>
-
-                    <Button x:Name="BtnHelp" 
+                    <Button x:Name="Btnnotifikasi" 
                         Style="{StaticResource NavButton}" 
-                        Content="Help"         
+                        Content="Notifikasi"         
                         Margin="6,0,0,0" 
-                        Click="Button_Click_2"/>
+                        Click="Buttonnotifikasi_Click"/>
 
                     <Button x:Name="BtnProfile" 
                         Style="{StaticResource OutlineButton}" 
                         Content="Profile"  
                         Margin="6,0,0,0"/>
 
-                    <Button x:Name="BtnSignUpNav" 
-                        Style="{StaticResource OutlineButton}" 
-                        Content="Sign Up"   
-                        Margin="6,0,0,0" 
-                        Click="SignUp_Click"/>
-
-                    <Button x:Name="BtnLoginNav"
-                        Background="Black" 
-                        Foreground="White" 
-                        Padding="12,6" 
-                        Content="Log In"
-                        Margin="6,0,0,0" 
-                        Click="Login_Click"/>
+                    <Button x:Name="BtnLogoutNav"
+                         Background="White" 
+                         Foreground="Navy" 
+                         Padding="12,6" 
+                         Content="Log out"
+                         Margin="6,0,0,0" 
+                         Click="Logout_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- CONTENT -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,60" Grid.RowSpan="2">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <StackPanel HorizontalAlignment="Center" 
                         VerticalAlignment="Top" 
                         Margin="0,40,0,40">
-
 
                     <!-- HEADER BAR -->
                     <Grid Margin="0,0,0,20">
@@ -108,10 +100,10 @@
                                     BorderBrush="#D1D5DB"
                                     BorderThickness="1"
                                     Cursor="Hand"
-                                    Margin="0,6,0,0"
+                                    Margin="0,0,0,6"
                                     Width="90"
                                     Height="36"
-                                    VerticalAlignment="Top"
+                                    VerticalAlignment="Bottom"
                                     Click="BtnBack_Click">
                             <Button.Style>
                                 <Style TargetType="Button">
@@ -140,13 +132,16 @@
 
                         <!-- Judul di tengah -->
                         <TextBlock Grid.Column="1"
-                           Text="Sign Up Company"
+                           Text="PIC Operational"
                            FontSize="36"
                            FontWeight="Bold"
                            Foreground="#2C3E50"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center" Width="340"/>
-                    </Grid>
+                           VerticalAlignment="Center"/>
+                    </Grid> 
+
+
+
 
                     <!-- Form Card -->
                     <Border BorderBrush="#C0C0C0" 
@@ -154,16 +149,16 @@
                         CornerRadius="12"
                         Background="White"
                         Width="500"
-                        Padding="20">
+                        Padding="40">
 
 
                         <StackPanel>
                             <!-- Company Name -->
-                            <TextBlock Text="Company Name" 
+                            <TextBlock Text="Name" 
                                    FontSize="14"
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
+                                   Margin="0,0,0,8"/>
                             <TextBox x:Name="TxtCompanyName"
                                  Height="44"
                                  Padding="12,0"
@@ -171,7 +166,7 @@
                                  Background="White"
                                  BorderBrush="#CBD5E0"
                                  BorderThickness="1"
-                                 Margin="0,0,0,5">
+                                 Margin="0,0,0,20" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="6"/>
@@ -216,11 +211,11 @@
                             </TextBox>
 
                             <!-- NPWP -->
-                            <TextBlock Text="NPWP" 
+                            <TextBlock Text="Position" 
                                    FontSize="14"
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
+                                   Margin="0,0,0,8"/>
                             <TextBox x:Name="TxtNPWP"
                                  Height="44"
                                  Padding="12,0"
@@ -228,7 +223,7 @@
                                  Background="White"
                                  BorderBrush="#CBD5E0"
                                  BorderThickness="1"
-                                 Margin="0,0,0,5">
+                                 Margin="0,0,0,20">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="Template">
@@ -268,11 +263,11 @@
                             </TextBox>
 
                             <!-- Company Address -->
-                            <TextBlock Text="Company Address" 
+                            <TextBlock Text="Email" 
                                    FontSize="14"
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
+                                   Margin="0,0,0,8"/>
                             <TextBox x:Name="TxtCompanyAddress"
                                  Height="44"
                                  Padding="12,0"
@@ -280,7 +275,7 @@
                                  Background="White"
                                  BorderBrush="#CBD5E0"
                                  BorderThickness="1"
-                                 Margin="0,0,0,5">
+                                 Margin="0,0,0,20">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="Template">
@@ -319,184 +314,45 @@
                                 </TextBox.Style>
                             </TextBox>
 
-                            <!-- City/Province -->
-                            <TextBlock Text="City/Province" 
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtCityProvince"
-                                 Height="44"
-                                 Padding="12,0"
-                                 FontSize="14"
-                                 Background="White"
-                                 BorderBrush="#CBD5E0"
-                                 BorderThickness="1"
-                                 Margin="0,0,0,5">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="6">
-                                                        <Grid>
-                                                            <TextBlock Text="Search Your Address" 
-                                                                   Foreground="#9CA3AF"
-                                                                   Margin="12,0"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                            <ScrollViewer x:Name="PART_ContentHost" 
-                                                                    Margin="12,0"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
-                            <!-- Email Billing -->
-                            <TextBlock Text="Email Billing" 
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtEmailBilling"
-                                 Height="44"
-                                 Padding="12,0"
-                                 FontSize="14"
-                                 Background="White"
-                                 BorderBrush="#CBD5E0"
-                                 BorderThickness="1"
-                                 Margin="0,0,0,5">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="6">
-                                                        <Grid>
-                                                            <TextBlock Text="Search Role" 
-                                                                   Foreground="#9CA3AF"
-                                                                   Margin="12,0"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                            <ScrollViewer x:Name="PART_ContentHost" 
-                                                                    Margin="12,0"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
-                            <!-- Company Phone Number -->
-                            <TextBlock Text="Company Phone Number" 
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtPhoneNumber"
-                                 Height="44"
-                                 Padding="12,0"
-                                 FontSize="14"
-                                 Background="White"
-                                 BorderBrush="#CBD5E0"
-                                 BorderThickness="1"
-                                 Margin="0,0,0,5" >
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="6">
-                                                        <Grid>
-                                                            <TextBlock Text="Search Role" 
-                                                                   Foreground="#9CA3AF"
-                                                                   Margin="12,0"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                            <ScrollViewer x:Name="PART_ContentHost" 
-                                                                    Margin="12,0"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
                             <!-- Page Indicator -->
                             <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Center"
-                                    Margin="0,0,0,10">
-                                <Ellipse Width="10" Height="10" 
-                                     Fill="#2C3E50" 
-                                     Margin="4,0"/>
+                                    Margin="0,0,0,20">
                                 <Ellipse Width="10" Height="10" 
                                      Fill="#CBD5E0" 
                                      Margin="4,0"/>
+                                <Ellipse Width="10" Height="10" 
+                                         Fill="#2C3E50" 
+                                     Margin="4,0"/>
                             </StackPanel>
 
+                            <!-- check box-->
+
+                            <CheckBox x:Name="chkAdmin"
+                              Margin="0,10,0,0"
+                              VerticalContentAlignment="Center">
+
+                                <TextBlock Text="By registering a new company, your account will automatically become the Company Admin. You can add other PICs later"
+                                   TextWrapping="Wrap"
+                                   Margin="0,10,1,20"
+                                   FontSize="13"
+                                   Width="382"/>
+
+                            </CheckBox>
+
+
+
+
                             <!-- Next Button -->
-                            <Button x:Name="BtnNext"
-                                Content="Next"
+                            <Button x:Name="BtnSignup_company" 
+                                Content="Sign Up Company"
                                 Height="50"
                                 FontSize="16"
                                 FontWeight="Medium"
                                 Background="#2C3E50"
                                 Foreground="White"
                                 BorderThickness="0"
-                                Cursor="Hand" Click="BtnNext_Click">
+                                Cursor="Hand" Click="BtnSignup_company_Click">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Template">
