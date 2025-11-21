@@ -14,6 +14,8 @@ public class RenterCompany
 
     public string EmailBilling { get; private set; } = string.Empty;
     public string PhoneNumber { get; private set; } = string.Empty;
+    public DateTime CreatedAt { get; set; }
+
 
     // PIC INFO
     public string PICName { get; private set; } = string.Empty;

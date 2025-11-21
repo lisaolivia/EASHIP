@@ -1,4 +1,5 @@
 ﻿using Eaship.Models;
+using Eaship.page.Admin;
 using Eaship.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -41,18 +42,31 @@ namespace Eaship.page
                     return;
                 }
 
-                // Simpan user di Session
+                // Simpan session
                 Session.Set(user);
+
                 MessageBox.Show($"Selamat datang, {user.FullName}!", "Login Berhasil", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Navigasi ke landing page
-                Main?.Navigate(new Dashboard());
+                // ========= ROUTING ROLE BERBEDA =========
+                switch (user.Role)
+                {
+                    case UserRole.Admin:
+                        Main?.Navigate(new DashboardAdmin());
+                        break;
+
+                    case UserRole.Renter:
+                    default:
+                        Main?.Navigate(new Dashboard());
+                        break;
+                }
+
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Terjadi kesalahan saat login: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         // ====== SIGN UP BUTTON (di bawah form) ======
         private void GoRegister_Click(object sender, RoutedEventArgs e)

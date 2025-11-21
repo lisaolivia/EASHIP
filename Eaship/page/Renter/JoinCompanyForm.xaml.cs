@@ -57,14 +57,17 @@ namespace Eaship.page
 
 
         // ====== REQUEST BUTTON ======
-        private void BtnNext_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new RequestSent());
-        }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+
+
+        private void JoinCompany_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Request Access clicked!");
         }
 
         private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)

@@ -106,7 +106,7 @@ namespace Eaship.page
 
         private void BtnJoinExisting_Click(object sender, RoutedEventArgs e)
         {
-            Main?.Navigate(new RequestSent());
+            Main?.Navigate(new JoinCompanyForm());
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)

@@ -17,11 +17,14 @@ namespace Eaship.Models
     public class Booking
     {
         public long BookingId { get; set; }
+        public User? User { get; set; }
         public int UserId { get; set; }
 
         // public int TongkangId { get; set; }  // HAPUS: pindah ke M-N via BookingTongkang
 
         public string OriginPort { get; set; } = string.Empty;
+        public RenterCompany? RenterCompany { get; set; }
+
         public string DestinationPort { get; set; } = string.Empty;
 
         public DateTime StartDate { get; set; }
@@ -73,6 +76,10 @@ namespace Eaship.Models
             HargaTotal = HitungTotalHarga(itemsPerTongkang);
             Status = BookingStatus.Confirmed;
         }
+        public void SetStatus(BookingStatus status)
+        {
+            Status = status;
+        }
 
         public void Start()
         {
@@ -94,6 +101,7 @@ namespace Eaship.Models
                 throw new InvalidOperationException("Booking sudah selesai.");
             Status = BookingStatus.Cancelled;
         }
+
     }
 }
 

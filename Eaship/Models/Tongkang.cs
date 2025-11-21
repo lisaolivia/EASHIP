@@ -12,8 +12,8 @@ public enum TongkangStatus
 
 public class Tongkang
 {
-    public long TongkangId { get; set; }          // bigint
-    public long CompanyId { get; set; }          // bigint
+    public long TongkangId { get; set; }
+   
     private string _name = string.Empty;
     public string Name
     {
@@ -23,6 +23,8 @@ public class Tongkang
             : value;
     }
     public string KapasitasDwt { get; set; } = string.Empty;
+  
+
 
 
     public bool IncludeTugboat { get; private set; }
@@ -36,6 +38,10 @@ public class Tongkang
     public TongkangStatus CekStatus() => Status;
 
     //method
+    public void SetStatus(TongkangStatus status)
+    {
+        Status = status;
+    }
 
     public decimal HitungHarga(string cargoDesc, int durasiHari)
     {
