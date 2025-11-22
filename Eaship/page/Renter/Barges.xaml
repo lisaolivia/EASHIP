@@ -1,0 +1,194 @@
+﻿<Page x:Class="Eaship.page.Renter.Barges"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Title="Barges">
+
+    <!-- ========== RESOURCES HARUS DI SINI ========= -->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <!-- ========== MAIN GRID ========== -->
+    <Grid d:DesignWidth="1200" d:DesignHeight="800" Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
+                           Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+
+                    <Button x:Name="BtnBarges"
+                            Style="{StaticResource NavButton}"
+                            Content="Barges"
+                            Click="BtnBarges_Click"/>
+
+                    <Button x:Name="BtnMyBookings"
+                            Style="{StaticResource NavButton}"
+                            Content="My Bookings"
+                            Margin="6,0,0,0"
+                            Click="BtnMyBookings_Click"/>
+
+                    <Button x:Name="BtnContract"
+                            Style="{StaticResource NavButton}"
+                            Content="Contract"
+                            Margin="6,0,0,0"
+                            Click="BtnContract_Click"/>
+
+                    <Button x:Name="BtnNotif"
+                            Style="{StaticResource NavButton}"
+                            Content="Notifikasi"
+                            Margin="6,0,0,0"
+                            Click="BtnNotif_Click"/>
+
+                    <Button x:Name="BtnProfile"
+                            Style="{StaticResource OutlineButton}"
+                            Content="Profile"
+                            Margin="6,0,0,0"
+                            Click="BtnProfile_Click"/>
+
+                    <Button x:Name="BtnLogout"
+                            Background="White"
+                            Foreground="Navy"
+                            Padding="12,6"
+                            Content="Log Out"
+                            Margin="6,0,0,0"
+                            Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="60,30,60,40">
+
+                <!-- Header Banner -->
+                <Border Height="260"
+                        CornerRadius="15"
+                        BorderBrush="#96B5D1"
+                        BorderThickness="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Eaship;component/Assets/wave.png"
+                                    Stretch="UniformToFill"/>
+                    </Border.Background>
+
+                    <StackPanel VerticalAlignment="Center" Margin="40,0">
+                        <TextBlock Text="Search Barges &amp; Tugboats"
+                                   FontSize="32" FontWeight="Bold" Foreground="#1C2A39"/>
+                        <TextBlock Text="Find the perfect vessel for your shipping needs"
+                                   FontSize="18" Foreground="#37465A"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- FILTER -->
+                <Border Background="White"
+                        CornerRadius="10"
+                        Padding="25"
+                        Margin="0,30,0,25"
+                        BorderBrush="#D3DCE5"
+                        BorderThickness="1">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0,0,20,0">
+                            <TextBlock Text="Origin" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtOrigin" Height="35" Padding="8" Background="#F2F6FA"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                            <TextBlock Text="Destination" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtDestination" Height="35" Padding="8" Background="#F2F6FA"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="0,0,20,0">
+                            <TextBlock Text="Load Type" FontSize="14" FontWeight="Bold"/>
+                            <ComboBox x:Name="ComboLoad" Height="35" Background="#F2F6FA">
+                                <ComboBoxItem Content="General Cargo"/>
+                                <ComboBoxItem Content="Bulk Cargo"/>
+                                <ComboBoxItem Content="Containers"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Margin="0,0,20,0">
+                            <TextBlock Text="Min Capacity (DWT)" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtCapacity" Height="35" Padding="8" Background="#F2F6FA"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="4"
+                                x:Name="BtnSearch"
+                                Content="Search"
+                                Background="#163A63"
+                                Foreground="White"
+                                FontSize="16"
+                                Margin="0,18,0,0"
+                                Click="BtnSearch_Click"/>
+                    </Grid>
+                </Border>
+
+                <!-- Barges -->
+                    <TextBlock Text="Available Barges" FontSize="20" FontWeight="Bold"/>
+                    <ItemsControl x:Name="TongkangList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" ItemWidth="350" ItemHeight="180"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+
+                <!-- Tugboats -->
+                <TextBlock Text="Available Tugboats"
+                           FontSize="20" FontWeight="Bold"
+                           Margin="0,40,0,15"/>
+
+                <ItemsControl x:Name="TugboatList">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" ItemWidth="350" ItemHeight="150"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="© 2000 - Company, Inc. All rights reserved."
+                           Foreground="{StaticResource MutedBrush}" FontSize="12"/>
+                <TextBlock Text="+62812345 | Jl. Teti Sejati No.01 | support@eaship.com"
+                           Foreground="{StaticResource MutedBrush}" FontSize="12"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

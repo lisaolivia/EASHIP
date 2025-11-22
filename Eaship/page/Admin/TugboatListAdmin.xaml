@@ -1,0 +1,129 @@
+﻿<Page x:Class="Eaship.page.Admin.TugboatListAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Eaship.page.Admin"
+      mc:Ignorable="d" 
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="TugboatListAdmin">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
+            <StackPanel Margin="24,40">
+
+                <Image Source="/Assets/logo2.png" Width="92" Height="49" Margin="0,0,0,40"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Fleet Management" Click="OpenFleetManagement" Margin="0,5"/>
+                <Button Style="{StaticResource NavButton}" Content="Company Verification" Click="OpenCompanyVerification" Margin="0,5"/>
+                <Button Style="{StaticResource NavButton}" Content="Booking Request" Click="OpenBookingRequest" Margin="0,5"/>
+                <Button Style="{StaticResource NavButton}" Content="Contract Payment" Click="OpenContractPayment" Margin="0,5"/>
+                <Button Style="{StaticResource NavButton}" Content="Profile" Click="OpenProfile" Margin="0,5"/>
+
+                <Button Content="Log Out"
+                        Background="White"
+                        Foreground="{StaticResource NavyBrush}"
+                        Margin="0,40,0,0"
+                        Click="BtnLogout_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- MAIN CONTENT -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+
+                <TextBlock Text="Tugboat"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource NavyBrush}"
+                           Margin="0 0 0 20"/>
+
+                <!-- BUTTON TAMBAH -->
+                <Button Content="Tambah Tugboat"
+                        Width="180"
+                        Height="40"
+                        HorizontalAlignment="Right"
+                        Background="#E8F1FA"
+                        BorderBrush="#C6D9F0"
+                        Foreground="#3355AA"
+                        FontWeight="SemiBold"
+                        Margin="0 0 0 20"
+                        Click="AddTugboat"/>
+
+                <!-- GRID CARD TUGBOAT -->
+                <ItemsControl x:Name="TugboatList">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" ItemWidth="336" ItemHeight="280"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#D6E4F0"
+                                    BorderThickness="1"
+                                    CornerRadius="12"
+                                    Margin="10"
+                                    Background="White"
+                                    Padding="0"
+                                    Width="336">
+
+                                <StackPanel>
+
+                                    <!-- IMAGE -->
+                                    <Image Source="/Eaship;component/Assets/default_tugboat.png"
+                                           Height="180"
+                                           Stretch="UniformToFill"
+                                           Margin="0,0,0,10"/>
+
+                                    <!-- NAME -->
+                                    <TextBlock Text="{Binding Nama}"
+                                               FontWeight="SemiBold"
+                                               FontSize="16"
+                                               Margin="10,0,0,0"/>
+
+                                    <!-- HP -->
+                                    <TextBlock Text="{Binding TugboatHp}"
+                                               Foreground="#666"
+                                               FontSize="13"
+                                               Margin="10,0,0,6"/>
+
+                                    <!-- STATUS -->
+                                    <TextBlock Text="{Binding Status}"
+                                               Foreground="#3355AA"
+                                               FontSize="13"
+                                               Margin="10,0,0,10"/>
+
+                                    <!-- EDIT BUTTON -->
+                                    <Button Content="Edit"
+                                            Width="60"
+                                            Margin="0 0 10 10"
+                                            HorizontalAlignment="Right"
+                                            Tag="{Binding TugboatId}"
+                                            Click="EditTugboat"/>
+                                </StackPanel>
+
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

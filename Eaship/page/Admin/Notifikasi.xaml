@@ -3,12 +3,110 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Eaship.page.Admin"
       mc:Ignorable="d" 
       d:DesignWidth="1200" d:DesignHeight="800"
       Title="Notifikasi">
 
-    <Grid>
-        
+    <!-- RESOURCES -->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <!-- MAIN GRID -->
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
+            <StackPanel Margin="24,40">
+
+                <Image Source="/Assets/logo2.png"
+                       Width="92" Height="49" Margin="0,0,0,40"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Dashboard" Margin="0,5"
+                        Click="GotoDashboard"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Fleet Management" Margin="0,5"
+                        Click="GotoFleet"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,5"
+                        Click="GotoCompanyVerify"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,5"
+                        Click="GotoBooking"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,5"
+                        Click="GotoContract"/>
+
+                <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,5"
+                        Click="GotoProfile"/>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
+                    <Button Content="Log Out"
+                            Background="White"
+                            Foreground="{StaticResource NavyBrush}"
+                            FontWeight="SemiBold"
+                            Padding="10,6"
+                            BorderBrush="Transparent"
+                            Click="BtnLogout_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- MAIN CONTENT -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+
+                <TextBlock Text="Notifikasi"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource NavyBrush}"
+                           Margin="0 0 0 30"/>
+
+                <!-- LIST OF NOTIFICATIONS -->
+                <ItemsControl x:Name="NotificationList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White"
+                                    CornerRadius="10"
+                                    Padding="20"
+                                    Margin="0 0 0 15"
+                                    BorderBrush="#D3DCE5"
+                                    BorderThickness="1">
+
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Margin="0 0 0 5"/>
+
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="14"
+                                               Foreground="#444"
+                                               Margin="0 0 0 10"/>
+
+                                    <TextBlock Text="{Binding Date}"
+                                               FontSize="12"
+                                               Foreground="#888"
+                                               HorizontalAlignment="Right"/>
+                                </StackPanel>
+
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
     </Grid>
+
 </Page>

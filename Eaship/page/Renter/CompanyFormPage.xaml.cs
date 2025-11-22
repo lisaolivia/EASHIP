@@ -1,4 +1,7 @@
-﻿using Eaship.Services;
+﻿using Eaship.Models;
+using Eaship.page.Renter;
+using Eaship.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +16,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Extensions.DependencyInjection;
-using Eaship.Models;
 
 namespace Eaship.page
 {
     /// <summary>
     /// Interaction logic for CompanyFormPage.xaml
     /// </summary>
+   
     public partial class CompanyFormPage : Page
     {
         private readonly IUserService _users;
@@ -80,14 +82,39 @@ namespace Eaship.page
                 MessageBox.Show("Tidak ada halaman sebelumnya.");
         }
 
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
 
+        // ==========================================================
+        //                     NAVBAR HANDLERS
+        // ==========================================================
+        private void BtnBarges_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new Barges());
         }
 
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
         {
+            Main?.Navigate(new MyBookingPage());
+        }
 
+        private void BtnContract_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ContractPage()); // ganti kalau nama lain
+        }
+
+        private void BtnNotif_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new NotificationPage());
+        }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ProfilPage()); // ganti sesuai nama kamu
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Session.Clear();
+            Main?.Navigate(new LogoutPage());
         }
     }
 }

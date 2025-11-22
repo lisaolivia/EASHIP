@@ -14,7 +14,7 @@ public class Tugboat
     public long TugboatId { get; set; } 
     public string Nama { get; set; } = string.Empty; // varchar(250)
     public string TugboatHp { get; set; } = string.Empty; // varchar(250)
-    public TugboatStatus Status { get; private set; } = TugboatStatus.AVAILABLE;
+    public TugboatStatus Status { get; set; } = TugboatStatus.AVAILABLE;
     public TugboatStatus CekStatus() => Status;
     public void SendToMaintenance() => Status = TugboatStatus.MAINTENANCE;
     public void AssignToTongkang(Tongkang tongkang)

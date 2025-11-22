@@ -1,0 +1,135 @@
+﻿<Page x:Class="Eaship.page.Renter.NotificationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="NotificationPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Badge Style -->
+            <Style x:Key="BadgeStyle" TargetType="Border">
+                <Setter Property="Padding" Value="6,2"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Margin" Value="0,0,10,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+
+
+        <!-- =================== NAVBAR =================== -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
+                           Width="86" Height="59"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="Barges" Style="{StaticResource NavButton}" Click="BtnBarges_Click"/>
+                    <Button Content="My Bookings" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnMyBookings_Click"/>
+                    <Button Content="Contract" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnContract_Click"/>
+                    <Button Content="Notifikasi" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnNotif_Click"/>
+                    <Button Content="Profile" Style="{StaticResource OutlineButton}" Margin="6,0,0,0" Click="BtnProfile_Click"/>
+                    <Button Content="Log Out" Background="White" Foreground="Navy" Padding="12,6" Margin="6,0,0,0" Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+
+        <!-- =================== CONTENT =================== -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="60">
+
+                <TextBlock Text="Notifications"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Margin="0,0,0,20"
+                           Foreground="#1C2A39"/>
+
+                <ItemsControl x:Name="NotifList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border BorderBrush="#D6E4F0"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Background="White"
+                                    Padding="20"
+                                    Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <!-- Top Row -->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                                        <Border Background="{Binding BadgeColor}"
+                                                Style="{StaticResource BadgeStyle}">
+                                            <TextBlock Text="{Binding Type}" Foreground="White" FontWeight="SemiBold"/>
+                                        </Border>
+
+                                        <TextBlock Text="{Binding TimeAgo}"
+                                                   Foreground="#6B7280"
+                                                   Margin="0,3,0,0"/>
+                                    </StackPanel>
+
+                                    <!-- Title -->
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Margin="0,10,0,4"/>
+
+                                    <!-- Description -->
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="14"
+                                               Foreground="#5B5B5B"
+                                               TextWrapping="Wrap"/>
+
+                                </StackPanel>
+
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+        <!-- =================== FOOTER =================== -->
+        <Border Grid.Row="2" Background="#D6E3F2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="© 2000 - Company, Inc. All rights reserved."
+                           Foreground="{StaticResource MutedBrush}" FontSize="12"/>
+                <TextBlock Text="+62812345 | Jl. Teti Sejati No.01 | support@eaship.com"
+                           Foreground="{StaticResource MutedBrush}" FontSize="12" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Page>

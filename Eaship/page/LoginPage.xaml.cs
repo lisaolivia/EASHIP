@@ -51,12 +51,12 @@ namespace Eaship.page
                 switch (user.Role)
                 {
                     case UserRole.Admin:
-                        Main?.Navigate(new DashboardAdmin());
+                        Main?.Navigate(new Eaship.page.Admin.DashboardAdmin());
                         break;
 
                     case UserRole.Renter:
                     default:
-                        Main?.Navigate(new Dashboard());
+                        Main?.Navigate(new Eaship.page.Renter.Dashboard());
                         break;
                 }
 

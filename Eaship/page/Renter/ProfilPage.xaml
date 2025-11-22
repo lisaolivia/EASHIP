@@ -1,0 +1,195 @@
+﻿<Page x:Class="Eaship.page.Renter.ProfilPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="ProfilPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- NAVBAR -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
+                           Width="86" Height="59"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="Barges" Style="{StaticResource NavButton}" Click="BtnBarges_Click"/>
+                    <Button Content="My Bookings" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnMyBookings_Click"/>
+                    <Button Content="Contract" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnContract_Click"/>
+                    <Button Content="Notifikasi" Style="{StaticResource NavButton}" Margin="6,0,0,0" Click="BtnNotif_Click"/>
+                    <Button Content="Profile" Style="{StaticResource OutlineButton}" Margin="6,0,0,0"/>
+                    <Button Content="Log Out" Background="White" Foreground="Navy"
+                            Padding="12,6" Margin="6,0,0,0" Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="60">
+
+                <TextBlock Text="My Profile"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#1C2A39"
+                           Margin="0,0,0,20"/>
+
+                <!-- USER INFO CARD -->
+                <Border Background="White" BorderBrush="#D6E4F0" BorderThickness="1"
+                        CornerRadius="12" Padding="20" Margin="0,0,0,30">
+                    <StackPanel>
+                        <TextBlock Text="Account Information"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,15"/>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Full Name" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtFullName"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Email" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtEmail"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Phone" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtPhone"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Role" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtRole"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Last Login" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtLastLogin"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+
+                <!-- COMPANY INFO -->
+                <Border Background="White" BorderBrush="#D6E4F0" BorderThickness="1"
+                        CornerRadius="12" Padding="20" Margin="0,0,0,20">
+
+                    <StackPanel x:Name="CompanySection">
+
+                        <TextBlock Text="Company Information"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,15"/>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Company Name" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtCompanyName"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="NPWP" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtNPWP"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Address" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtAddress"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="City / Province" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtCityProvince"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="PIC Name" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtPICName"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="PIC Position" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtPICPosition"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="PIC Email" FontWeight="Bold"/>
+                            <TextBlock x:Name="TxtPICEmail"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Company Status" FontWeight="Bold"/>
+                            <Border x:Name="StatusBadge" Padding="6,2" CornerRadius="8" Margin="0,4,0,0">
+                                <TextBlock x:Name="TxtCompanyStatus" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+
+
+                <!-- IF NO COMPANY -->
+                <StackPanel x:Name="NoCompanySection" Visibility="Collapsed">
+                    <TextBlock Text="You don't have a company yet."
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Margin="0,0,0,10"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Create Company"
+                                Width="150" Height="40"
+                                Background="#163A63" Foreground="White"
+                                Click="BtnCreateCompany_Click"/>
+
+                        <Button Content="Join Company"
+                                Width="150" Height="40"
+                                Margin="10,0,0,0"
+                                Style="{StaticResource OutlineButton}"
+                                Click="BtnJoinCompany_Click"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="© 2000 - Company, Inc. All rights reserved."/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="+62812345 | Jl. Teti Sejati No.01 | support@eaship.com"
+                           Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Page>
