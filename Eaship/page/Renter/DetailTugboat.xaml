@@ -1,0 +1,191 @@
+﻿<Page x:Class="Eaship.page.Renter.DetailTugboat"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1200" d:DesignHeight="800"
+      Title="DetailTugboat">
+
+    <!-- RESOURCES -->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <!-- MAIN GRID -->
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <!-- NAVBAR -->
+            <RowDefinition/>
+            <!-- CONTENT -->
+            <RowDefinition Height="120"/>
+            <!-- FOOTER -->
+        </Grid.RowDefinitions>
+
+
+        <!-- ===================== NAVBAR ===================== -->
+        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
+           Width="86" Height="59"/>
+                </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBarges"
+                                Style="{StaticResource NavButton}"
+                                Content="Barges"
+                                Click="BtnBarges_Click"/>
+
+                    <Button x:Name="BtnMyBookings"
+                                Style="{StaticResource NavButton}"
+                                Content="My Bookings"
+                                Margin="6,0,0,0"
+                                Click="BtnMyBookings_Click"/>
+
+                    <Button x:Name="BtnInvoice"
+                                Style="{StaticResource NavButton}"
+                                Content="Invoice"
+                                Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnNotif"
+                                Style="{StaticResource NavButton}"
+                                Content="Notifikasi"
+                                Margin="6,0,0,0"
+                                Click="BtnNotif_Click"/>
+
+                    <Button x:Name="BtnProfile"
+                            Style="{StaticResource OutlineButton}"
+                            Content="Profile"
+                            Margin="6,0,0,0"/>
+
+                    <Button x:Name="BtnLogout"
+                                Background="White"
+                                Foreground="Navy"
+                                Padding="12,6"
+                                Content="Log Out"
+                                Margin="6,0,0,0"
+                                Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ==================== CONTENT ==================== -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="60,40,60,40">
+
+                <!-- IMAGE -->
+                <Border Height="340"
+                        CornerRadius="14"
+                        BorderBrush="#D6E4F0"
+                        BorderThickness="1"
+                        Margin="0 0 0 30"
+                        Background="White">
+                    <Image x:Name="TugboatImage"
+                           Source="/Assets/tugboat_default.jpeg"
+                           Stretch="UniformToFill"
+                           ClipToBounds="True"/>
+                </Border>
+
+                <!-- TITLE -->
+                <TextBlock x:Name="TxtName"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#1C2A39"
+                           Margin="0 0 0 10"/>
+
+                <!-- STATUS (big) -->
+                <TextBlock x:Name="TxtStatus"
+                           FontSize="16"
+                           Foreground="#3355AA"
+                           Margin="0 0 0 30"/>
+
+
+                <!-- INFO GRID -->
+                <Grid Margin="0 0 0 30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LEFT -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Horse Power (HP)"
+                                   FontSize="14" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtHp"
+                                   FontSize="16"
+                                   Margin="0 0 0 20"/>
+
+                        <TextBlock Text="Used For"
+                                   FontSize="14" FontWeight="SemiBold"/>
+                        <TextBlock Text="Towing Barges"
+                                   FontSize="16"/>
+                    </StackPanel>
+
+                    <!-- RIGHT -->
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Assigned to Barge"
+                                   FontSize="14" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtAssigned"
+                                   FontSize="16"
+                                   Margin="0 0 0 20"/>
+
+                        <TextBlock Text="Status"
+                                   FontSize="14" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtStatusDetail"
+                                   FontSize="16"/>
+                    </StackPanel>
+                </Grid>
+
+
+                <!-- BUTTONS -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0 30 0 0">
+
+                    <Button Content="Back"
+                            Width="120" Height="40"
+                            Margin="0 0 20 0"
+                            Background="#E0E6F0"
+                            Foreground="#163A63"
+                            BorderThickness="0"
+                            Click="BtnBack_Click"/>
+
+                    <Button Content="Booking"
+                            Width="140" Height="40"
+                            Background="#163A63"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="BtnBooking_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <!-- FOOTER -->
+        <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="© 2000 - Company, Inc. All rights reserved."/>
+                <TextBlock Foreground="{StaticResource MutedBrush}" FontSize="12"
+                           Text="+62812345 | Jl. Teti Sejati No. 01 | support@eaship.com"
+                           Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Page>

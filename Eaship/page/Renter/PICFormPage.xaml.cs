@@ -1,4 +1,7 @@
-﻿using Eaship.Services;
+﻿using Eaship.Models;
+using Eaship.page.Renter;
+using Eaship.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,8 +17,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Eaship.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Eaship.page
 {
@@ -31,31 +32,6 @@ namespace Eaship.page
             _users = App.Services.GetRequiredService<IUserService>();
             _context = App.Services.GetRequiredService<EashipDbContext>();
         }
-        // ====== NAVBAR: Barges ======
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-
-            MessageBox.Show("Barges diklik! (stub sementara)");
-        }
-
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-
-            MessageBox.Show("My Bookings diklik! (stub sementara)");
-        }
-
-
 
         private async void BtnSignup_company_Click(object sender, RoutedEventArgs e)
         {
@@ -111,14 +87,41 @@ namespace Eaship.page
                 MessageBox.Show("Tidak ada halaman sebelumnya.");
         }
 
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        // ==========================================================
+        //                     NAVBAR HANDLERS
+        // ==========================================================
+        private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
-
+            Main?.Navigate(new Barges());
         }
 
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
         {
-
+            Main?.Navigate(new MyBookingPage());
         }
+
+        private void BtnContract_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ContractPage()); // ganti kalau nama lain
+        }
+
+        private void BtnNotif_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new NotificationPage());
+        }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ProfilPage()); // ganti sesuai nama kamu
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Session.Clear();
+            Main?.Navigate(new LogoutPage());
+        }
+
+
+
     }
 }

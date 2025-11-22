@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-namespace Eaship.page
+namespace Eaship.page.Renter
 {
     /// <summary>
     /// Interaction logic for Dashboard.xaml
@@ -35,36 +35,12 @@ namespace Eaship.page
             
         }
 
-        // ====== NAVBAR: Barges ======
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-
-            MessageBox.Show("Barges diklik! (stub sementara)");
-        }
-
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-
-            MessageBox.Show("My Bookings diklik! (stub sementara)");
-        }
-
 
         private void Dashboard_Loaded(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
             {
-                _currentUser = Session.CurrentUser; // ambil dari session langsung
+                _currentUser = Session.CurrentUser;
                 if (_currentUser == null)
                 {
                     MessageBox.Show("Anda belum login. Silakan login terlebih dahulu.");
@@ -73,31 +49,81 @@ namespace Eaship.page
                 }
             }
 
-
             var company = _context.RenterCompanies
                 .FirstOrDefault(c => c.CreatedBy == _currentUser.UserId);
 
             if (company == null)
             {
+                // Belum punya perusahaan
                 SectionWelcome.Visibility = Visibility.Visible;
                 SectionWaiting.Visibility = Visibility.Collapsed;
+                SectionVerified.Visibility = Visibility.Collapsed;
             }
             else if (company.Status == CompanyStatus.Validating)
             {
+                // Sudah daftar tapi menunggu verifikasi admin
                 SectionWelcome.Visibility = Visibility.Collapsed;
                 SectionWaiting.Visibility = Visibility.Visible;
-
-                MessageBox.Show("DEBUG: SectionWaiting Visible!");
+                SectionVerified.Visibility = Visibility.Collapsed;
             }
-            else
+            else if (company.Status == CompanyStatus.Active)
             {
                 SectionWelcome.Visibility = Visibility.Collapsed;
                 SectionWaiting.Visibility = Visibility.Collapsed;
+                SectionVerified.Visibility = Visibility.Visible;
             }
 
         }
 
 
+        // === BUTTON FOR VERIFIED DASHBOARD ===
+
+        private void BtnBooking_Click(object sender, RoutedEventArgs e)
+        {
+            // Nanti arahkan ke halaman booking
+            Main?.Navigate(new BookingPage());
+        }
+
+        private void BtnSeeAllNotification_Click(object sender, RoutedEventArgs e)
+        {
+            // Nanti arahkan ke halaman list notifikasi
+            Main?.Navigate(new NotificationPage());
+        }
+
+
+        // ==========================================================
+        //                     NAVBAR HANDLERS
+        // ==========================================================
+        private void BtnBarges_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new Barges());
+        }
+
+        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new MyBookingPage());
+        }
+
+        private void BtnContract_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ContractPage()); // ganti kalau nama lain
+        }
+
+        private void BtnNotif_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new NotificationPage());
+        }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            Main?.Navigate(new ProfilPage()); // ganti sesuai nama kamu
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Session.Clear();
+            Main?.Navigate(new LogoutPage());
+        }
 
         private void BtnCreateCompany_Click(object sender, RoutedEventArgs e)
         {
@@ -107,17 +133,6 @@ namespace Eaship.page
         private void BtnJoinExisting_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new JoinCompanyForm());
-        }
-
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Main?.Navigate(new LogoutPage());
-        }
-
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

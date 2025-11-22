@@ -1,38 +1,40 @@
-﻿using Eaship.page.Renter;
+﻿using Eaship.Models;
 using Eaship.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Eaship.page
+namespace Eaship.page.Renter
 {
-    /// <summary>
-    /// Interaction logic for JoinCompanyForm.xaml
-    /// </summary>
-    public partial class JoinCompanyForm : Page
+    public partial class BookingPage : Page
     {
-        private readonly IUserService _users;
+        private readonly EashipDbContext _context;
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
-        public JoinCompanyForm()
+
+        public BookingPage()
         {
             InitializeComponent();
-            _users = App.Services.GetRequiredService<IUserService>();
+            _context = App.Services.GetRequiredService<EashipDbContext>();
         }
 
-        //===================== NAVIGATION =====================
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string role = (RoleBox.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "";
+            string name = TxtFullName.Text.Trim();
+            string email = TxtEmail.Text.Trim();
+            string phone = TxtPhone.Text.Trim();
+            string notes = TxtNotes.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Name & Email must be filled.");
+                return;
+            }
+
+            MessageBox.Show($"Booking submitted!\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nRole: {role}");
+        }
+
+        // ================= NAVBAR =================
 
         private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
@@ -63,16 +65,6 @@ namespace Eaship.page
         {
             Session.Clear();
             Main?.Navigate(new LogoutPage());
-        }
-
-        private void JoinCompany_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Request Access clicked!");
-        }
-
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
