@@ -90,7 +90,7 @@
                         Background="White">
                     <Image x:Name="TongkangImage"
                            Stretch="UniformToFill"
-                           Source="/Eaship;component/Assets/default_barge.jpg"
+                           Source="pack://application:,,,/Eaship;component/Assets/default_barge.jpg"
                            ClipToBounds="True"/>
                 </Border>
 

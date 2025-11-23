@@ -20,7 +20,7 @@ namespace Eaship.page
         }
 
         // ====== SIGN UP BUTTON (navbar) ======
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void BtnSignUpNav_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new RegisterPage());
         }

@@ -39,9 +39,6 @@
                             Width="86" Height="59" RenderTransformOrigin="0.5,0.775"/>
                 </Button>
 
-
-
-
                 <!-- Right Menu -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <Button x:Name="BtnLoginNav" Content="Login" Foreground="navy" Background="White" 

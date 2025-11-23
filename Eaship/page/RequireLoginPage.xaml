@@ -68,8 +68,8 @@
 
                 <!-- Right Menu -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button x:Name="BtnLoginNav" Content="Login" Foreground="navy" Background="White" 
-                            BorderThickness="0" Padding="24,8" FontSize="14" Cursor="Hand" Click="Login_Click">
+                    <Button x:Name="BtnSignUpNav" Content="Sign Up" Foreground="navy" Background="White" 
+                            BorderThickness="0" Padding="24,8" FontSize="14" Cursor="Hand" Click="BtnSignUpNav_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="4"/>

@@ -48,5 +48,16 @@ namespace Eaship.page.Admin
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
         }
+
+        private void SeeMoreTongkang(object sender, RoutedEventArgs e)
+        {
+            Navigate(new TongkangListAdmin());
+        }
+
+        private void SeeMoreTugboat(object sender, RoutedEventArgs e)
+        {
+            Navigate(new TugboatListAdmin()); 
+        }
+
     }
 }

@@ -23,11 +23,12 @@ public class Tongkang
             : value;
     }
     public string KapasitasDwt { get; set; } = string.Empty;
-  
 
 
 
-    public bool IncludeTugboat { get; private set; }
+
+    public bool IncludeTugboat { get; set; }
+
     public TongkangStatus Status { get; private set; } = TongkangStatus.Available;
 
 

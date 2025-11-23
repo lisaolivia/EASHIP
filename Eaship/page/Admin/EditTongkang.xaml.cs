@@ -51,15 +51,15 @@ namespace Eaship.page.Admin
             if (StatusBox.SelectedItem is TongkangStatus status)
                 _tongkang.SetStatus(status);
 
-            // HAPUS: _tongkang.MarkAvailable();
-            // HAPUS: _tongkang.IncludeTugboat = ...
+            _tongkang.IncludeTugboat = IncludeTugboatCheck.IsChecked ?? false;
 
             _context.Tongkangs.Update(_tongkang);
             await _context.SaveChangesAsync();
 
             MessageBox.Show("Tongkang updated successfully!");
-            Navigate(new FleetManagement());
+            Navigate(new DetailTongkang(_tongkangId));
         }
+
 
         private void Navigate(Page page)
         {

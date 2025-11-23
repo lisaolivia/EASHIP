@@ -43,12 +43,31 @@
 
                 <!-- Menu Items -->
                 <StackPanel>
-                    <Button Style="{StaticResource NavButton}" Content="Fleet Management" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Reports" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,4"/>
+                    <Button Style="{StaticResource NavButton}" 
+                            Content="Fleet Management" 
+                            Margin="0,4" 
+                            Click="OpenFleetManagement"/>
+
+                    <Button Style="{StaticResource NavButton}" 
+                            Content="Company Verification" 
+                            Margin="0,4" 
+                            Click="OpenCompanyVerification"/>
+
+                    <Button Style="{StaticResource NavButton}" 
+                            Content="Booking Request" 
+                            Margin="0,4" 
+                            Click="OpenBookingRequest"/>
+
+                    <Button Style="{StaticResource NavButton}" 
+                            Content="Contract Payment" 
+                            Margin="0,4" 
+                            Click="OpenContractPayment"/>
+
+                    <Button Style="{StaticResource NavButton}" 
+                            Content="Profile" 
+                            Margin="0,4" 
+                            Click="OpenProfile"/>
+
                 </StackPanel>
 
                 <!-- Spacer -->
@@ -63,7 +82,6 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-
         <!-- ================= MAIN CONTENT ================= -->
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="40,40,40,40">
