@@ -86,18 +86,11 @@ namespace Eaship.page
             MessageBox.Show("Barges diklik! (stub sementara)");
         }
 
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Brand_Click(object sender, RoutedEventArgs e)
         {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
 
-            MessageBox.Show("My Bookings diklik! (stub sementara)");
+            NavigationService?.Navigate(new Pagelanding());
         }
-
 
         // ====== NAVBAR: SignUp ======
         private void SignUp_Click(object sender, RoutedEventArgs e)

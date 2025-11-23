@@ -1,90 +1,69 @@
-﻿using Eaship.Services;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Eaship.page
-{
-    public partial class Pagelanding : Page
     {
-        public Pagelanding()
+        public partial class Pagelanding : Page
         {
-            InitializeComponent();
-        }
-
-        // Helper property for main frame navigation
-        private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
-
-        // PROFILE (navbar -> Profile)
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
+            public Pagelanding()
             {
-                Main?.Navigate(new RequireLoginPage());
-                return;
+                InitializeComponent();
             }
-            // TODO: Navigate to profile page
-            MessageBox.Show("Profile clicked! (coming soon)");
-        }
 
-
-        // INVOICE (navbar -> Invoice)
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
+            // BRAND CLICK → ke Landing lagi
+            private void Brand_Click(object sender, RoutedEventArgs e)
             {
-                Main?.Navigate(new RequireLoginPage());
-                return;
+                NavigationService?.Navigate(new Pagelanding());
             }
-            // TODO: Navigate to invoice page
-            MessageBox.Show("Invoice clicked! (coming soon)");
-        }
 
-        // BARGES (navbar -> Barges)
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
+            // SIGN UP → ke Register Page
+            private void SignUp_Click(object sender, RoutedEventArgs e)
             {
-                Main?.Navigate(new RequireLoginPage());
-                return;
+                NavigationService?.Navigate(new RegisterPage());
             }
-            // TODO: Navigate to barges list/booking page
-            MessageBox.Show("Barges clicked! (stub)");
-        }
 
-        // MY BOOKINGS (navbar -> My Bookings)
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
+            // LOGIN → ke LoginPage
+            private void Login_Click(object sender, RoutedEventArgs e)
             {
-                Main?.Navigate(new RequireLoginPage());
-                return;
+                NavigationService?.Navigate(new LoginPage());
             }
-            // TODO: Navigate to user bookings page
-            MessageBox.Show("My Bookings clicked! (stub)");
-        }
 
-        // LOG IN (navbar -> Login button)
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new LoginPage());
-        }
+            // ============================
+            // CENTER MENU → RequireLogin
+            // ============================
 
-        // SIGN UP (navbar -> SignUp button)
-        private void SignUp_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new RegisterPage());
-        }
+            private void BtnBarges_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
 
-        // BOOK SHIP BUTTON (CTA -> Book Ship → button)
-        // This now navigates to Login Page as requested
-        private void BookShip_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new LoginPage());
-        }
+            private void BtnBookings_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
 
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
+            private void BtnContract_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
 
+            private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
+
+            private void BtnProfile_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
+
+            // CTA: Book Ship →
+            private void BookShip_Click(object sender, RoutedEventArgs e)
+            {
+                NavigationService?.Navigate(new RequireLoginPage());
+            }
         }
     }
-}
+
+
