@@ -122,7 +122,8 @@
                                     Foreground="{StaticResource NavyBrush}"
                                     BorderBrush="Transparent"
                                     FontWeight="SemiBold"
-                                    Cursor="Hand"/>
+                                    Cursor="Hand"
+                                    Click="SeeMoreTongkang"/>
                         </Grid>
                     </Border>
                     <!-- === CARD TUGBOAT === -->
@@ -147,7 +148,8 @@
                                     Foreground="{StaticResource NavyBrush}"
                                     BorderBrush="Transparent"
                                     FontWeight="SemiBold"
-                                    Cursor="Hand"/>
+                                    Cursor="Hand"
+                                    Click="SeeMoreTugboat"/>
                         </Grid>
                     </Border>
                 </StackPanel>

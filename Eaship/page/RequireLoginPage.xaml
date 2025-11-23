@@ -34,31 +34,42 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Brand -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image  Source="pack://application:,,,/Eaship;component/Assets/logo2.png" Width="86" Height="59"/>
-                </StackPanel>
+                <Button Background="Transparent"
+                          BorderBrush="Transparent"
+                          BorderThickness="0"
+                          Cursor="Hand"
+                          Click="Brand_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter/>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
+              Width="86" Height="59" RenderTransformOrigin="0.5,0.775"/>
+                </Button>
 
                 <!-- Center Menu -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="BtnBarges" Content="Barges" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click"/>
+                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="BtnBarges_Click"/>
                     <Button x:Name="BtnBookings" Content="My Bookings" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="Button_Click_1"/>
-                    <Button x:Name="BtnInvoice" Content="Invoice" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
+                         BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="BtnBookings_Click"/>
+                    <Button x:Name="BtnContract" Content="Contract" Foreground="White" Background="Transparent" 
+                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="BtnContract_Click"/>
                     <Button x:Name="Btnnotifikasi" 
-                        Style="{StaticResource NavButton}" 
-                        Content="Notifikasi"         
-                        Margin="6,0,0,0" 
-                        Click="Buttonnotifikasi_Click"/>
+                              Style="{StaticResource NavButton}" 
+                              Content="Notifikasi"         
+                              Margin="6,0,0,0"          
+                              Click="Buttonnotifikasi_Click"/>
                     <Button x:Name="BtnProfile" Content="Profile" Foreground="White" Background="Transparent" 
-                            BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand"/>
+                                 BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="BtnProfile_Click"/>
                 </StackPanel>
 
                 <!-- Right Menu -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button x:Name="BtnLoginNav" Content="Login" Foreground="navy" Background="White" 
-                            BorderThickness="0" Padding="24,8" FontSize="14" Cursor="Hand" Click="Login_Click">
+                    <Button x:Name="BtnSignUpNav" Content="Sign Up" Foreground="navy" Background="White" 
+                            BorderThickness="0" Padding="24,8" FontSize="14" Cursor="Hand" Click="BtnSignUpNav_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="4"/>

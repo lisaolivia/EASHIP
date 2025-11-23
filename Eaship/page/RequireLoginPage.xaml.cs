@@ -20,44 +20,65 @@ namespace Eaship.page
         }
 
         // ====== SIGN UP BUTTON (navbar) ======
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void BtnSignUpNav_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new RegisterPage());
         }
 
-        // ====== NAVBAR: Barges ======
-        private void Button_Click(object sender, RoutedEventArgs e)
+        // ============================
+        // CENTER MENU → RequireLogin
+        // ============================
+        private void Brand_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Silakan login terlebih dahulu untuk melihat daftar barges.",
-                            "Login Diperlukan",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+
+            NavigationService?.Navigate(new Pagelanding());
+        }
+        private void RequireLoginNotice()
+        {
+            MessageBox.Show(
+                "You must log in first to access this feature.",
+                "Login Required",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
         }
 
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Silakan login terlebih dahulu untuk melihat booking Anda.",
-                            "Login Diperlukan",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
         }
 
-
-
-
-        // ====== NAVBAR: Profile ======
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void BtnBookings_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Silakan login terlebih dahulu untuk membuka profil Anda.",
-                            "Login Diperlukan",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
+        }
+
+        private void BtnContract_Click(object sender, RoutedEventArgs e)
+        {
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
         }
 
         private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
         {
-
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
         }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
+        }
+
+        // CTA
+        private void BookShip_Click(object sender, RoutedEventArgs e)
+        {
+            RequireLoginNotice();
+            NavigationService?.Navigate(new RequireLoginPage());
+        }
+
     }
 }

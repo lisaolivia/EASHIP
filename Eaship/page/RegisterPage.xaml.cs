@@ -70,6 +70,11 @@ namespace Eaship.page
                 MessageBox.Show($"Registration failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void Brand_Click(object sender, RoutedEventArgs e)
+        {
+            
+            NavigationService?.Navigate(new Pagelanding());
+        }
 
         // ====== NAVBAR: Sign Up ======
         private void SignUp_Click(object sender, RoutedEventArgs e)
@@ -83,33 +88,5 @@ namespace Eaship.page
             Main?.Navigate(new LoginPage());
         }
 
-        // ====== NAVBAR: Barges ======
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-            MessageBox.Show("Barges clicked! (stub)", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
-            MessageBox.Show("My Bookings clicked! (stub)", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-
-
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

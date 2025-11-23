@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eaship.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,20 @@ namespace Eaship.page.Admin
     /// </summary>
     public partial class TongkangListAdmin : Page
     {
+        private readonly EashipDbContext _context;
+
         public TongkangListAdmin()
         {
             InitializeComponent();
+            _context = App.Services.GetRequiredService<EashipDbContext>();
+
+            LoadData();
+        }
+
+        private async void LoadData()
+        {
+            var data = await _context.Tongkangs.ToListAsync();
+            TongkangList.ItemsSource = data;
         }
 
         private void Navigate(Page p)
@@ -38,11 +52,14 @@ namespace Eaship.page.Admin
         private void OpenContractPayment(object s, RoutedEventArgs e) => Navigate(new ContractPayment());
         private void OpenProfile(object s, RoutedEventArgs e) => Navigate(new Profile());
         private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
-        private void EditTongkang(object s, RoutedEventArgs e)
+
+        private void OpenDetailTongkang(object sender, MouseButtonEventArgs e)
         {
-            if (s is Button b && b.Tag is long id)
-                Navigate(new EditTongkang(id));
+            if (sender is Border b && b.DataContext is Tongkang t)
+                Navigate(new DetailTongkang(t.TongkangId));
         }
+
+
 
 
     }

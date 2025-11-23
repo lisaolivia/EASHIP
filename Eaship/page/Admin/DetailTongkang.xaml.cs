@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 
 namespace Eaship.page.Admin
@@ -37,14 +38,17 @@ namespace Eaship.page.Admin
             KapasitasText.Text = _tongkang.KapasitasDwt + " DWT";
             StatusText.Text = _tongkang.Status.ToString();
             IncludeTugboatText.Text = _tongkang.IncludeTugboat ? "Ya" : "Tidak";
-            JumlahTugboatText.Text = _tongkang.TugboatIds.Count.ToString();
+            JumlahTugboatText.Text = _tongkang.TugboatIds?.Count.ToString() ?? "0";
+
 
             // IMAGE SEMENTARA STATIC
-            TongkangImage.Source = new BitmapImage(new Uri("/Assets/tongkang.jpg", UriKind.Relative));
+            TongkangImage.Source = new BitmapImage(new Uri("/Assets/default_barge.jpg", UriKind.Relative));
 
             // COMPANY (jika kamu aktifkan lagi relasi)
             CompanyText.Text = "Belum ada";
         }
+
+
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
