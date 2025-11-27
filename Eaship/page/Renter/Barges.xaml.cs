@@ -32,15 +32,16 @@ namespace Eaship.page.Renter
 
 
         // ===================== LOAD TONGKANG =====================
-        private async Task LoadTongkang(string? origin = null, string? dest = null,
-                               string? loadType = null, int? minDwt = null)
+        private async Task LoadTongkang(string? name = null, int? minDwt = null)
         {
-            // 1. ambil dulu dari database (tanpa parsing)
             var list = await _context.Tongkangs
                             .Where(t => t.Status == TongkangStatus.Available)
                             .ToListAsync();
 
-            // 2. lakukan filter DWT di memory (C# murni)
+            if (!string.IsNullOrWhiteSpace(name))
+                list = list.Where(t =>
+                    t.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+
             if (minDwt.HasValue)
             {
                 list = list.Where(t =>
@@ -48,9 +49,7 @@ namespace Eaship.page.Renter
                     if (int.TryParse(
                             t.KapasitasDwt.Replace("DWT", "").Trim(),
                             out int dwt))
-                    {
                         return dwt >= minDwt.Value;
-                    }
 
                     return false;
                 }).ToList();
@@ -61,52 +60,88 @@ namespace Eaship.page.Renter
 
 
 
-        // ===================== LOAD TUGBOAT =====================
-        private async Task LoadTugboat()
-        {
-            var tugboats = await _context.Tugboats
-                                .Where(x => x.Status == TugboatStatus.AVAILABLE)
-                                .ToListAsync();
 
-            TugboatList.ItemsSource = tugboats;
+
+
+        // ===================== LOAD TUGBOAT =====================
+        private async Task LoadTugboat(string? name = null, int? minHp = null)
+        {
+            var tugs = await _context.Tugboats
+                            .Where(t => t.Status == TugboatStatus.AVAILABLE)
+                            .ToListAsync();
+
+            if (!string.IsNullOrWhiteSpace(name))
+                tugs = tugs.Where(t =>
+                    t.Nama.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (minHp.HasValue)
+            {
+                tugs = tugs.Where(t =>
+                {
+                    if (int.TryParse(
+                            t.TugboatHp.Replace("HP", "").Trim(),
+                            out int realHp))
+                        return realHp >= minHp.Value;
+
+                    return false;
+                }).ToList();
+            }
+
+            TugboatList.ItemsSource = tugs;
         }
+
+
 
 
         // ===================== SEARCH BUTTON =====================
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            string origin = TxtOrigin.Text.Trim();
-            string dest = TxtDestination.Text.Trim();
-            string loadType = (ComboLoad.SelectedItem as ComboBoxItem)?.Content?.ToString();
-            int? minDwt = null;
+            string searchName = TxtSearchName.Text.Trim();
 
-            if (int.TryParse(TxtCapacity.Text.Trim(), out int d))
+            int? minDwt = null;
+            if (int.TryParse(TxtMinDwt.Text.Trim(), out int d))
                 minDwt = d;
 
-            await LoadTongkang(origin, dest, loadType, minDwt);
+            int? minHp = null;
+            if (int.TryParse(TxtMinHp.Text.Trim(), out int hp))
+                minHp = hp;
+
+            // Tongkang filter by: Name + DWT
+            await LoadTongkang(searchName, minDwt);
+
+            // Tugboat filter by: Name + HP
+            await LoadTugboat(searchName, minHp);
         }
+
+
+
+
 
 
         // ===================== TONGKANG DETAILS =====================
         private void BtnTongkangDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.Tag is Tongkang tongkang)
+            if (sender is Button btn && btn.Tag is long tongkangId)
             {
-                // TODO: navigate to detail page
-                MessageBox.Show($"Detail Tongkang: {tongkang.Name}");
+                Main?.Navigate(new DetailTongkang(tongkangId));
             }
         }
+
 
 
         // ===================== TUGBOAT DETAILS =====================
         private void BtnTugboatDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.Tag is Tugboat tug)
+            if (sender is Button btn && btn.Tag is long tugboatId)
             {
-                // TODO: navigate to detail page
-                MessageBox.Show($"Detail Tugboat: {tug.Nama}");
+                var tug = _context.Tugboats.FirstOrDefault(x => x.TugboatId == tugboatId);
+                if (tug != null)
+                {
+                    Main?.Navigate(new DetailTugboat(tug));
+                }
             }
         }
+
         // ==========================================================
         //                     NAVBAR HANDLERS
         // ==========================================================

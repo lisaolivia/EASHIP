@@ -42,7 +42,7 @@ namespace Eaship.page.Renter
             TxtAssigned!.Text = assigned ?? "Not Assigned";
 
             TugboatImage!.Source = new BitmapImage(
-                new Uri("pack://application:,,,/Eaship;component/Assets/default_tugboat.png")
+                new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg")
             );
         }
 

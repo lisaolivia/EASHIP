@@ -52,10 +52,11 @@
                                  Margin="6,0,0,0"
                                  Click="BtnMyBookings_Click"/>
 
-                    <Button x:Name="BtnInvoice"
+                    <Button x:Name="BtnContract"
                              Style="{StaticResource NavButton}"
-                             Content="Invoice"
-                             Margin="6,0,0,0"/>
+                             Content="Contract"
+                             Margin="6,0,0,0"
+                             Click="BtnContract_Click"/>
 
                     <Button x:Name="BtnNotif"
                              Style="{StaticResource NavButton}"

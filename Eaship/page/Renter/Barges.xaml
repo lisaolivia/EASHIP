@@ -12,6 +12,82 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- TEMPLATE KARTU TONGKANG -->
+            <DataTemplate x:Key="TongkangCardTemplate">
+                <Border BorderBrush="#D0D7DF" BorderThickness="1" CornerRadius="12"
+            Padding="12" Margin="10" Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Gambar Tongkang -->
+                        <Border CornerRadius="10" Grid.Column="0" Margin="0,0,12,0">
+                            <Image Source="/Eaship;component/Assets/default_barge.jpg"
+                       Stretch="UniformToFill" />
+                        </Border>
+
+                        <!-- Info -->
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}"
+                           FontSize="20" FontWeight="Bold" />
+                            <TextBlock Text="{Binding KapasitasDwt, StringFormat='Capacity: {0} DWT'}"
+                           FontSize="14" Foreground="#546072" Margin="0,4,0,10"/>
+
+                            <Button Content="View Details"
+                                    Background="#163A63"
+                                    Foreground="White"
+                                    Padding="6"
+                                    Width="120"
+                                    HorizontalAlignment="Left"
+                                    Tag="{Binding TongkangId}"
+                                    Click="BtnTongkangDetail_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+
+            <!-- TEMPLATE KARTU TUGBOAT -->
+            <DataTemplate x:Key="TugboatCardTemplate">
+                <Border BorderBrush="#D0D7DF" BorderThickness="1" CornerRadius="12"
+                         Padding="12" Margin="10" Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Gambar Tugboat -->
+                        <Border CornerRadius="10" Margin="0,0,12,0">
+                            <Image Source="/Eaship;component/Assets/tugboat_default.jpeg"
+                                     Stretch="UniformToFill"/>
+                        </Border>
+
+                        <!-- Info -->
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Nama}"
+                           FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding HP, StringFormat='HP: {0}'}"
+                           FontSize="14" Foreground="#546072" Margin="0,4,0,10"/>
+
+                            <Button Content="View Details"
+                                    Background="#163A63"
+                                    Foreground="White"
+                                    Padding="6"
+                                    Width="120"
+                                    HorizontalAlignment="Left"
+                                    Tag="{Binding TugboatId}"
+                                    Click="BtnTugboatDetail_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -116,36 +192,29 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
                             <ColumnDefinition Width="180"/>
                         </Grid.ColumnDefinitions>
 
+                        <!-- Search Name -->
                         <StackPanel Margin="0,0,20,0">
-                            <TextBlock Text="Origin" FontSize="14" FontWeight="Bold"/>
-                            <TextBox x:Name="TxtOrigin" Height="35" Padding="8" Background="#F2F6FA"/>
+                            <TextBlock Text="Search Name" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtSearchName" Height="35" Padding="8" Background="#F2F6FA"/>
                         </StackPanel>
 
+                        <!-- Min Capacity -->
                         <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                            <TextBlock Text="Destination" FontSize="14" FontWeight="Bold"/>
-                            <TextBox x:Name="TxtDestination" Height="35" Padding="8" Background="#F2F6FA"/>
+                            <TextBlock Text="Min DWT (Tongkang)" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtMinDwt" Height="35" Padding="8" Background="#F2F6FA"/>
                         </StackPanel>
 
+                        <!-- Min HP -->
                         <StackPanel Grid.Column="2" Margin="0,0,20,0">
-                            <TextBlock Text="Load Type" FontSize="14" FontWeight="Bold"/>
-                            <ComboBox x:Name="ComboLoad" Height="35" Background="#F2F6FA">
-                                <ComboBoxItem Content="General Cargo"/>
-                                <ComboBoxItem Content="Bulk Cargo"/>
-                                <ComboBoxItem Content="Containers"/>
-                            </ComboBox>
+                            <TextBlock Text="Min HP (Tugboat)" FontSize="14" FontWeight="Bold"/>
+                            <TextBox x:Name="TxtMinHp" Height="35" Padding="8" Background="#F2F6FA"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="3" Margin="0,0,20,0">
-                            <TextBlock Text="Min Capacity (DWT)" FontSize="14" FontWeight="Bold"/>
-                            <TextBox x:Name="TxtCapacity" Height="35" Padding="8" Background="#F2F6FA"/>
-                        </StackPanel>
-
-                        <Button Grid.Column="4"
-                                x:Name="BtnSearch"
+                        <!-- Search Button -->
+                        <Button Grid.Column="3"
                                 Content="Search"
                                 Background="#163A63"
                                 Foreground="White"
@@ -155,28 +224,36 @@
                     </Grid>
                 </Border>
 
+
                 <!-- Barges -->
                     <TextBlock Text="Available Barges" FontSize="20" FontWeight="Bold"/>
-                    <ItemsControl x:Name="TongkangList">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel IsItemsHost="True" ItemWidth="350" ItemHeight="180"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                <ItemsControl x:Name="TongkangList"
+              ItemTemplate="{StaticResource TongkangCardTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True"
+                       ItemWidth="350"
+                       ItemHeight="180"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
 
                 <!-- Tugboats -->
                 <TextBlock Text="Available Tugboats"
                            FontSize="20" FontWeight="Bold"
                            Margin="0,40,0,15"/>
-
-                <ItemsControl x:Name="TugboatList">
+                <ItemsControl x:Name="TugboatList"
+                                 ItemTemplate="{StaticResource TugboatCardTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True" ItemWidth="350" ItemHeight="150"/>
+                            <WrapPanel IsItemsHost="True"
+                                       ItemWidth="350"
+                                       ItemHeight="180"/>   
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
+
 
             </StackPanel>
         </ScrollViewer>
