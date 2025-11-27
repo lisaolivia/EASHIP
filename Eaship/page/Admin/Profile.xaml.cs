@@ -1,4 +1,5 @@
 ﻿using Eaship.Models;
+using Eaship.Services;   // <--- WAJIB UNTUK AKSES Session
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +21,8 @@ namespace Eaship.page.Admin
 
         private void LoadUser()
         {
-            // Ambil user yang login (anda bisa sesuaikan logicnya)
-            _currentUser = App.CurrentUser;
+            // Ambil user admin dari session
+            _currentUser = Session.CurrentUser;   // <--- FIXED
 
             if (_currentUser == null)
             {
@@ -44,6 +45,9 @@ namespace Eaship.page.Admin
             _context.Users.Update(_currentUser);
             await _context.SaveChangesAsync();
 
+            // Update session user setelah perubahan
+            Session.Set(_currentUser);  // <--- FIXED
+
             MessageBox.Show("Profile updated!");
         }
 
@@ -59,7 +63,6 @@ namespace Eaship.page.Admin
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(p);
         }
-
 
         private void OpenFleetManagement(object s, RoutedEventArgs e) => Navigate(new FleetManagement());
         private void OpenCompanyVerification(object s, RoutedEventArgs e) => Navigate(new CompanyVerification());

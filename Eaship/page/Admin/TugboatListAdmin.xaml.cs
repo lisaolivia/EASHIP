@@ -1,10 +1,12 @@
 ﻿using Eaship.Models;
+using Eaship.page.Renter;
 using Eaship.Services;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eaship.page.Admin
 {
@@ -53,5 +55,12 @@ namespace Eaship.page.Admin
             Session.Clear();
             Navigate(new LogoutPage());
         }
+
+        private void OpenDetailTugboat(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Border b && b.DataContext is Tugboat t)
+                Navigate(new DetailTugboat(t.TugboatId));
+        }
+
     }
 }

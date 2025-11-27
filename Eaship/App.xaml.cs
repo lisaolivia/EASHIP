@@ -31,7 +31,9 @@ namespace Eaship
 
             // REGISTER ALL SERVICES DI SINI
             sc.AddScoped<IUserService, UserService>();
-            sc.AddScoped<ICompanyService, CompanyService>();  // <<— INI YANG MISSING !!
+            sc.AddScoped<ICompanyService, CompanyService>();
+            sc.AddScoped<ITugboatService, TugboatService>();
+
 
             Services = sc.BuildServiceProvider();
 

@@ -62,9 +62,9 @@
                         <StackPanel Margin="0 0 0 20">
                             <TextBlock Text="Status" FontWeight="Bold"/>
                             <ComboBox x:Name="ComboStatus" Height="35" Margin="0,5,0,0">
-                                <ComboBoxItem Content="Available"/>
-                                <ComboBoxItem Content="InUse"/>
-                                <ComboBoxItem Content="Maintenance"/>
+                                <ComboBoxItem Content="AVAILABLE"/>
+                                <ComboBoxItem Content="ASSIGNED"/>
+                                <ComboBoxItem Content="MAINTENANCE"/>
                             </ComboBox>
                         </StackPanel>
 

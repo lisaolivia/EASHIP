@@ -78,173 +78,61 @@
 
         <!-- CONTENT -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,60" Grid.RowSpan="2">
-            <Grid>
-                <StackPanel HorizontalAlignment="Center" 
-                        VerticalAlignment="Top" 
-                        Margin="0,40,0,40">
+            <!-- ================= CONTENT ================= -->
+            <Grid Grid.Row="1" Margin="60,40,60,0">
 
-                    <!-- Title -->
-                    <TextBlock Text="Join Existing Company" 
-                           FontSize="36"
-                           FontWeight="Bold"
-                           Foreground="#2C3E50"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,20"/>
+                <Border Background="#DCE7F0"
+            CornerRadius="16"
+            Padding="50,40"
+            VerticalAlignment="Top"
+            MaxWidth="1080">
 
-                    <!-- Form Card -->
-                    <Border BorderBrush="#C0C0C0" 
-                        BorderThickness="2"
-                        CornerRadius="12"
-                        Background="White"
-                        Width="500"
-                        Padding="20">
+                    <StackPanel>
 
+                        <!-- Title -->
+                        <TextBlock Text="Join Existing Company"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       Foreground="#2C3E50"
+                       Margin="0,0,0,20"/>
 
-                        <StackPanel>
-                            <!-- Name -->
-                            <TextBlock Text="Name" 
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtCompanyName"
-                                 Height="44"
-                                 Padding="12,0"
-                                 FontSize="14"
-                                 Background="White"
-                                 BorderBrush="#CBD5E0"
-                                 BorderThickness="1"
-                                 Margin="0,0,0,5">
-                                <TextBox.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="6"/>
-                                    </Style>
-                                </TextBox.Resources>
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="6">
-                                                        <Grid>
-                                                            <TextBlock Text="Search Role" 
-                                                                   Foreground="#9CA3AF"
-                                                                   Margin="12,0"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                            <ScrollViewer x:Name="PART_ContentHost" 
-                                                                    Margin="12,0"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
+                        <!-- Description -->
+                        <TextBlock Text="Enter the Company ID provided by your administrator."
+                       FontSize="16"
+                       Foreground="#4A5568"
+                       Margin="0,0,0,30"/>
 
-                            <!-- NPWP -->
-                            <TextBlock Text="NPWP" 
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   Foreground="#2C3E50"
-                                   Margin="0,0,0,5"/>
-                            <TextBox x:Name="TxtNPWP"
-                                 Height="44"
-                                 Padding="12,0"
-                                 FontSize="14"
-                                 Background="White"
-                                 BorderBrush="#CBD5E0"
-                                 BorderThickness="1"
-                                 Margin="0,0,0,20">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="6">
-                                                        <Grid>
-                                                            <TextBlock Text="First Name" 
-                                                                   Foreground="#9CA3AF"
-                                                                   Margin="12,0"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                            <ScrollViewer x:Name="PART_ContentHost" 
-                                                                    Margin="12,0"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
+                        <!-- Company ID Input -->
+                        <TextBlock Text="Company ID"
+                       FontSize="14"
+                       FontWeight="Medium"
+                       Foreground="#2C3E50"
+                       Margin="0,0,0,8"/>
 
-                            <!-- Request Access Button -->
-                            <Button x:Name="RequestAcces"
-                                Content="Request Acces to Join Company"
-                                Height="50"
-                                FontSize="16"
-                                FontWeight="Medium"
-                                Background="#2C3E50"
-                                Foreground="White"
-                                BorderThickness="0"
-                                Cursor="Hand" Click="JoinCompany_Click">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                        CornerRadius="8">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                    VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1A252F"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
+                        <TextBox x:Name="TxtCompanyId"
+                     Height="44"
+                     Padding="12,0"
+                     FontSize="14"
+                     Background="White"
+                     BorderBrush="#CBD5E0"
+                     BorderThickness="1"
+                     Margin="0,0,0,20"/>
+
+                        <!-- Join Button -->
+                        <Button Content="Join Company"
+                    Width="200"
+                    Height="48"
+                    Background="#163A63"
+                    Foreground="White"
+                    FontSize="16"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="JoinCompany_Click"/>
+
+                    </StackPanel>
+                </Border>
             </Grid>
+
         </ScrollViewer>
 
         <!-- FOOTER -->

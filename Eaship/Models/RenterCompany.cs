@@ -4,26 +4,30 @@ public enum CompanyStatus { Draft, Validating, Active, Rejected }
 
 public class RenterCompany
 {
-    public int RenterCompanyId { get; private set; }
+    public int RenterCompanyId { get; set; }
 
     // COMPANY INFO
-    public string Nama { get; private set; } = string.Empty;
-    public string NPWP { get; private set; } = string.Empty;
-    public string Address { get; private set; } = string.Empty;
-    public string? CityProvince { get; private set; }
+    public string Nama { get; set; } = string.Empty;
+    public string NPWP { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string? CityProvince { get; set; }
 
-    public string EmailBilling { get; private set; } = string.Empty;
-    public string PhoneNumber { get; private set; } = string.Empty;
-    public DateTime CreatedAt { get; set; }
+    public string EmailBilling { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
 
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; }
+    public DateTime? ApprovedAt { get; set; }
+    public DateTime? RejectedAt { get; set; }
 
     // PIC INFO
-    public string PICName { get; private set; } = string.Empty;
-    public string PICPosition { get; private set; } = string.Empty;
-    public string PICEmail { get; private set; } = string.Empty;
+    public string PICName { get; set; } = string.Empty;
+    public string PICPosition { get; set; } = string.Empty;
+    public string PICEmail { get; set; } = string.Empty;
 
-    public CompanyStatus Status { get; private set; } = CompanyStatus.Draft;
-    public long CreatedBy { get; private set; } // User ID pembuat (auto dari sesi login)
+    public CompanyStatus Status { get; set; } = CompanyStatus.Validating;
+    public long CreatedBy { get; set; }
+    public string? RejectedReason { get; set; }
 
     // --- METHODS ---
     public void SubmitForValidation()

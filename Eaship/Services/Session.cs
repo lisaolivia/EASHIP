@@ -1,4 +1,5 @@
 ﻿using Eaship.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace Eaship.Services
@@ -24,5 +25,14 @@ namespace Eaship.Services
             CurrentUser = null;
             IsLoggedIn = false;
         }
+
+        public static async Task RefreshAsync(EashipDbContext db)
+        {
+            if (CurrentUser != null)
+            {
+                CurrentUser = await db.Users.FirstAsync(u => u.UserId == CurrentUser.UserId);
+            }
+        }
+
     }
 }

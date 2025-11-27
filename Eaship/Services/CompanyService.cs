@@ -21,6 +21,15 @@ namespace Eaship.Services
             return company;
         }
 
+        public async Task<List<RenterCompany>> GetApprovedAsync()
+        {
+            return await _db.RenterCompanies
+                .Where(c => c.Status == CompanyStatus.Active)
+                .ToListAsync();
+
+        }
+
+
         public async Task<List<RenterCompany>> GetPendingAsync()
         {
             return await _db.RenterCompanies
@@ -43,15 +52,28 @@ namespace Eaship.Services
         public async Task ApproveAsync(int id, User admin)
         {
             var company = await GetByIdAsync(id);
-            company?.Approve(admin);
+
+            if (company == null) return;
+
+            company.Status = CompanyStatus.Active;
+            company.ApprovedAt = DateTime.UtcNow;
+            company.UpdatedAt = DateTime.UtcNow;
+
             await _db.SaveChangesAsync();
         }
 
-        public async Task RejectAsync(int id, User admin)
+        public async Task RejectAsync(int id, User admin, string reason)
         {
             var company = await GetByIdAsync(id);
-            company?.Reject(admin);
+            if (company == null) return;
+
+            company.Status = CompanyStatus.Rejected;
+            company.RejectedReason = reason;
+            company.RejectedAt = DateTime.UtcNow;
+
             await _db.SaveChangesAsync();
         }
+
+
     }
 }

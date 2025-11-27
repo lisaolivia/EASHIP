@@ -1,35 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Eaship.Models;
+using Eaship.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eaship.page.Admin
 {
-    /// <summary>
-    /// Interaction logic for CompanyVerificationDetailAccept.xaml
-    /// </summary>
     public partial class CompanyVerificationDetailAccept : Page
     {
-        public CompanyVerificationDetailAccept()
+        private readonly ICompanyService _companies;
+        private readonly int _companyId;
+
+        public CompanyVerificationDetailAccept(int companyId)
         {
             InitializeComponent();
+
+            _companies = App.Services.GetRequiredService<ICompanyService>();
+            _companyId = companyId;
         }
+
 
         private void Navigate(Page page)
         {
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(page);
         }
+
+        private async void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            await _companies.ApproveAsync(_companyId, Session.CurrentUser);
+
+            var db = App.Services.GetRequiredService<EashipDbContext>();
+            var renter = await db.Users.FirstAsync(u => u.RenterCompanyId == _companyId);
+            Session.Set(renter);   //  refresh user renter
+            await Session.RefreshAsync(db);
+            MessageBox.Show("Company approved!");
+            Navigate(new CompanyVerification());
+
+        }
+
+        private async void Decline_Click(object sender, RoutedEventArgs e)
+        {
+            string reason = TxtReason.Text.Trim();  
+
+            await _companies.RejectAsync(_companyId, Session.CurrentUser, reason);
+
+            var db = App.Services.GetRequiredService<EashipDbContext>();
+            var renter = await db.Users.FirstAsync(u => u.RenterCompanyId == _companyId);
+            Session.Set(renter);   // <-- refresh renter
+
+            MessageBox.Show("Company declined!");
+            Navigate(new CompanyVerification());
+        }
+
 
         private void OpenFleetManagement(object s, RoutedEventArgs e) => Navigate(new FleetManagement());
         private void OpenCompanyVerification(object s, RoutedEventArgs e) => Navigate(new CompanyVerification());

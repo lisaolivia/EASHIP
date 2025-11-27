@@ -164,7 +164,7 @@
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,8"/>
-                            <TextBox x:Name="TxtCompanyName"
+                            <TextBox x:Name="TxtPICName"
                                  Height="44"
                                  Padding="12,0"
                                  FontSize="14"
@@ -215,13 +215,13 @@
                                 </TextBox.Style>
                             </TextBox>
 
-                            <!-- NPWP -->
+
                             <TextBlock Text="Position" 
                                    FontSize="14"
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,8"/>
-                            <TextBox x:Name="TxtNPWP"
+                            <TextBox x:Name="TxtPICPosition"
                                  Height="44"
                                  Padding="12,0"
                                  FontSize="14"
@@ -267,13 +267,13 @@
                                 </TextBox.Style>
                             </TextBox>
 
-                            <!-- Company Address -->
+                        
                             <TextBlock Text="Email" 
                                    FontSize="14"
                                    FontWeight="Medium"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,8"/>
-                            <TextBox x:Name="TxtCompanyAddress"
+                            <TextBox x:Name="TxtPICEmail"
                                  Height="44"
                                  Padding="12,0"
                                  FontSize="14"

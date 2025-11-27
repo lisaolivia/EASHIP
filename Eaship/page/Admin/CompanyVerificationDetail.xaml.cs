@@ -1,4 +1,5 @@
 ﻿using Eaship.Models;
+using Eaship.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -9,10 +10,12 @@ namespace Eaship.page.Admin
     public partial class CompanyVerificationDetail : Page
     {
         private readonly EashipDbContext _context;
-        private readonly long _companyId;
+        private readonly int _companyId;
         private RenterCompany? _company;
+        private readonly ICompanyService _companies;
 
-        public CompanyVerificationDetail(long companyId)
+
+        public CompanyVerificationDetail(int companyId)
         {
             InitializeComponent();
 
@@ -21,6 +24,9 @@ namespace Eaship.page.Admin
 
             LoadData();
         }
+
+
+
 
         private async void LoadData()
         {
@@ -63,6 +69,11 @@ namespace Eaship.page.Admin
         {
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
+        }
+
+        private void GoToVerification_Click(object sender, RoutedEventArgs e)
+        {
+            Navigate(new CompanyVerificationDetailAccept(_companyId));
         }
     }
 }
