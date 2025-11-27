@@ -9,8 +9,9 @@ namespace Eaship.Services
         Task<RenterCompany> CreateAsync(RenterCompany company);
         Task<List<RenterCompany>> GetPendingAsync();
         Task<List<RenterCompany>> GetActiveAsync();
+        Task<List<RenterCompany>> GetApprovedAsync();
         Task<RenterCompany?> GetByIdAsync(int id);
         Task ApproveAsync(int id, User admin);
-        Task RejectAsync(int id, User admin);
+        Task RejectAsync(int id, User admin, string reason);
     }
 }

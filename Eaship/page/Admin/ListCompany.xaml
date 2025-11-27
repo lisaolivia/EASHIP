@@ -13,15 +13,41 @@
                 <ResourceDictionary Source="/Eaship;component/Resources/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Status Badge -->
             <DataTemplate x:Key="StatusTemplate">
-                <Border CornerRadius="12" Padding="6 2" Background="{Binding StatusColor}">
+                <Border CornerRadius="12" Padding="6 2">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#E2E8F0"/>
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding Status}" Value="Draft">
+                                    <Setter Property="Background" Value="#E2E8F0"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Status}" Value="Validating">
+                                    <Setter Property="Background" Value="#FFF3CD"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Status}" Value="Active">
+                                    <Setter Property="Background" Value="#C6F6D5"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Status}" Value="Rejected">
+                                    <Setter Property="Background" Value="#FED7D7"/>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
                     <TextBlock Text="{Binding Status}"
-                               Foreground="White"
-                               FontWeight="SemiBold"
-                               FontSize="12"/>
+                   Foreground="#1A202C"
+                   FontWeight="SemiBold"
+                   FontSize="12"/>
                 </Border>
             </DataTemplate>
+
 
             <!-- Header Style -->
             <Style TargetType="DataGridColumnHeader">
@@ -63,7 +89,6 @@
                     <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,4"/>
                     <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,4"/>
                     <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Reports" Margin="0,4"/>
                     <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,4"/>
                 </StackPanel>
 
@@ -116,16 +141,13 @@
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Nama Perusahaan" Binding="{Binding Name}" Width="*" />
-
+                            <DataGridTextColumn Header="Nama Perusahaan" Binding="{Binding Nama}" Width="*" />
                             <DataGridTextColumn Header="NPWP" Binding="{Binding NPWP}" Width="200"/>
-
                             <DataGridTextColumn Header="Kota/Provinsi" Binding="{Binding CityProvince}" Width="200"/>
-
-                            <DataGridTextColumn Header="Telepon" Binding="{Binding Phone}" Width="160"/>
-
+                            <DataGridTextColumn Header="Telepon" Binding="{Binding PhoneNumber}" Width="160"/>
                             <DataGridTemplateColumn Header="Status" Width="120"
-                                                    CellTemplate="{StaticResource StatusTemplate}"/>
+                                                   CellTemplate="{StaticResource StatusTemplate}"/>
+
 
                         </DataGrid.Columns>
 

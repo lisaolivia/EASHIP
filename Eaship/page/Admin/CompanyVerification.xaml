@@ -92,58 +92,67 @@
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0,0,0,20"/>
 
-                <Border 
-                    Width="850"
-                    Height="125"
-                    Background="White"
-                    BorderBrush="#D6E4F0"
-                    BorderThickness="2"
-                    CornerRadius="4"
-                    Padding="16"
-                    Margin="0,0,0,20">
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="150"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- LEFT CONTENT -->
-                        <StackPanel Grid.Column="0" Orientation="Vertical" >
-
-                            <TextBlock Text="P. DTETI"
-                       FontSize="16"
-                       FontWeight="SemiBold"
-                       Foreground="#000"/>
-
-                            <TextBlock Text="Jalan 20 Oktober komplek golf permai"
-                       FontSize="14"
-                       Foreground="#5A6474"/>
-
-                            <TextBlock Text="05/11/2025 14:27:44"
-                       FontSize="12"
-                       Foreground="Gray"/>
-                        </StackPanel>
-
-                        <!-- BUTTON -->
-                        <Button Grid.Column="1"
-                            Content="See More"
-                            Width="110"
-                            Height="34"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
+                <!-- ============ PENDING COMPANIES LIST ============ -->
+                <ItemsControl x:Name="PendingList" Margin="0,0,0,20">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border 
+                            Width="850"
+                            Height="125"
                             Background="White"
                             BorderBrush="#D6E4F0"
-                            BorderThickness="1"
-                            Padding="6,2"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Foreground="#123456"
-                            Cursor="Hand"
-                            Effect="{StaticResource Shadow}"/>
+                            BorderThickness="2"
+                            CornerRadius="4"
+                            Padding="16"
+                            Margin="0,0,0,20">
 
-                    </Grid>
-                </Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- LEFT -->
+                                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                                        <TextBlock Text="{Binding Nama}"
+                                                   FontSize="16"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#000"/>
+
+                                        <TextBlock Text="{Binding Address}"
+                                                   FontSize="14"
+                                                   Foreground="#5A6474"/>
+
+                                        <TextBlock Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy HH:mm:ss}'}"
+                                                   FontSize="12"
+                                                   Foreground="Gray"/>
+                                    </StackPanel>
+
+                                    <!-- BUTTON -->
+                                    <Button Grid.Column="1"
+                                            Content="See More"
+                                            Width="110"
+                                            Height="34"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Background="White"
+                                            BorderBrush="#D6E4F0"
+                                            BorderThickness="1"
+                                            Padding="6,2"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="#123456"
+                                            Cursor="Hand"
+                                            Effect="{StaticResource Shadow}"
+                                            Tag="{Binding RenterCompanyId}"
+                                            Click="OpenPendingDetail_Click"/>
+                                </Grid>
+
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
 
 
 

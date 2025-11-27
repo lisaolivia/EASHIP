@@ -219,8 +219,8 @@
                         Margin="0,0,0,40">
 
                     <Border.Background>
-                        <ImageBrush ImageSource="/Eaship;component/Assets/wave.png"
-                                    Stretch="UniformToFill"
+                        <ImageBrush ImageSource="/Eaship;component/Assets/wave.png" 
+                                     Stretch="UniformToFill"
                                     AlignmentX="Center"
                                     AlignmentY="Center"/>   
                     </Border.Background>
@@ -308,6 +308,74 @@
                 </Border>
 
             </Grid>
+
+            <!-- ========== Section 4: Rejected (Company Ditolak Admin) ========== -->
+            <Border x:Name="SectionRejected"
+        Background="#FDECEC"
+        CornerRadius="16"
+        Padding="60,50"
+        VerticalAlignment="Top"
+        MaxWidth="1080"
+        Visibility="Collapsed">
+
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <!-- Title -->
+                    <TextBlock Text="Company Rejected"
+                   FontSize="40"
+                   FontWeight="Bold"
+                   Foreground="#C53030"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Your company request has been rejected by our admin."
+                   FontSize="20"
+                   Foreground="#9B2C2C"
+                   TextAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+                    <!-- Illustration (optional; bisa kamu ganti) -->
+                    <Image Source="pack://application:,,,/Eaship;component/Assets/image_rejected.jpg"
+               Width="360" Height="220"
+               Margin="0,0,0,30"
+               Stretch="Uniform"/>
+
+                    <!-- Reason Text -->
+                    <TextBlock Text="Reason:"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="#C53030"
+                   Margin="0,0,0,8"/>
+
+                    <!-- Admin Reason -->
+                    <TextBlock x:Name="TxtRejectedReason"
+                   FontSize="16"
+                   Foreground="#742A2A"
+                   TextWrapping="Wrap"
+                   Width="700"
+                   TextAlignment="Center"
+                   Margin="0,0,0,25"/>
+
+                    <!-- Button to resubmit -->
+                    <Button Content="Edit Company"
+                            Width="260"
+                            Height="50"
+                            Background="#C53030"
+                            Foreground="White"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Cursor="Hand"
+                            BorderThickness="0"
+                            Click="BtnCreateCompany_Click"/>
+                </StackPanel>
+
+            </Border>
+
 
 
         </Grid>

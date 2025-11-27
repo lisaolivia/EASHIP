@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
-using Eaship.Models;
 
 namespace Eaship.page.Admin
 {
@@ -10,38 +9,30 @@ namespace Eaship.page.Admin
     {
         private readonly ICompanyService _companies;
 
-        // Akses MainFrame global
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
 
         public CompanyVerification()
         {
             InitializeComponent();
             _companies = App.Services.GetRequiredService<ICompanyService>();
+
+            Loaded += async (_, __) => await LoadData();
+        
         }
 
-        // =============================
-        // GENERIC NAVIGATION METHOD
-        // =============================
         private void Navigate(Page page)
         {
             Main?.Navigate(page);
         }
 
-        // =============================
-        // NAVBAR BUTTONS
-        // =============================
-
+        // NAVBAR
         private void OpenFleetManagement(object s, RoutedEventArgs e)
             => Navigate(new FleetManagement());
 
-        // ⛔ FIX: jangan navigate ke dirinya sendiri
         private void OpenCompanyVerification(object s, RoutedEventArgs e)
         {
-            // optional: msgbox biar user tahu dia sudah di halaman ini
             MessageBox.Show("You are already on Company Verification page.",
-                            "Info",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void OpenBookingRequest(object s, RoutedEventArgs e)
@@ -53,20 +44,26 @@ namespace Eaship.page.Admin
         private void OpenProfile(object s, RoutedEventArgs e)
             => Navigate(new Profile());
 
-        // =============================
-        // INSIDE PAGE BUTTONS
-        // =============================
-
+        // SEE MORE BAWAH (List Company)
         private void SeeMore_Click(object sender, RoutedEventArgs e)
             => Navigate(new ListCompany());
 
-        private void AddTongkang(object s, RoutedEventArgs e)
-            => Navigate(new TambahTongkang());
-
-        private void EditTongkang(object s, RoutedEventArgs e)
+        // SEE MORE ATAS (Pending Detail)
+        private void OpenPendingDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (s is Button b && b.Tag is long id)
-                Navigate(new EditTongkang(id));
+            if (sender is Button btn && btn.Tag is int id)
+                Navigate(new CompanyVerificationDetail(id));
         }
+
+        // LOAD DATA
+        private async Task LoadData()
+        {
+            var pending = await _companies.GetPendingAsync();
+            PendingList.ItemsSource = pending;
+
+            var approved = await _companies.GetApprovedAsync();
+            txtCompanyVerified.Text = approved.Count.ToString();
+        }
+
     }
 }

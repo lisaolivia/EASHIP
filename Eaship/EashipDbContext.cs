@@ -47,6 +47,10 @@ namespace Eaship.Models
 
                 e.Property(x => x.Role).HasColumnName("role").HasConversion<string>();
                 e.Property(x => x.LastLoginAt).HasColumnName("last_login_at");
+
+                e.HasOne(u => u.RenterCompany).WithMany().HasForeignKey(u => u.RenterCompanyId);
+
+
             });
 
 

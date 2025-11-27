@@ -37,7 +37,8 @@ namespace Eaship.page.Admin
             // isi ke textbox
             TxtName.Text = _tugboat.Nama;
             TxtHp.Text = _tugboat.TugboatHp;
-            ComboStatus.SelectedItem = _tugboat.Status.ToString();
+            ComboStatus.SelectedValue = _tugboat.Status.ToString();
+
         }
 
         private async void BtnSave_Click(object sender, RoutedEventArgs e)

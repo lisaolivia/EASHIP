@@ -47,7 +47,6 @@ namespace Eaship.page.Renter
         {
             TxtName.Text = _tongkang!.Name;
             TxtStatus.Text = _tongkang!.Status.ToString();
-            TxtStatusDetail.Text = _tongkang!.Status.ToString();
             TxtCapacity.Text = _tongkang!.KapasitasDwt;
             TxtIncludeTug.Text = _tongkang!.IncludeTugboat ? "Yes" : "No";
 

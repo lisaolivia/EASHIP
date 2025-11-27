@@ -11,8 +11,11 @@
 	  <None Remove="Assets\default_barge.jpg" />
 	  <None Remove="Assets\gambar1.png" />
 	  <None Remove="Assets\gambar2.png" />
+	  <None Remove="Assets\image_rejected.jpg" />
 	  <None Remove="Assets\image_wait.png" />
 	  <None Remove="Assets\logo2.png" />
+	  <None Remove="Assets\tugboat_default.jpeg" />
+	  <None Remove="Assets\wave.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="appsettings.json">
@@ -45,12 +48,15 @@
 	  <Resource Include="Assets\default_barge.jpg" />
 	  <Resource Include="Assets\gambar1.png" />
 	  <Resource Include="Assets\gambar2.png" />
+	  <Resource Include="Assets\image_rejected.jpg" />
 	  <Resource Include="Assets\image_wait.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Assets\logo2.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Assets\tugboat_default.jpeg" />
+	  <Resource Include="Assets\wave.png" />
 	</ItemGroup>
 
 	<ItemGroup>

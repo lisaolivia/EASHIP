@@ -50,7 +50,8 @@ namespace Eaship.page.Renter
             }
 
             var company = _context.RenterCompanies
-                .FirstOrDefault(c => c.CreatedBy == _currentUser.UserId);
+                .FirstOrDefault(c => c.RenterCompanyId == _currentUser.RenterCompanyId);
+
 
             if (company == null)
             {
@@ -72,6 +73,16 @@ namespace Eaship.page.Renter
                 SectionWaiting.Visibility = Visibility.Collapsed;
                 SectionVerified.Visibility = Visibility.Visible;
             }
+            else if (company.Status == CompanyStatus.Rejected)
+            {
+                SectionWelcome.Visibility = Visibility.Collapsed;
+                SectionWaiting.Visibility = Visibility.Collapsed;
+                SectionVerified.Visibility = Visibility.Collapsed;
+
+                SectionRejected.Visibility = Visibility.Visible;
+                TxtRejectedReason.Text = company.RejectedReason;
+            }
+
 
         }
 
