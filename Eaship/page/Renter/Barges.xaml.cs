@@ -58,11 +58,6 @@ namespace Eaship.page.Renter
             TongkangList.ItemsSource = list;
         }
 
-
-
-
-
-
         // ===================== LOAD TUGBOAT =====================
         private async Task LoadTugboat(string? name = null, int? minHp = null)
         {

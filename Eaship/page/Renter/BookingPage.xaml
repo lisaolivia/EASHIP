@@ -65,29 +65,26 @@
 
                     <StackPanel Width="600" HorizontalAlignment="Center">
 
-                        <!-- Role -->
-                        <TextBlock Text="Select Role" FontWeight="Bold" Margin="0 0 0 6"/>
-                        <ComboBox x:Name="RoleBox" Height="40" Margin="0 0 0 20">
-                            <ComboBoxItem Content="Owner"/>
-                            <ComboBoxItem Content="Staff Operasional"/>
-                            <ComboBoxItem Content="Admin Keuangan"/>
-                        </ComboBox>
+                        <!-- ORIGIN PORT -->
+                        <TextBlock Text="Origin Port" FontWeight="Bold" Margin="0 0 0 6"/>
+                        <TextBox x:Name="TxtOrigin" Height="40" Margin="0 0 0 20"/>
 
-                        <!-- Full Name -->
-                        <TextBlock Text="Full Name" FontWeight="Bold" Margin="0 0 0 6"/>
-                        <TextBox x:Name="TxtFullName" Height="40" Margin="0 0 0 20" />
+                        <!-- DESTINATION -->
+                        <TextBlock Text="Destination Port" FontWeight="Bold" Margin="0 0 0 6"/>
+                        <TextBox x:Name="TxtDestination" Height="40" Margin="0 0 0 20"/>
 
-                        <!-- Email -->
-                        <TextBlock Text="Email" FontWeight="Bold" Margin="0 0 0 6"/>
-                        <TextBox x:Name="TxtEmail" Height="40" Margin="0 0 0 20" />
+                        <!-- START DATE -->
+                        <TextBlock Text="Start Date" FontWeight="Bold" Margin="0 0 0 6"/>
+                        <DatePicker x:Name="DpStartDate" Height="40" Margin="0 0 0 20"/>
 
-                        <!-- Phone -->
-                        <TextBlock Text="Phone Number" FontWeight="Bold" Margin="0 0 0 6"/>
-                        <TextBox x:Name="TxtPhone" Height="40" Margin="0 0 0 20" />
+                        <!-- DURASI HARI -->
+                        <TextBlock Text="Duration (Days)" FontWeight="Bold" Margin="0 0 0 6"/>
+                        <TextBox x:Name="TxtDuration" Height="40" Margin="0 0 0 20"/>
 
-                        <!-- Notes -->
-                        <TextBlock Text="Additional Note" FontWeight="Bold" Margin="0 0 0 6"/>
-                        <TextBox x:Name="TxtNotes" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0 0 0 30"/>
+                        <!-- CARGO DESCRIPTION -->
+                        <TextBlock Text="Cargo Description" FontWeight="Bold" Margin="0 0 0 6"/>
+                        <TextBox x:Name="TxtCargo" Height="40" Margin="0 0 0 30"/>
+
 
                         <!-- Submit -->
                         <Button Content="Submit Booking"
