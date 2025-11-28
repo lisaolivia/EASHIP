@@ -61,55 +61,54 @@
 
 
         <!-- =================== CONTENT =================== -->
+        <!-- CONTENT -->
         <ScrollViewer Grid.Row="1">
-            <StackPanel Margin="60">
+            <StackPanel Margin="60,30">
 
-                <TextBlock Text="Notifications"
-                           FontSize="28"
+                <TextBlock Text="Your Notifications"
+                           FontSize="26"
                            FontWeight="Bold"
-                           Margin="0,0,0,20"
-                           Foreground="#1C2A39"/>
+                           Margin="0,0,0,25"/>
 
                 <ItemsControl x:Name="NotifList">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-
                             <Border BorderBrush="#D6E4F0"
                                     BorderThickness="1"
                                     CornerRadius="10"
-                                    Background="White"
                                     Padding="20"
-                                    Margin="0,0,0,15">
+                                    Margin="0,0,0,20"
+                                    Background="White">
 
                                 <StackPanel>
 
-                                    <!-- Top Row -->
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <!-- Type Badge -->
+                                    <Border Background="{Binding BadgeColor}"
+                                            Padding="6,3"
+                                            CornerRadius="5"
+                                            HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding Type}"
+                                                   FontSize="12"
+                                                   FontWeight="Bold"
+                                                   Foreground="White"/>
+                                    </Border>
 
-                                        <Border Background="{Binding BadgeColor}"
-                                                Style="{StaticResource BadgeStyle}">
-                                            <TextBlock Text="{Binding Type}" Foreground="White" FontWeight="SemiBold"/>
-                                        </Border>
-
-                                        <TextBlock Text="{Binding TimeAgo}"
-                                                   Foreground="#6B7280"
-                                                   Margin="0,3,0,0"/>
-                                    </StackPanel>
-
-                                    <!-- Title -->
                                     <TextBlock Text="{Binding Title}"
-                                               FontSize="16"
                                                FontWeight="Bold"
-                                               Margin="0,10,0,4"/>
+                                               FontSize="18"
+                                               Margin="0,10,0,5"/>
 
-                                    <!-- Description -->
                                     <TextBlock Text="{Binding Description}"
-                                               FontSize="14"
-                                               Foreground="#5B5B5B"
-                                               TextWrapping="Wrap"/>
+                                               TextWrapping="Wrap"
+                                               Foreground="#4A5568"
+                                               FontSize="14"/>
+
+                                    <TextBlock Text="{Binding TimeAgo}"
+                                               FontSize="12"
+                                               Foreground="#6B7280"
+                                               Margin="0,10,0,0"/>
 
                                 </StackPanel>
-
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

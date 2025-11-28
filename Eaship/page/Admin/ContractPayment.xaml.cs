@@ -54,9 +54,6 @@ namespace Eaship.page.Admin
                 PdfUrl = c.PdfUrl
             }).ToList();
 
-            // JANGAN PAKAI MAPPER LAGI
-            // var dtos = ...   ← HAPUS AJA, BIKIN KACAU
-
             ContractList.ItemsSource = list;
         }
 
@@ -75,9 +72,6 @@ namespace Eaship.page.Admin
                 Navigate(new DetailContract(dto.ContractId));
             }
         }
-
-
-
 
         // ======================
         // UNIVERSAL NAVIGATE()
@@ -103,5 +97,6 @@ namespace Eaship.page.Admin
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
         }
+
     }
 }

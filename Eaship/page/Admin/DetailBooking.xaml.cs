@@ -164,19 +164,63 @@ namespace Eaship.page.Admin
             await _context.SaveChangesAsync();
 
             MessageBox.Show("Booking confirmed & contract generated!");
-        }
 
+            // ======================================================
+            // 7. CREATE NOTIFICATION FOR USER
+            // ======================================================
+            var notifService = App.Services.GetRequiredService<INotificationService>();
+
+            notifService.Create(
+                bookingFull.UserId,
+                "BookingApproved",
+                "Booking Approved",
+                $"Your booking #{bookingFull.BookingId} has been approved and a contract has been generated.",
+                bookingId: bookingFull.BookingId,
+                contractId: contract.ContractId
+            );
+        }
 
         private async void Decline_Click(object sender, RoutedEventArgs e)
         {
             if (_booking == null)
+            {
+                MessageBox.Show("Booking not loaded.");
                 return;
+            }
 
+            // 1. Update Status Booking
             _booking.SetStatus(BookingStatus.Cancelled);
             await _context.SaveChangesAsync();
 
-            MessageBox.Show("Declined");
+            // 2. Reload Booking + User
+            var bookingFull = await _context.Bookings
+                .Include(b => b.User)
+                .FirstOrDefaultAsync(b => b.BookingId == _booking.BookingId);
+
+            if (bookingFull == null || bookingFull.User == null)
+            {
+                MessageBox.Show("Failed to load booking user.");
+                return;
+            }
+
+            // 3. Send Notification
+            var notifService = App.Services.GetRequiredService<INotificationService>();
+
+            notifService.Create(
+                bookingFull.User.UserId,
+                "BookingDeclined",
+                "Booking Declined",
+                $"Your booking #{bookingFull.BookingId} has been declined by admin.",
+                bookingId: bookingFull.BookingId
+            );
+
+            // 4. Alert Admin
+            MessageBox.Show("Booking declined and notification sent!");
+
+            // (Optional) refresh page or navigate
+            // Navigate(new BookingRequest());
         }
+
 
         private void Navigate(Page page)
         {
