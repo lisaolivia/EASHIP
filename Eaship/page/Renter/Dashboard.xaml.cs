@@ -131,47 +131,7 @@ namespace Eaship.page.Renter
         }
 
 
-        // ==========================================================
-        //                     NAVBAR HANDLERS
-        // ==========================================================
-
-        private void BtnGoDashboard_Click(object sender, RoutedEventArgs e)
-        {
-            var main = (Application.Current.MainWindow as MainWindow)?.MainFrame;
-            main?.Navigate(new Dashboard());
-        }
-
-        private void BtnBarges_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new Barges());
-        }
-
-        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new MyBookingPage());
-        }
-
-        private void BtnContract_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ContractPage()); // ganti kalau nama lain
-        }
-
-        private void BtnNotif_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new NotificationPage());
-        }
-
-        private void BtnProfile_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ProfilPage()); // ganti sesuai nama kamu
-        }
-
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Main?.Navigate(new LogoutPage());
-        }
-
+  
         private void BtnCreateCompany_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new CompanyFormPage());

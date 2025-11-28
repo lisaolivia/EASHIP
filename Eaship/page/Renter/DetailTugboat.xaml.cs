@@ -58,39 +58,7 @@ namespace Eaship.page.Renter
             frame?.Navigate(new Barges());
         }
 
-        //===================== NAVIGATION =====================
-
-
-        private void BtnBarges_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new Barges());
-        }
-
-        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new MyBookingPage());
-        }
-
-        private void BtnContract_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ContractPage());
-        }
-
-        private void BtnNotif_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new NotificationPage());
-        }
-
-        private void BtnProfile_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ProfilPage());
-        }
-
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Main?.Navigate(new LogoutPage());
-        }
+        
 
         private void BtnBooking_Click(object sender, RoutedEventArgs e)
         {

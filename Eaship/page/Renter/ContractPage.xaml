@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:Eaship.page.Controls"
       mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="ContractPage">
@@ -26,57 +27,7 @@
 
 
         <!-- ===================== NAVBAR ===================== -->
-        <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
-            <Grid Margin="24,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Logo -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="pack://application:,,,/Eaship;component/Assets/logo2.png"
-                           Width="86" Height="59"/>
-                </StackPanel>
-
-                <!-- Menu -->
-                <StackPanel Grid.Column="1"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-
-                    <Button Content="Barges"
-                            Style="{StaticResource NavButton}"
-                            Click="BtnBarges_Click"/>
-
-                    <Button Content="My Bookings"
-                            Style="{StaticResource NavButton}"
-                            Margin="6,0,0,0"
-                            Click="BtnMyBookings_Click"/>
-
-                    <Button Content="Contract"
-                            Style="{StaticResource NavButton}"
-                            Margin="6,0,0,0"
-                            Click="BtnContract_Click"/>
-
-                    <Button Content="Notifikasi"
-                            Style="{StaticResource NavButton}"
-                            Margin="6,0,0,0"
-                            Click="BtnNotif_Click"/>
-
-                    <Button Content="Profile"
-                            Style="{StaticResource OutlineButton}"
-                            Margin="6,0,0,0"
-                            Click="BtnProfile_Click"/>
-
-                    <Button Content="Log Out"
-                            Background="White"
-                            Foreground="Navy"
-                            Padding="12,6"
-                            Margin="6,0,0,0"
-                            Click="BtnLogout_Click"/>
-                </StackPanel>
-            </Grid>
-        </Border>
+        <controls:RenterNavbar Grid.Row="0"/>
 
 
 
