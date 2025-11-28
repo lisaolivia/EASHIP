@@ -76,6 +76,15 @@ namespace Eaship.page.Renter
             }
         }
 
+        private void BtnDetail_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is long contractId)
+            {
+                Main?.Navigate(new RenterDetailContract(contractId));
+            }
+        }
+
+
         // ================= NAVBAR =================
 
         private void BtnBarges_Click(object sender, RoutedEventArgs e)

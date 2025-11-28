@@ -8,6 +8,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Assets\booking.jpg" />
 	  <None Remove="Assets\default_barge.jpg" />
 	  <None Remove="Assets\Fonts\segoeui.ttf" />
 	  <None Remove="Assets\gambar1.png" />
@@ -15,6 +16,7 @@
 	  <None Remove="Assets\image_rejected.jpg" />
 	  <None Remove="Assets\image_wait.png" />
 	  <None Remove="Assets\logo2.png" />
+	  <None Remove="Assets\mbss.jpg" />
 	  <None Remove="Assets\tugboat_default.jpeg" />
 	  <None Remove="Assets\wave.png" />
 	</ItemGroup>
@@ -50,6 +52,7 @@
 
 
 	<ItemGroup>
+	  <Resource Include="Assets\booking.jpg" />
 	  <Resource Include="Assets\default_barge.jpg" />
 	  <Resource Include="Assets\gambar1.png" />
 	  <Resource Include="Assets\gambar2.png" />
@@ -60,6 +63,7 @@
 	  <Resource Include="Assets\logo2.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Assets\mbss.jpg" />
 	  <Resource Include="Assets\tugboat_default.jpeg" />
 	  <Resource Include="Assets\wave.png" />
 	</ItemGroup>

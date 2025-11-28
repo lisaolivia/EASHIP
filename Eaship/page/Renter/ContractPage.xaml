@@ -115,8 +115,9 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Logo -->
-                                    <Image Source="/Eaship;component/Assets/mbss.png"
-                                           Width="120" Height="70"/>
+                                    <Image Source="pack://application:,,,/Eaship;component/Assets/mbss.jpg"
+                                             Width="120" Height="70"/>
+
 
                                     <!-- Middle Content -->
                                     <StackPanel Grid.Column="1" Margin="15 0">
@@ -146,20 +147,36 @@
                                     <!-- Right Action Panel -->
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Right">
 
-                                        <TextBlock Text="Freight Cost" FontSize="12" Foreground="#708090"/>
-                                        <TextBlock Text="{Binding FreightCost}" FontSize="16" FontWeight="Bold" Margin="0 0 0 10"/>
+                                        <!-- Info no payment -->
+                                        <TextBlock Text="Kontrak telah dibuat"
+                                                   FontSize="12"
+                                                   Foreground="#708090"
+                                                   Margin="0 0 0 4"/>
 
-                                        <TextBlock Text="Outstanding" FontSize="12" Foreground="#708090"/>
-                                        <TextBlock Text="{Binding Outstanding}" FontSize="16" FontWeight="Bold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Untuk biaya pembayaran"
+                                                   FontSize="12"
+                                                   Foreground="#708090"/>
+
+                                        <TextBlock Text="silakan hubungi admin."
+                                                   FontSize="12"
+                                                   Foreground="#708090"
+                                                   Margin="0 0 0 10"/>
 
                                         <Button Content="Download Contract"
-                                                    Width="150" Height="32"
-                                                    Margin="0 5"
-                                                    Style="{StaticResource OutlineButton}"
-                                                    Tag="{Binding PdfPath}"
-                                                    Click="BtnOpenPdf"/>
+                                                Width="150" Height="32"
+                                                Margin="0 5"
+                                                Style="{StaticResource CardActionButton}"
+                                                Tag="{Binding PdfPath}"
+                                                Click="BtnOpenPdf"/>
 
+                                        <Button Content="Detail"
+                                                Width="150" Height="32"
+                                                Margin="0 5"
+                                                Style="{StaticResource CardActionButton}"
+                                                Tag="{Binding ContractId}"
+                                                Click="BtnDetail_Click"/>
                                     </StackPanel>
+
 
                                 </Grid>
 
