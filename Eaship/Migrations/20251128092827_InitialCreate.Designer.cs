@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eaship.Migrations
 {
     [DbContext(typeof(EashipDbContext))]
-    [Migration("20251126113119_InitialCreate")]
+    [Migration("20251128092827_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Eaship.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("eaship")
+                .HasDefaultSchema("eashipp")
                 .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -130,7 +130,6 @@ namespace Eaship.Migrations
                         .HasColumnName("created_at");
 
                     b.Property<string>("PdfUrl")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("pdf_url");
 
@@ -263,7 +262,7 @@ namespace Eaship.Migrations
 
                     b.HasKey("RenterCompanyId");
 
-                    b.ToTable("RenterCompanies", "eaship");
+                    b.ToTable("RenterCompanies", "eashipp");
                 });
 
             modelBuilder.Entity("Eaship.Models.Tongkang", b =>
@@ -396,6 +395,8 @@ namespace Eaship.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("RenterCompanyId");
+
                     b.ToTable("users", "eaship");
                 });
 
@@ -463,6 +464,15 @@ namespace Eaship.Migrations
                     b.Navigation("Tongkang");
 
                     b.Navigation("Tugboat");
+                });
+
+            modelBuilder.Entity("Eaship.Models.User", b =>
+                {
+                    b.HasOne("Eaship.Models.RenterCompany", "RenterCompany")
+                        .WithMany()
+                        .HasForeignKey("RenterCompanyId");
+
+                    b.Navigation("RenterCompany");
                 });
 
             modelBuilder.Entity("Eaship.Models.Booking", b =>

@@ -112,6 +112,14 @@ namespace Eaship.page.Renter
         // BUTTON ACTIONS BOOKING LIST
         // ===========================
 
+        private void BtnViewContract (object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is long bookingId)
+            {
+                Main?.Navigate(new RenterDetailContract(bookingId));
+            }
+        }
+
         private void BtnDownloadInvoice(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Tag is long bookingId)
