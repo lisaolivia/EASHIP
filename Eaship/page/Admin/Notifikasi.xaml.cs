@@ -69,17 +69,7 @@ namespace Eaship.page.Admin
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
         private void Navigate(Page page) => Main?.Navigate(page);
 
-        private void GotoDashboard(object s, RoutedEventArgs e) => Navigate(new DashboardAdmin());
-        private void GotoFleet(object s, RoutedEventArgs e) => Navigate(new FleetManagement());
-        private void GotoCompanyVerify(object s, RoutedEventArgs e) => Navigate(new CompanyVerification());
-        private void GotoBooking(object s, RoutedEventArgs e) => Navigate(new BookingRequest());
-        private void GotoContract(object s, RoutedEventArgs e) => Navigate(new ContractPayment());
-        private void GotoProfile(object s, RoutedEventArgs e) => Navigate(new Profile());
+     
 
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Navigate(new LogoutPage());
-        }
     }
 }

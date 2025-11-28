@@ -44,18 +44,7 @@ namespace Eaship.page.Admin
         }
 
         // NAVBAR
-        private void OpenFleetManagement(object s, RoutedEventArgs e) => Navigate(new FleetManagement());
-        private void OpenCompanyVerification(object s, RoutedEventArgs e) => Navigate(new CompanyVerification());
-        private void OpenBookingRequest(object s, RoutedEventArgs e) => Navigate(new BookingRequest());
-        private void OpenContractPayment(object s, RoutedEventArgs e) => Navigate(new ContractPayment());
-        private void OpenProfile(object s, RoutedEventArgs e) => Navigate(new Profile());
-
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Navigate(new LogoutPage());
-        }
-
+     
         private void OpenDetailTugboat(object sender, MouseButtonEventArgs e)
         {
             if (sender is Border b && b.DataContext is Tugboat t)

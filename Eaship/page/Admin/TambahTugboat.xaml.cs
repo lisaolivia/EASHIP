@@ -52,10 +52,6 @@ namespace Eaship.page.Admin
         }
 
         // NAVIGATION
-        private void OpenFleetManagement(object s, RoutedEventArgs e) => Main?.Navigate(new FleetManagement());
-        private void OpenCompanyVerification(object s, RoutedEventArgs e) => Main?.Navigate(new CompanyVerification());
-        private void OpenBookingRequest(object s, RoutedEventArgs e) => Main?.Navigate(new BookingRequest());
-        private void OpenContractPayment(object s, RoutedEventArgs e) => Main?.Navigate(new ContractPayment());
-        private void OpenProfile(object s, RoutedEventArgs e) => Main?.Navigate(new Profile());
+      
     }
 }

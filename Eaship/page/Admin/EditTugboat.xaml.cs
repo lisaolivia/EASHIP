@@ -66,30 +66,6 @@ namespace Eaship.page.Admin
 
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
 
-        private void OpenFleetManagement(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new FleetManagement());
-        }
-
-        private void OpenCompanyVerification(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new CompanyVerification());
-        }
-
-        private void OpenBookingRequest(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new BookingRequest());
-        }
-
-        private void OpenContractPayment(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ContractPayment());
-        }
-
-        private void OpenProfile(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new Profile());
-        }
 
     }
 }
