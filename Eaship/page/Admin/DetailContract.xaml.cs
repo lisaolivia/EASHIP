@@ -4,6 +4,7 @@ using Eaship.Models.nondb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,9 +19,9 @@ namespace Eaship.page.Admin
         public DetailContract(long contractId)
         {
             InitializeComponent();
-
-            _context = App.Services.GetRequiredService<EashipDbContext>();
             _contractId = contractId;
+            _context = App.Services.GetRequiredService<EashipDbContext>();
+            
 
             LoadContract();
         }
@@ -29,26 +30,30 @@ namespace Eaship.page.Admin
         {
             _contract = await _context.Contracts
                 .Include(c => c.Booking)
-                .ThenInclude(b => b.User)
-                .ThenInclude(u => u.RenterCompanyId)
+                    .ThenInclude(b => b.User)
                 .FirstOrDefaultAsync(c => c.ContractId == _contractId);
+
+            MessageBox.Show( $"DEBUG:\nContractId passed = {_contractId}\nPdfUrl in DB = {_contract?.PdfUrl}");
 
             if (_contract == null)
             {
-                MessageBox.Show("Contract not found.");
+                MessageBox.Show("Contract not found");
                 return;
             }
 
-            // Load PDF if exists
-            if (!string.IsNullOrEmpty(_contract.PdfUrl) && System.IO.File.Exists(_contract.PdfUrl))
+            // 🟢 CEK APAKAH PDF ADA FILE NYA
+            if (!string.IsNullOrEmpty(_contract.PdfUrl) && File.Exists(_contract.PdfUrl))
             {
-                PdfViewer.Navigate(new Uri(_contract.PdfUrl));
+                PdfViewer.Navigate(new Uri(_contract.PdfUrl, UriKind.Absolute));
             }
             else
             {
                 PdfViewer.NavigateToString("<html><body><h2>No PDF Available</h2></body></html>");
             }
         }
+
+
+
 
         /* NAVIGATION */
         private void Navigate(Page page)
