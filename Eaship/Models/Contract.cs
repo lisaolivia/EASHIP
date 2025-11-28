@@ -12,7 +12,7 @@ public class Contract
 {
     public long ContractId { get; set; }
     public long BookingId { get; set; }
-    public string PdfUrl { get; set; } = string.Empty;
+    public string? PdfUrl { get; set; }
     public ContractStatus Status { get; private set; } = ContractStatus.Pending;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; private set; }

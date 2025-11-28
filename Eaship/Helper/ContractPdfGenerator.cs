@@ -9,7 +9,17 @@ public static class ContractPdfGenerator
 {
     public static string GenerateContractPdf(Contract contract, Booking booking, RenterCompany renter)
     {
-        string folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Contracts");
+
+        GlobalFontSettings.FontResolver = new SimpleFontResolver();
+
+        string folder = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "EaShip",
+        "Contracts"
+    );
+
+        Directory.CreateDirectory(folder);
+
         Directory.CreateDirectory(folder);
 
         string fileName = $"contract_{contract.ContractId}.pdf";
@@ -21,8 +31,11 @@ public static class ContractPdfGenerator
         PdfPage page = doc.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
 
-        XFont titleFont = new XFont("Arial", 20, XFontStyleEx.Bold);
-        XFont textFont = new XFont("Arial", 12, XFontStyleEx.Regular);
+        XFont titleFont = new XFont("DefaultFont", 20, XFontStyleEx.Bold);
+        XFont textFont = new XFont("DefaultFont", 12, XFontStyleEx.Regular);
+
+
+
 
         // HEADER
         gfx.DrawString(
@@ -47,12 +60,14 @@ public static class ContractPdfGenerator
                 textFont,
                 XBrushes.Black,
                 new XRect(
-                    XUnit.FromPoint(40).Point,
-                    XUnit.FromPoint(y).Point,
-                    XUnit.FromPoint(page.Width.Point - 80).Point,
-                    XUnit.FromPoint(20).Point
-                )
+                    40,
+                    y,
+                    page.Width - 80,
+                    20
+                ),
+                XStringFormats.TopLeft
             );
+
 
             y += 25;
         }

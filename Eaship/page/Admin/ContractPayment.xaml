@@ -83,9 +83,9 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        
+
         <!-- ================= MAIN CONTENT ================= -->
-        <ItemsControl x:Name="ContractList">
+        <ItemsControl x:Name="ContractList" Grid.Column="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White"
@@ -136,6 +136,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
 
 
     </Grid>

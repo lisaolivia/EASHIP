@@ -8,6 +8,18 @@ using System.Windows.Controls;
 
 namespace Eaship.page.Admin
 {
+    // ============================
+    // VIEWMODEL UNTUK DISPLAY LIST
+    // ============================
+    public class ContractPaymentItem
+    {
+        public long ContractId { get; set; }
+        public string CompanyName { get; set; } = "Unknown";
+        public string CompanyAddress { get; set; } = "-";
+        public DateTime CreatedAt { get; set; }
+        public string? PdfUrl { get; set; }
+    }
+
     public partial class ContractPayment : Page
     {
         private readonly EashipDbContext _context;
@@ -28,12 +40,30 @@ namespace Eaship.page.Admin
         {
             var contracts = await _context.Contracts
                 .Include(c => c.Booking)
+                    .ThenInclude(b => b.User)
+                        .ThenInclude(u => u.RenterCompany)
+                .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
 
-            ContractList.ItemsSource = contracts
-                .Select(ContractMapper.ToPreview)
-                .ToList();
+            var list = contracts.Select(c => new ContractPreviewDTO
+            {
+                ContractId = c.ContractId,
+                CompanyName = c.Booking.User.RenterCompany?.Nama ?? "-",
+                CompanyAddress = c.Booking.User.RenterCompany?.Address ?? "-",
+                CreatedAt = c.CreatedAt,
+                PdfUrl = c.PdfUrl
+            }).ToList();
+
+            // JANGAN PAKAI MAPPER LAGI
+            // var dtos = ...   ← HAPUS AJA, BIKIN KACAU
+
+            ContractList.ItemsSource = list;
         }
+
+
+
+
+
 
         // ======================
         // NAVIGATE TO DETAIL
@@ -46,8 +76,11 @@ namespace Eaship.page.Admin
             }
         }
 
+
+
+
         // ======================
-        //  UNIVERSAL NAVIGATE()
+        // UNIVERSAL NAVIGATE()
         // ======================
         private void Navigate(Page page)
         {

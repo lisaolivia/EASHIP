@@ -1,6 +1,10 @@
 ﻿using Eaship.Models;
 using Eaship.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,50 +22,61 @@ namespace Eaship.page.Renter
             Loaded += ContractPage_Loaded;
         }
 
-        private void ContractPage_Loaded(object sender, RoutedEventArgs e)
+        private async void ContractPage_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadContracts();
-        }
-
-        private void LoadContracts()
-        {
-            // Mock Data dulu — nanti kamu sambungkan ke Postgres
-            ContractList.ItemsSource = new[]
+            if (!Session.IsLoggedIn || Session.CurrentUser == null)
             {
-                new {
-                    ContractId = 1,
-                    Route = "CNSHA → Los Angeles",
-                    Origin = "Port of Shanghai, China",
-                    Destination = "Port of Los Angeles, USA",
-                    BookingCode = "MBSS #BK-2025-112",
-                    DueDate = "11 days",
-                    Status = "Paid",
-                    FreightCost = "USD 3,000",
-                    Outstanding = "USD 0"
-                },
-                new {
-                    ContractId = 2,
-                    Route = "CNSHA → Tokyo",
-                    Origin = "Port of Shanghai, China",
-                    Destination = "Tokyo Port, Japan",
-                    BookingCode = "MBSS #BK-2025-120",
-                    DueDate = "7 days",
-                    Status = "Unpaid",
-                    FreightCost = "USD 2,800",
-                    Outstanding = "USD 2,800"
+                MessageBox.Show("You must login first.");
+                return;
+            }
+
+            var userId = Session.CurrentUser.UserId;
+
+            var contracts = await _context.Contracts
+                .Include(c => c.Booking)
+                .Where(c => c.Booking.UserId == userId)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            var displayList = contracts.Select(c => new ContractDisplayDTO
+            {
+                ContractId = c.ContractId,
+                Origin = c.Booking?.OriginPort ?? "-",
+                Destination = c.Booking?.DestinationPort ?? "-",
+                Cargo = c.Booking?.CargoDesc ?? "-",
+                Status = c.Status.ToString(),
+                PdfPath = c.PdfUrl ?? ""
+            }).ToList();
+
+            ContractList.ItemsSource = displayList;
+        }
+
+        private void BtnOpenPdf(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is string pdfPath)
+            {
+                if (File.Exists(pdfPath))
+                {
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo(pdfPath)
+                        {
+                            UseShellExecute = true
+                        });
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to open PDF. Check file permissions.");
+                    }
                 }
-            };
+                else
+                {
+                    MessageBox.Show("Contract PDF file not found.");
+                }
+            }
         }
 
-        private void BtnDownloadInvoice(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Download invoice triggered!");
-        }
-
-        private void BtnSendEmail(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Invoice sent to email!");
-        }
+        // ================= NAVBAR =================
 
         private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
@@ -93,5 +108,16 @@ namespace Eaship.page.Renter
             Session.Clear();
             Main?.Navigate(new LogoutPage());
         }
+    }
+
+    // DTO khusus tampilan renter
+    public class ContractDisplayDTO
+    {
+        public long ContractId { get; set; }
+        public string Origin { get; set; } = "";
+        public string Destination { get; set; } = "";
+        public string Cargo { get; set; } = "";
+        public string Status { get; set; } = "";
+        public string PdfPath { get; set; } = "";
     }
 }

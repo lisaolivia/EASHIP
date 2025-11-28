@@ -27,8 +27,10 @@ namespace Eaship.page.Admin
         private async void LoadData()
         {
             _booking = await _context.Bookings
+                .Include(b => b.User)
+                    .ThenInclude(u => u.RenterCompany)
                 .Include(b => b.BookingTongkangs)
-                .ThenInclude(bt => bt.Tongkang)
+                    .ThenInclude(bt => bt.Tongkang)
                 .FirstOrDefaultAsync(b => b.BookingId == _bookingId);
 
             if (_booking == null)
@@ -44,13 +46,11 @@ namespace Eaship.page.Admin
             CargoBox.Text = _booking.CargoDesc;
             StatusBox.Text = _booking.Status.ToString();
 
-            var tongkangs = await _context.Tongkangs.ToListAsync();
-            TongkangBox.ItemsSource = tongkangs;
+            TongkangBox.ItemsSource = await _context.Tongkangs.ToListAsync();
             TongkangBox.DisplayMemberPath = "Name";
             TongkangBox.SelectedValuePath = "TongkangId";
 
-            var tugboats = await _context.Tugboats.ToListAsync();
-            TugboatBox.ItemsSource = tugboats;
+            TugboatBox.ItemsSource = await _context.Tugboats.ToListAsync();
             TugboatBox.DisplayMemberPath = "Nama";
             TugboatBox.SelectedValuePath = "TugboatId";
         }
@@ -58,35 +58,114 @@ namespace Eaship.page.Admin
         private async void Confirm_Click(object sender, RoutedEventArgs e)
         {
             if (_booking == null)
-                return;
-
-            if (TongkangBox.SelectedItem is not Tongkang selected)
             {
-                MessageBox.Show("Select tongkang!");
+                MessageBox.Show("Booking not loaded.");
                 return;
             }
 
+            // VALIDASI TONGKANG
+            if (TongkangBox.SelectedItem is not Tongkang selectedTongkang)
+            {
+                MessageBox.Show("Select a tongkang!");
+                return;
+            }
+
+            // VALIDASI DURASI
             if (!int.TryParse(DaysBox.Text, out int days))
             {
                 MessageBox.Show("Invalid days!");
                 return;
             }
 
-            var relation = new BookingTongkang
+            // ======================================================
+            // 1. TAMBAHKAN RELASI BOOKING–TONGKANG TANPA DUPLIKASI
+            // ======================================================
+            var existingRelation = await _context.BookingTongkangs
+                .FirstOrDefaultAsync(bt =>
+                    bt.BookingId == _booking.BookingId &&
+                    bt.TongkangId == selectedTongkang.TongkangId);
+
+            if (existingRelation == null)
             {
-                BookingId = _booking.BookingId,
-                TongkangId = selected.TongkangId
-            };
+                var relation = new BookingTongkang
+                {
+                    BookingId = _booking.BookingId,
+                    TongkangId = selectedTongkang.TongkangId
+                };
 
-            _context.BookingTongkangs.Add(relation);
+                _context.BookingTongkangs.Add(relation);
+            }
 
+            // ======================================================
+            // 2. UPDATE STATUS BOOKING + UPDATE TONGKANG
+            // ======================================================
             _booking.SetStatus(BookingStatus.Confirmed);
-            selected.MarkUnavailable();
+            selectedTongkang.MarkUnavailable();
 
             await _context.SaveChangesAsync();
 
-            MessageBox.Show("Confirmed!");
+            // ======================================================
+            // 3. RELOAD BOOKING SECARA LENGKAP (User + RenterCompany)
+            // ======================================================
+            var bookingFull = await _context.Bookings
+                .Include(b => b.User)
+                    .ThenInclude(u => u.RenterCompany)
+                .Include(b => b.BookingTongkangs)
+                    .ThenInclude(bt => bt.Tongkang)
+                .FirstOrDefaultAsync(b => b.BookingId == _booking.BookingId);
+
+            if (bookingFull == null)
+            {
+                MessageBox.Show("Failed to reload booking.");
+                return;
+            }
+
+            if (bookingFull.User == null)
+            {
+                MessageBox.Show("Booking has no user data!");
+                return;
+            }
+
+            if (bookingFull.User.RenterCompany == null)
+            {
+                MessageBox.Show("User has no registered company!");
+                return;
+            }
+
+            var renterCompany = bookingFull.User.RenterCompany;
+
+            // ======================================================
+            // 4. CREATE CONTRACT RECORD
+            // ======================================================
+            var contract = new Contract
+            {
+                BookingId = bookingFull.BookingId
+            };
+
+            _context.Contracts.Add(contract);
+            await _context.SaveChangesAsync();   // agar ContractId terisi
+
+            // ======================================================
+            // 5. GENERATE CONTRACT PDF
+            // ======================================================
+            string pdfPath = ContractPdfGenerator.GenerateContractPdf(
+                contract,
+                bookingFull,
+                renterCompany
+            );
+
+            contract.PdfUrl = pdfPath;
+
+            // ======================================================
+            // 6. SIMPAN URL PDF KE DATABASE
+            // ======================================================
+            contract.PdfUrl = pdfPath;
+            contract.MarkPending();
+            await _context.SaveChangesAsync();
+
+            MessageBox.Show("Booking confirmed & contract generated!");
         }
+
 
         private async void Decline_Click(object sender, RoutedEventArgs e)
         {
@@ -116,6 +195,5 @@ namespace Eaship.page.Admin
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
         }
-
     }
 }

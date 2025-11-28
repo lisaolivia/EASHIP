@@ -15,6 +15,7 @@ namespace Eaship.Models.nondb
 
         public DateTime CreatedAt { get; set; }
         public string Status { get; set; } = string.Empty;
+        public string? PdfUrl { get; set; }
     }
 
 }

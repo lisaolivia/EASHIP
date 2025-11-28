@@ -14,6 +14,8 @@ namespace Eaship.Models.nondb
         public string DateRange { get; set; } = string.Empty;
         public string StatusText { get; set; } = string.Empty;
         public int TotalTongkang { get; set; }
+
+  
     }
 
 }
