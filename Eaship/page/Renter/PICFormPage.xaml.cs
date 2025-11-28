@@ -102,39 +102,8 @@ private async void BtnSignup_company_Click(object sender, RoutedEventArgs e)
                 MessageBox.Show("Tidak ada halaman sebelumnya.");
         }
 
-        // ==========================================================
-        //                     NAVBAR HANDLERS
-        // ==========================================================
-        private void BtnBarges_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new Barges());
-        }
 
-        private void BtnMyBookings_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new MyBookingPage());
-        }
-
-        private void BtnContract_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ContractPage()); // ganti kalau nama lain
-        }
-
-        private void BtnNotif_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new NotificationPage());
-        }
-
-        private void BtnProfile_Click(object sender, RoutedEventArgs e)
-        {
-            Main?.Navigate(new ProfilPage()); // ganti sesuai nama kamu
-        }
-
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            Session.Clear();
-            Main?.Navigate(new LogoutPage());
-        }
+      
 
 
 
