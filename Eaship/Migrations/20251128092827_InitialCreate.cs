@@ -15,6 +15,9 @@ namespace Eaship.Migrations
             migrationBuilder.EnsureSchema(
                 name: "eaship");
 
+            migrationBuilder.EnsureSchema(
+                name: "eashipp");
+
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:eaship.user_role", "renter,admin")
                 .Annotation("Npgsql:PostgresExtension:citext", ",,");
@@ -42,7 +45,7 @@ namespace Eaship.Migrations
 
             migrationBuilder.CreateTable(
                 name: "RenterCompanies",
-                schema: "eaship",
+                schema: "eashipp",
                 columns: table => new
                 {
                     RenterCompanyId = table.Column<int>(type: "integer", nullable: false)
@@ -121,6 +124,12 @@ namespace Eaship.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_users", x => x.user_id);
+                    table.ForeignKey(
+                        name: "FK_users_RenterCompanies_renter_company_id",
+                        column: x => x.renter_company_id,
+                        principalSchema: "eashipp",
+                        principalTable: "RenterCompanies",
+                        principalColumn: "RenterCompanyId");
                 });
 
             migrationBuilder.CreateTable(
@@ -174,7 +183,7 @@ namespace Eaship.Migrations
                     table.ForeignKey(
                         name: "FK_booking_RenterCompanies_RenterCompanyId",
                         column: x => x.RenterCompanyId,
-                        principalSchema: "eaship",
+                        principalSchema: "eashipp",
                         principalTable: "RenterCompanies",
                         principalColumn: "RenterCompanyId");
                     table.ForeignKey(
@@ -223,7 +232,7 @@ namespace Eaship.Migrations
                     contract_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     booking_id = table.Column<long>(type: "bigint", nullable: false),
-                    pdf_url = table.Column<string>(type: "text", nullable: false),
+                    pdf_url = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -269,6 +278,12 @@ namespace Eaship.Migrations
                 schema: "eaship",
                 table: "tongkang_tugboat",
                 column: "tugboat_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_users_renter_company_id",
+                schema: "eaship",
+                table: "users",
+                column: "renter_company_id");
         }
 
         /// <inheritdoc />
@@ -303,12 +318,12 @@ namespace Eaship.Migrations
                 schema: "eaship");
 
             migrationBuilder.DropTable(
-                name: "RenterCompanies",
+                name: "users",
                 schema: "eaship");
 
             migrationBuilder.DropTable(
-                name: "users",
-                schema: "eaship");
+                name: "RenterCompanies",
+                schema: "eashipp");
         }
     }
 }

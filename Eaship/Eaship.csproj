@@ -76,4 +76,8 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </Compile>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
 </Project>

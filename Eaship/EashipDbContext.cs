@@ -24,7 +24,7 @@ namespace Eaship.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Schema setup
-            modelBuilder.HasDefaultSchema("eaship");
+            modelBuilder.HasDefaultSchema("eashipp");
             modelBuilder.HasPostgresExtension("citext");
             modelBuilder.HasPostgresEnum<UserRole>("eaship", "user_role");
 
