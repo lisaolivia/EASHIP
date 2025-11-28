@@ -3,66 +3,86 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using Eaship.Models;
 using System.Windows.Controls;
+
 
 namespace Eaship.page.Renter
 {
     public partial class NotificationPage : Page
     {
+        private readonly INotificationService _notifs;
+        private readonly User? _user;
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
 
         public NotificationPage()
         {
             InitializeComponent();
+            _notifs = App.Services.GetRequiredService<INotificationService>();
+            _user = Session.CurrentUser;
             Loaded += NotificationPage_Loaded;
         }
 
         private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (_user == null)
+            {
+                MessageBox.Show("Please login first.");
+                return;
+            }
+
             LoadNotifications();
         }
 
         private void LoadNotifications()
         {
-            // MOCK DATA SEMENTARA
-            var list = new List<object>()
-            {
-                new {
-                    Type = "Booking Approved",
-                    BadgeColor = "#3B82F6",
-                    Title = "Your Tongkang Booking Has Been Approved",
-                    Description = "Admin has approved your booking request for MBSS T-308.",
-                    TimeAgo = "2 hours ago"
-                },
-                new {
-                    Type = "Payment",
-                    BadgeColor = "#10B981",
-                    Title = "Invoice Paid Successfully",
-                    Description = "Your payment for Invoice INV-2025-091 has been received.",
-                    TimeAgo = "1 day ago"
-                },
-                new {
-                    Type = "Warning",
-                    BadgeColor = "#EF4444",
-                    Title = "Upcoming Due Date",
-                    Description = "Your contract payment will be due in 3 days. Please prepare payment.",
-                    TimeAgo = "3 days ago"
-                },
-                new {
-                    Type = "Info",
-                    BadgeColor = "#6366F1",
-                    Title = "System Maintenance",
-                    Description = "The system will undergo maintenance tonight from 22:00 - 02:00.",
-                    TimeAgo = "5 days ago"
-                }
-            };
+            var list = _notifs.GetAll(_user.UserId);
 
-            NotifList.ItemsSource = list;
+            if (!list.Any())
+            {
+                NotifList.ItemsSource = new[]
+                {
+                    new { Title="No Notifications Yet", Description="You currently have no notifications.", Type = "", BadgeColor = "#999", TimeAgo = "" }
+                };
+                return;
+            }
+
+            var mapped = list.Select(n => new
+            {
+                n.Type,
+                BadgeColor = GetBadgeColor(n.Type),
+                n.Title,
+                Description = n.Message,
+                TimeAgo = TimeAgo(n.CreatedAt)
+            }).ToList();
+
+            NotifList.ItemsSource = mapped;
+        }
+
+        private string GetBadgeColor(string type)
+        {
+            return type switch
+            {
+                "BookingApproved" => "#3B82F6",
+                "BookingRejected" => "#EF4444",
+                "Payment" => "#10B981",
+                "ContractReady" => "#6366F1",
+                _ => "#6B7280"
+            };
+        }
+
+        private string TimeAgo(DateTime time)
+        {
+            var diff = DateTime.UtcNow - time;
+
+            if (diff.TotalMinutes < 1) return "Just now";
+            if (diff.TotalHours < 1) return $"{(int)diff.TotalMinutes} minutes ago";
+            if (diff.TotalDays < 1) return $"{(int)diff.TotalHours} hours ago";
+            return $"{(int)diff.TotalDays} days ago";
         }
 
 
-        // NAVBAR HANDLER
-        private void BtnBarges_Click(object sender, RoutedEventArgs e)
+         private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new Barges());
         }

@@ -20,9 +20,13 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
-            <RowDefinition/>
-            <RowDefinition Height="100"/>
+            <!-- NAVBAR -->
+            <RowDefinition Height="*"/>
+            <!-- CONTENT SCROLL -->
+            <RowDefinition Height="Auto"/>
+            <!-- FOOTER -->
         </Grid.RowDefinitions>
+
 
         <!-- ================= NAVBAR (Same as ContractPage) ================= -->
         <Border Background="{StaticResource NavyBrush}" Grid.Row="0">
@@ -140,18 +144,27 @@
 
                 <!-- ===================== PDF VIEWER ===================== -->
                 <TextBlock Text="Contract Document"
-                           FontWeight="Bold"
-                           FontSize="20"
-                           Margin="0 0 0 15"/>
+           FontWeight="Bold"
+           FontSize="20"
+           Margin="0 0 0 15"/>
 
                 <Border BorderBrush="#D6E4F0"
-                        BorderThickness="1"
-                        CornerRadius="12"
-                        Background="White">
+        BorderThickness="1"
+        CornerRadius="12"
+        Background="White"
+        Padding="20">
 
-                    <WebBrowser x:Name="PdfViewer" Height="600" Margin="10"/>
+                    <!-- Wrapper untuk memastikan PDF tetap CENTER -->
+                    <Grid HorizontalAlignment="Center">
+                        <WebBrowser x:Name="PdfViewer"
+                    Width="900"
+                    Height="700"
+                    HorizontalAlignment="Center"/>
+                    </Grid>
 
                 </Border>
+
+
 
             </StackPanel>
         </ScrollViewer>

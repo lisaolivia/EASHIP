@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ctrl="clr-namespace:Eaship.page.Controls"
       mc:Ignorable="d"
       d:DesignWidth="1200" d:DesignHeight="800"
       Title="CompanyVerificationDetail">
@@ -22,32 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- SIDEBAR -->
-        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
-            <StackPanel Margin="24,40" VerticalAlignment="Stretch">
-
-                <Image Source="/Assets/logo2.png"
-                       Width="92" Height="49"
-                       Margin="0,0,0,40"/>
-
-                <StackPanel>
-                    <Button Style="{StaticResource NavButton}" Content="Fleet Management" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Company Verification" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Booking Request" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Contract Payment" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Reports" Margin="0,4"/>
-                    <Button Style="{StaticResource NavButton}" Content="Profile" Margin="0,4"/>
-                </StackPanel>
-
-                <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
-                    <Button Content="Log Out"
-                            Background="White"
-                            Foreground="{StaticResource NavyBrush}"
-                            FontWeight="SemiBold"
-                            Padding="10,6"
-                            BorderBrush="Transparent"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
+        <ctrl:AdminNavbar Grid.Column="0"/>
 
         <!-- MAIN CONTENT -->
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">

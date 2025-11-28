@@ -100,15 +100,6 @@
                                              FontSize="14"
                                              Margin="0,0,0,12"/>
 
-                                <!-- FORGET PASSWORD LINK -->
-                                <TextBlock x:Name="txtForgetPassword"
-                                               Text="Forget password?" 
-                                               Foreground="#123B61"
-                                               FontSize="14"
-                                               TextDecorations="Underline"
-                                               Cursor="Hand"
-                                               Margin="0,0,0,20"
-                                               MouseDown="txtForgetPassword_MouseDown"/>
                             </StackPanel>
                         </Grid>
                     </Border>

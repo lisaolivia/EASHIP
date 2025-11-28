@@ -35,56 +35,85 @@ namespace Eaship.page.Renter
             
         }
 
+        private void LoadLatestNotification()
+        {
+            var notif = _context.Notifications
+                .Where(n => n.UserId == _currentUser.UserId)
+                .OrderByDescending(n => n.CreatedAt)
+                .FirstOrDefault();
+
+            if (notif != null)
+            {
+                TxtNotifTitle.Text = notif.Title;
+                TxtNotifMessage.Text = notif.Message;
+                TxtNotifTime.Text = notif.CreatedAt.ToString("dd MMM yyyy HH:mm");
+            }
+            else
+            {
+                TxtNotifTitle.Text = "No Notifications Yet";
+                TxtNotifMessage.Text = "You currently have no notifications.";
+                TxtNotifTime.Text = "";
+            }
+        }
+
+
 
         private void Dashboard_Loaded(object sender, RoutedEventArgs e)
         {
+            // Pastikan user login
+            _currentUser ??= Session.CurrentUser;
             if (_currentUser == null)
             {
-                _currentUser = Session.CurrentUser;
-                if (_currentUser == null)
-                {
-                    MessageBox.Show("Anda belum login. Silakan login terlebih dahulu.");
-                    Main?.Navigate(new RequireLoginPage());
-                    return;
-                }
+                MessageBox.Show("Anda belum login. Silakan login terlebih dahulu.");
+                Main?.Navigate(new RequireLoginPage());
+                return;
             }
 
+            // Ambil perusahaan user
             var company = _context.RenterCompanies
                 .FirstOrDefault(c => c.RenterCompanyId == _currentUser.RenterCompanyId);
 
-
+            // CASE 1 — Belum punya perusahaan
             if (company == null)
             {
-                // Belum punya perusahaan
-                SectionWelcome.Visibility = Visibility.Visible;
-                SectionWaiting.Visibility = Visibility.Collapsed;
-                SectionVerified.Visibility = Visibility.Collapsed;
+                ShowSection(welcome: SectionWelcome);
+                return;
             }
-            else if (company.Status == CompanyStatus.Validating)
-            {
-                // Sudah daftar tapi menunggu verifikasi admin
-                SectionWelcome.Visibility = Visibility.Collapsed;
-                SectionWaiting.Visibility = Visibility.Visible;
-                SectionVerified.Visibility = Visibility.Collapsed;
-            }
-            else if (company.Status == CompanyStatus.Active)
-            {
-                SectionWelcome.Visibility = Visibility.Collapsed;
-                SectionWaiting.Visibility = Visibility.Collapsed;
-                SectionVerified.Visibility = Visibility.Visible;
-            }
-            else if (company.Status == CompanyStatus.Rejected)
-            {
-                SectionWelcome.Visibility = Visibility.Collapsed;
-                SectionWaiting.Visibility = Visibility.Collapsed;
-                SectionVerified.Visibility = Visibility.Collapsed;
 
-                SectionRejected.Visibility = Visibility.Visible;
+            // CASE 2 — Menunggu verifikasi admin
+            if (company.Status == CompanyStatus.Validating)
+            {
+                ShowSection(waiting: SectionWaiting);
+                return;
+            }
+
+            // CASE 3 — Aktif (verified)
+            if (company.Status == CompanyStatus.Active)
+            {
+                ShowSection(verified: SectionVerified);
+
+                LoadLatestNotification();
+                return;
+            }
+
+            // CASE 4 — Ditolak
+            if (company.Status == CompanyStatus.Rejected)
+            {
                 TxtRejectedReason.Text = company.RejectedReason;
+                ShowSection(rejected: SectionRejected);
+                return;
             }
-
-
         }
+
+
+        private void ShowSection(Border? welcome = null, Border? waiting = null, Grid? verified = null, Border? rejected = null)
+        {
+            SectionWelcome.Visibility = welcome != null ? Visibility.Visible : Visibility.Collapsed;
+            SectionWaiting.Visibility = waiting != null ? Visibility.Visible : Visibility.Collapsed;
+            SectionVerified.Visibility = verified != null ? Visibility.Visible : Visibility.Collapsed;
+            SectionRejected.Visibility = rejected != null ? Visibility.Visible : Visibility.Collapsed;
+        }
+
 
 
         // === BUTTON FOR VERIFIED DASHBOARD ===
@@ -105,6 +134,13 @@ namespace Eaship.page.Renter
         // ==========================================================
         //                     NAVBAR HANDLERS
         // ==========================================================
+
+        private void BtnGoDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            var main = (Application.Current.MainWindow as MainWindow)?.MainFrame;
+            main?.Navigate(new Dashboard());
+        }
+
         private void BtnBarges_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new Barges());

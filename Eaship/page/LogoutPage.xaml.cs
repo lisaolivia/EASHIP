@@ -1,25 +1,10 @@
 ﻿using Eaship.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eaship.page
 {
-    /// <summary>
-    /// Interaction logic for LogoutPage.xaml
-    /// </summary>
     public partial class LogoutPage : Page
     {
         private readonly IUserService _users;
@@ -29,48 +14,44 @@ namespace Eaship.page
         {
             InitializeComponent();
             _users = App.Services.GetRequiredService<IUserService>();
-        }
 
-        // ====== NAVBAR: Barges ======
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+            // Cegah orang buka halaman ini tanpa login
             if (!Session.IsLoggedIn)
             {
-                Main?.Navigate(new RequireLoginPage());
+                Main?.Navigate(new LoginPage());
                 return;
             }
 
-            MessageBox.Show("Barges diklik! (stub sementara)");
+            // Hubungkan event handler
+            BtnCancel.Click += BtnCancel_Click;
+            BtnYes.Click += BtnYes_Click;
         }
 
-        // ====== NAVBAR: My Bookings ======
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        // === UNIVERSAL LOGOUT ===
+        private void DoLogout()
         {
-            if (!Session.IsLoggedIn)
-            {
-                Main?.Navigate(new RequireLoginPage());
-                return;
-            }
+            // 1. Clear session
+            Session.Logout();
 
-            MessageBox.Show("My Bookings diklik! (stub sementara)");
+            // 2. Arahkan ke login page
+            Main?.Navigate(new LoginPage());
+
+            // 3. Buang history biar ga bisa Back
+            while (Main != null && Main.CanGoBack)
+                Main.RemoveBackEntry();
         }
 
-
-        // ====== NAVBAR: Sign Up ======
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        // === CANCEL button (kembali ke halaman sebelumnya) ===
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("You are already Sign Up!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            Main?.GoBack();
         }
 
-        // ====== NAVBAR: Log In ======
-        private void Login_Click(object sender, RoutedEventArgs e)
+        // === YES button (logout) ===
+        private void BtnYes_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("You are already Log In!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            DoLogout();
         }
 
-        private void Buttonnotifikasi_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

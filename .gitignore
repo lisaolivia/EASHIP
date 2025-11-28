@@ -1,18 +1,34 @@
-# Ignore Visual Studio cache
+# Visual Studio
 .vs/
-*.vscode/
-*.vsidx
-
-# Build results
 bin/
 obj/
-Debug/
-Release/
-
-# User-specific files
 *.user
+*.rsuser
 *.suo
+*.cache
+*.ide
 
-# Other temp files
+# Build output
+*.dll
+*.exe
+*.pdb
+*.db
 *.log
-*.tmp
+
+# NuGet
+packages/
+*.nupkg
+
+# EF Core
+Migrations/
+
+# Secrets
+appsettings.json
+*/appsettings.json
+**/appsettings.json
+appsettings.Development.json
+*.env
+
+# Other
+*.DS_Store
+Thumbs.db

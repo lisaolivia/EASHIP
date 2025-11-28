@@ -33,6 +33,8 @@ namespace Eaship
             sc.AddScoped<IUserService, UserService>();
             sc.AddScoped<ICompanyService, CompanyService>();
             sc.AddScoped<ITugboatService, TugboatService>();
+            sc.AddScoped<INotificationService, NotificationService>();
+
 
 
             Services = sc.BuildServiceProvider();

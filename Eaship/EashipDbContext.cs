@@ -1,5 +1,6 @@
 ﻿using Eaship.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Eaship.Models
 {
@@ -18,13 +19,15 @@ namespace Eaship.Models
 
         public DbSet<Booking> Bookings => Set<Booking>();
         public DbSet<Contract> Contracts => Set<Contract>();
-        public DbSet<Invoice> Invoices => Set<Invoice>();
         public DbSet<TongkangTugboat> TongkangTugboats => Set<TongkangTugboat>();
-     
+        public DbSet<Notification> Notifications => Set<Notification>();
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Schema setup
-            modelBuilder.HasDefaultSchema("eashipp");
+            modelBuilder.HasDefaultSchema("eaship");
             modelBuilder.HasPostgresExtension("citext");
             modelBuilder.HasPostgresEnum<UserRole>("eaship", "user_role");
 
@@ -171,23 +174,26 @@ namespace Eaship.Models
             });
 
             // ========================
-            // INVOICE
+            // NOTIFICATION
             // ========================
-            modelBuilder.Entity<Invoice>(e =>
+            modelBuilder.Entity<Notification>(e =>
             {
-                e.ToTable("invoice", "eaship");
-                e.HasKey(x => x.InvoiceId);
+                e.ToTable("notifications", "eaship");
+                e.HasKey(n => n.NotificationId);
 
-                e.Property(x => x.InvoiceId).HasColumnName("invoice_id");
-                e.Property(x => x.ContractId).HasColumnName("contract_id");
-                e.Property(x => x.Number).HasColumnName("number");
-                e.Property(x => x.Amount).HasColumnName("amount").HasColumnType("numeric(18,2)");
-                e.Property(x => x.IssuedAt).HasColumnName("issued_at");
-                e.Property(x => x.DueDate).HasColumnName("due_date");
-                e.Property(x => x.PaidAt).HasColumnName("paid_at");
-                e.Property(x => x.PdfUrl).HasColumnName("pdf_url");
-                e.Property(x => x.Status).HasColumnName("status").HasConversion<string>();
+                e.Property(n => n.NotificationId).HasColumnName("notification_id");
+                e.Property(n => n.UserId).HasColumnName("user_id");
+                e.Property(n => n.Type).HasColumnName("type");
+                e.Property(n => n.Title).HasColumnName("title");
+                e.Property(n => n.Message).HasColumnName("message");
+                e.Property(n => n.BookingId).HasColumnName("booking_id");
+                e.Property(n => n.ContractId).HasColumnName("contract_id");
+                e.Property(n => n.CompanyId).HasColumnName("company_id");
+                e.Property(n => n.CreatedAt).HasColumnName("created_at");
             });
+
+
+
         }
     }
 }

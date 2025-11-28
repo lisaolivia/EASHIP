@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ctrl="clr-namespace:Eaship.page.Controls"
       mc:Ignorable="d"
       d:DesignWidth="1200" d:DesignHeight="800"
       Title="Admin Dashboard">
@@ -25,66 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- ================= SIDEBAR ================= -->
-        <Border Background="{StaticResource NavyBrush}" Grid.Column="0">
-            <StackPanel VerticalAlignment="Stretch" Margin="24,40">
-                <!-- Logo -->
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,40">
-                    <Image Source="/Assets/logo2.png" Width="92" Height="49" Margin="0,0,8,0" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.678"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-
-                </StackPanel>
-
-                <!-- Menu Items -->
-                <StackPanel>
-                    <StackPanel>
-                        <Button Style="{StaticResource NavButton}" 
-                                  Content="Fleet Management" 
-                                  Margin="0,4" 
-                                  Click="OpenFleetManagement"/>
-
-                        <Button Style="{StaticResource NavButton}" 
-                                  Content="Company Verification" 
-                                  Margin="0,4" 
-                                  Click="OpenCompanyVerification"/>
-
-                        <Button Style="{StaticResource NavButton}" 
-                                  Content="Booking Request" 
-                                  Margin="0,4" 
-                                  Click="OpenBookingRequest"/>
-
-                        <Button Style="{StaticResource NavButton}" 
-                                  Content="Contract Payment" 
-                                  Margin="0,4" 
-                                  Click="OpenContractPayment"/>
-
-                        <Button Style="{StaticResource NavButton}" 
-                                  Content="Profile" 
-                                  Margin="0,4" 
-                                  Click="OpenProfile"/>
-
-                    </StackPanel>
-                </StackPanel>
-
-                <!-- Spacer -->
-                <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
-                    <Button Content="Log Out"
-                            Background="White"
-                            Foreground="{StaticResource NavyBrush}"
-                            FontWeight="SemiBold"
-                            Padding="10,6"
-                            BorderBrush="Transparent"
-/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
+        <ctrl:AdminNavbar Grid.Column="0"/>
 
         <!-- ================= MAIN CONTENT ================= -->
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">

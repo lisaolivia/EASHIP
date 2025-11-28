@@ -54,9 +54,6 @@ namespace Eaship.page.Admin
                 PdfUrl = c.PdfUrl
             }).ToList();
 
-            // JANGAN PAKAI MAPPER LAGI
-            // var dtos = ...   ← HAPUS AJA, BIKIN KACAU
-
             ContractList.ItemsSource = list;
         }
 
@@ -76,9 +73,6 @@ namespace Eaship.page.Admin
             }
         }
 
-
-
-
         // ======================
         // UNIVERSAL NAVIGATE()
         // ======================
@@ -92,16 +86,13 @@ namespace Eaship.page.Admin
         // SIDEBAR HANDLERS
         // ======================
 
-        private void OpenFleetManagement(object s, RoutedEventArgs e) => Navigate(new FleetManagement());
-        private void OpenCompanyVerification(object s, RoutedEventArgs e) => Navigate(new CompanyVerification());
-        private void OpenBookingRequest(object s, RoutedEventArgs e) => Navigate(new BookingRequest());
-        private void OpenContractPayment(object s, RoutedEventArgs e) => Navigate(new ContractPayment());
-        private void OpenProfile(object s, RoutedEventArgs e) => Navigate(new Profile());
+  
         private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
         private void EditTongkang(object s, RoutedEventArgs e)
         {
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
         }
+
     }
 }
