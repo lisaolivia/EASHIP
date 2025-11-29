@@ -13,6 +13,7 @@ namespace Eaship.page.Admin
         private readonly int _companyId;
         private RenterCompany? _company;
         private readonly ICompanyService _companies;
+        private readonly INotificationService _notif;
 
 
         public CompanyVerificationDetail(int companyId)
@@ -20,6 +21,7 @@ namespace Eaship.page.Admin
             InitializeComponent();
 
             _context = App.Services.GetRequiredService<EashipDbContext>();
+            _notif = App.Services.GetRequiredService<INotificationService>();
             _companyId = companyId;
 
             LoadData();
@@ -59,16 +61,65 @@ namespace Eaship.page.Admin
             frame?.Navigate(page);
         }
 
+        private async void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Approve company
+            await _companies.ApproveAsync(_companyId, Session.CurrentUser);
+
+            // 2. Get renter user who owns this company
+            var db = App.Services.GetRequiredService<EashipDbContext>();
+            var renter = await db.Users.FirstAsync(u => u.RenterCompanyId == _companyId);
+
+            // 3. Create notification
+            _notif.Create(
+                renter.UserId,
+                "CompanyApproved",
+                "Company Approved",
+                "Your company has been approved and is now active!",
+                companyId: renter.RenterCompanyId
+            );
+
+            MessageBox.Show("Company approved!");
+
+            // 4. Return to list
+            Navigate(new CompanyVerification());
+        }
+
+        private async void Decline_Click(object sender, RoutedEventArgs e)
+        {
+            string reason = TxtReason.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(reason))
+            {
+                MessageBox.Show("Please enter a reason.");
+                return;
+            }
+
+            // 1. Reject company
+            await _companies.RejectAsync(_companyId, Session.CurrentUser, reason);
+
+            // 2. Get renter (company owner)
+            var db = App.Services.GetRequiredService<EashipDbContext>();
+            var renter = await db.Users.FirstAsync(u => u.RenterCompanyId == _companyId);
+
+            // 3. Create notification
+            _notif.Create(
+                renter.UserId,
+                "CompanyRejected",
+                "Company Rejected",
+                $"Your company request was rejected.\nReason: {reason}",
+                companyId: renter.RenterCompanyId
+            );
+
+            MessageBox.Show("Company declined!");
+            Navigate(new CompanyVerification());
+        }
+
         private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
         private void EditTongkang(object s, RoutedEventArgs e)
         {
             if (s is Button b && b.Tag is long id)
                 Navigate(new EditTongkang(id));
-        }
-
-        private void GoToVerification_Click(object sender, RoutedEventArgs e)
-        {
-            Navigate(new CompanyVerificationDetailAccept(_companyId));
         }
     }
 }

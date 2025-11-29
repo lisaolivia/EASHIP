@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ctrl="clr-namespace:Eaship.page.Controls"
       mc:Ignorable="d"
-      d:DesignWidth="1200" d:DesignHeight="800"
-      Title="CompanyVerificationDetail">
+      d:DesignWidth="1200" d:DesignHeight="800">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -25,26 +24,23 @@
         <!-- SIDEBAR -->
         <ctrl:AdminNavbar Grid.Column="0"/>
 
-        <!-- MAIN CONTENT -->
+        <!-- MAIN -->
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="40">
 
-                <!-- Header -->
+                <!-- HEADER -->
                 <TextBlock Text="Detail Company"
-                           FontSize="28"
-                           FontWeight="Bold"
+                           FontSize="28" FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0,0,0,20"/>
 
                 <TextBlock Text="Company Information"
-                           FontSize="20"
-                           FontWeight="SemiBold"
+                           FontSize="20" FontWeight="SemiBold"
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0,0,0,20"/>
 
-                <!-- COMPANY INFO CARD -->
+                <!-- COMPANY CARD -->
                 <Border Width="816"
-                        Height="299"
                         Background="White"
                         BorderBrush="#D6E4F0"
                         BorderThickness="1"
@@ -55,137 +51,152 @@
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="67*"/>
-                            <ColumnDefinition Width="240*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- NAMA PERUSAHAAN -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nama Perusahaan"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="CompanyNameBox"
-                                 Grid.Row="0" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <!-- NAMA -->
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Nama Perusahaan" Margin="0,7,15,0"/>
+                        <TextBox x:Name="CompanyNameBox" Grid.Row="0" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
                         <!-- NPWP -->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="NPWP"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="NPWPBox"
-                                 Grid.Row="1" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="NPWP" Margin="0,7,15,0"/>
+                        <TextBox x:Name="NPWPBox" Grid.Row="1" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
                         <!-- ALAMAT -->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Alamat"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="AddressBox"
-                                 Grid.Row="2" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Alamat" Margin="0,7,15,0"/>
+                        <TextBox x:Name="AddressBox" Grid.Row="2" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- KOTA/PROVINSI -->
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Kota/Provinsi"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="CityProvinceBox"
-                                 Grid.Row="3" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <!-- KOTA -->
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="Kota/Provinsi" Margin="0,7,15,0"/>
+                        <TextBox x:Name="CityProvinceBox" Grid.Row="3" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- EMAIL BILLING -->
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Email Billing"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="EmailBillingBox"
-                                 Grid.Row="4" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <!-- EMAIL -->
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="Email Billing" Margin="0,7,15,0"/>
+                        <TextBox x:Name="EmailBillingBox" Grid.Row="4" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- TELEPON -->
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Telepon"/>
-                        <TextBox x:Name="PhoneBox"
-                                 Grid.Row="5" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Grid.ColumnSpan="2"/>
+                        <!-- TELEFON -->
+                        <TextBlock Grid.Row="5" Grid.Column="0"
+                                   Text="Telepon"/>
+                        <TextBox x:Name="PhoneBox" Grid.Row="5" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7"/>
                     </Grid>
                 </Border>
 
                 <!-- PIC SECTION -->
                 <TextBlock Text="PIC Information"
-                           FontSize="20"
-                           FontWeight="SemiBold"
+                           FontSize="20" FontWeight="SemiBold"
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0,0,0,20"/>
 
                 <Border Width="816"
-                        Height="195"
                         Background="White"
                         BorderBrush="#D6E4F0"
                         BorderThickness="1"
                         CornerRadius="25"
                         Padding="25"
-                        Margin="0,0,0,30"
+                        Margin="0,0,0,20"
                         Effect="{StaticResource Shadow}">
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="67*"/>
-                            <ColumnDefinition Width="240*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- PIC NAME -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nama PIC"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="PICNameBox"
-                                 Grid.Row="0" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Nama PIC" Margin="0,7,15,0"/>
+                        <TextBox x:Name="PICNameBox" Grid.Row="0" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- PIC POSITION -->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Jabatan"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="PICPositionBox"
-                                 Grid.Row="1" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="Jabatan" Margin="0,7,15,0"/>
+                        <TextBox x:Name="PICPositionBox" Grid.Row="1" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- PIC EMAIL -->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Email PIC"
-                                   Margin="0,7,15,0"/>
-                        <TextBox x:Name="PICEmailBox"
-                                 Grid.Row="2" Grid.Column="1"
-                                 Height="30" Background="#F7F7F7"
-                                 Margin="0,0,0,15" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Email PIC" Margin="0,7,15,0"/>
+                        <TextBox x:Name="PICEmailBox" Grid.Row="2" Grid.Column="1"
+                                 Height="30" Background="#F7F7F7"/>
                     </Grid>
                 </Border>
 
-                <Button Content="Go To Verification"
-                        Width="200"
-                        Height="45"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,0,20"
-                        Background="#DCE9F9"
-                        Foreground="#3355AA"
-                        FontWeight="SemiBold"
-                        Click="GoToVerification_Click"/>
+                <!-- REASON -->
+                <TextBlock Text="Reason (If Decline):"
+                           FontSize="16" FontWeight="SemiBold"
+                           Margin="0,10,0,10"/>
+
+                <TextBox x:Name="TxtReason"
+                         Width="500" Height="90"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         Background="#F7F7F7"
+                         Margin="0,0,0,20"/>
+
+                <!-- BUTTONS -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,20">
+
+                    <Button Content="Decline"
+                            Width="149" Height="42"
+                            Cursor="Hand"
+                            FontSize="16" FontWeight="SemiBold"
+                            Foreground="White"
+                            Background="#CC1313"
+                            BorderBrush="#D6E4F0"
+                            BorderThickness="3"
+                            Margin="0,0,20,0"
+                            Click="Decline_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Content="Accept"
+                            Width="160" Height="42"
+                            Cursor="Hand"
+                            FontSize="16" FontWeight="SemiBold"
+                            Foreground="#0B3869"
+                            Background="#D6E4F0"
+                            BorderThickness="0"
+                            Click="Accept_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
 
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </Page>
