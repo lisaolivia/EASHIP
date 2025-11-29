@@ -5,17 +5,14 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace Eaship.page.Renter
 {
-    /// <summary>
-    /// Interaction logic for Dashboard.xaml
-    /// </summary>
     public partial class Dashboard : Page
     {
         private readonly IUserService _users;
@@ -23,16 +20,14 @@ namespace Eaship.page.Renter
         private User? _currentUser;
 
         private Frame? Main => (Application.Current.MainWindow as MainWindow)?.MainFrame;
-        // untuk simpan user aktif
 
         public Dashboard()
         {
             InitializeComponent();
             _users = App.Services.GetRequiredService<IUserService>();
-            _context = App.Services.GetRequiredService<EashipDbContext>(); // ambil user aktif dari session
+            _context = App.Services.GetRequiredService<EashipDbContext>();
             Loaded += Dashboard_Loaded;
             _currentUser = Session.CurrentUser;
-            
         }
 
         private void LoadLatestNotification()
@@ -56,11 +51,8 @@ namespace Eaship.page.Renter
             }
         }
 
-
-
-        private void Dashboard_Loaded(object sender, RoutedEventArgs e)
+        private async void Dashboard_Loaded(object sender, RoutedEventArgs e)
         {
-            // Pastikan user login
             _currentUser ??= Session.CurrentUser;
             if (_currentUser == null)
             {
@@ -69,7 +61,6 @@ namespace Eaship.page.Renter
                 return;
             }
 
-            // Ambil perusahaan user
             var company = _context.RenterCompanies
                 .FirstOrDefault(c => c.RenterCompanyId == _currentUser.RenterCompanyId);
 
@@ -87,16 +78,22 @@ namespace Eaship.page.Renter
                 return;
             }
 
-            // CASE 3 — Aktif (verified)
+            // CASE 3 — VERIFIED
             if (company.Status == CompanyStatus.Active)
             {
                 ShowSection(verified: SectionVerified);
 
                 LoadLatestNotification();
+
+                // 🔥 NEW — LOAD API SECTION
+                await LoadPortWeathers();
+                await LoadExchangeRate();
+                LoadLocalTime();
+
                 return;
             }
 
-            // CASE 4 — Ditolak
+            // CASE 4 — Rejected
             if (company.Status == CompanyStatus.Rejected)
             {
                 TxtRejectedReason.Text = company.RejectedReason;
@@ -105,8 +102,12 @@ namespace Eaship.page.Renter
             }
         }
 
+     private void ShowSection(
+     Border? welcome = null,
+     Border? waiting = null,
+     StackPanel? verified = null,
+     Border? rejected = null)
 
-        private void ShowSection(Border? welcome = null, Border? waiting = null, Grid? verified = null, Border? rejected = null)
         {
             SectionWelcome.Visibility = welcome != null ? Visibility.Visible : Visibility.Collapsed;
             SectionWaiting.Visibility = waiting != null ? Visibility.Visible : Visibility.Collapsed;
@@ -116,22 +117,98 @@ namespace Eaship.page.Renter
 
 
 
-        // === BUTTON FOR VERIFIED DASHBOARD ===
+        // =====================================================================
+        // 🔥 NEW API 1: WEATHER
+        // =====================================================================
+        private async Task LoadPortWeathers()
+        {
+            var ports = new List<(double lat, double lon, TextBlock temp, TextBlock wind)>
+    {
+        (-6.11, 106.88, TxtP1Temp, TxtP1Wind),  // Tanjung Priok
+        (-7.20, 112.73, TxtP2Temp, TxtP2Wind),  // Tanjung Perak
+        (-1.27, 116.82, TxtP3Temp, TxtP3Wind),  // Balikpapan
+        (-5.14, 119.41, TxtP4Temp, TxtP4Wind),  // Makassar
+        (3.79, 98.68, TxtP5Temp, TxtP5Wind)     // Belawan
+    };
+
+            using var client = new HttpClient();
+
+            foreach (var port in ports)
+            {
+                try
+                {
+                    var url =
+                        $"https://api.open-meteo.com/v1/forecast?latitude={port.lat}&longitude={port.lon}&current_weather=true";
+
+                    var json = await client.GetStringAsync(url);
+                    using var doc = JsonDocument.Parse(json);
+
+                    var temp = doc.RootElement.GetProperty("current_weather").GetProperty("temperature").GetDouble();
+                    var wind = doc.RootElement.GetProperty("current_weather").GetProperty("windspeed").GetDouble();
+
+                    port.temp.Text = $"{temp}°C";
+                    port.wind.Text = $"Wind: {wind} km/h";
+                }
+                catch
+                {
+                    port.temp.Text = "N/A";
+                    port.wind.Text = "";
+                }
+            }
+        }
+
+
+
+        // =====================================================================
+        // 🔥 NEW API 2: EXCHANGE RATE
+        // =====================================================================
+        private async Task LoadExchangeRate()
+        {
+            try
+            {
+                using var client = new HttpClient();
+
+                var json = await client.GetStringAsync("https://open.er-api.com/v6/latest/USD");
+                using var doc = JsonDocument.Parse(json);
+
+                var idr = doc.RootElement.GetProperty("rates").GetProperty("IDR").GetDouble();
+
+                TxtRateIDR.Text = $"{idr:N0}";
+                TxtRateLastUpdate.Text = "Updated just now";
+            }
+            catch
+            {
+                TxtRateIDR.Text = "N/A";
+                TxtRateLastUpdate.Text = "";
+            }
+        }
+
+
+        // =====================================================================
+        // 🔥 NEW API 3: LOCAL TIME (NO REQUEST — LOCAL SYSTEM)
+        // =====================================================================
+        private void LoadLocalTime()
+        {
+            var now = DateTime.Now;
+            TxtTime.Text = now.ToString("HH:mm");
+            TxtDate.Text = now.ToString("dddd, dd MMM yyyy");
+        }
+
+
+        // =====================================================================
+        // BUTTONS
+        // =====================================================================
 
         private void BtnBooking_Click(object sender, RoutedEventArgs e)
         {
-            // Nanti arahkan ke halaman booking
             Main?.Navigate(new BookingPage());
         }
 
         private void BtnSeeAllNotification_Click(object sender, RoutedEventArgs e)
         {
-            // Nanti arahkan ke halaman list notifikasi
             Main?.Navigate(new NotificationPage());
         }
 
-
-  
         private void BtnCreateCompany_Click(object sender, RoutedEventArgs e)
         {
             Main?.Navigate(new CompanyFormPage());
