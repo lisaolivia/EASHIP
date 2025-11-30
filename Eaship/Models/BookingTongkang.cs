@@ -10,10 +10,9 @@ namespace Eaship.Models
     {
         public long BookingId { get; set; }
         public long TongkangId { get; set; }
-        public int? DaysAllocated { get; set; }     // alokasi hari untuk tongkang ini
-        public int? SequenceNo { get; set; }        // urutan pemakaian (kalau berantai)
+        public int? DaysAllocated { get; set; }     
+        public int? SequenceNo { get; set; }        
 
-        // navigasi opsional
         public Booking? Booking { get; set; }
         public Tongkang? Tongkang { get; set; }
     }

@@ -109,12 +109,14 @@
                                 <Grid Width="48" Height="48">
                                     <Ellipse Fill="#EEF6FF" />
 
-                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
-                                           Width="22" Height="22"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
+                                    <!-- Ikon GANTI jadi TextBlock -->
+                                    <TextBlock Text="🏢"
+                                               FontSize="22"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
                                 </Grid>
                             </StackPanel>
+
 
 
                             <!-- Value -->
@@ -163,10 +165,13 @@
                                 <Grid Width="48" Height="48">
                                     <Ellipse Fill="#EEF6FF" />
 
-                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
-                                           Width="22" Height="22"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="🚢"
+                                               FontSize="22"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
+
                                 </Grid>
                             </StackPanel>
 
@@ -214,12 +219,15 @@
                                 <Grid Width="48" Height="48">
                                     <Ellipse Fill="#EEF6FF" />
 
-                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
-                                           Width="22" Height="22"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
+                            
+                                    <TextBlock Text="🚤"
+                                               FontSize="22"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
                                 </Grid>
                             </StackPanel>
+
 
 
                             <TextBlock x:Name="txtTugboatAktif"
@@ -264,12 +272,15 @@
                                 <Grid Width="48" Height="48">
                                     <Ellipse Fill="#EEF6FF" />
 
-                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
-                                           Width="22" Height="22"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
+                                    <!-- Ikon GANTI jadi TextBlock -->
+                                    <TextBlock Text="📄"
+                                               FontSize="22"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
                                 </Grid>
                             </StackPanel>
+
 
 
                             <TextBlock x:Name="txtBookingPending"

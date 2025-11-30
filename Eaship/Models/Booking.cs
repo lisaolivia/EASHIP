@@ -19,23 +19,16 @@ namespace Eaship.Models
         public long BookingId { get; set; }
         public User? User { get; set; }
         public int UserId { get; set; }
-
         public string OriginPort { get; set; } = string.Empty;
-
         public int? RenterCompanyId { get; set; }
         public RenterCompany? RenterCompany { get; set; }
-
         public string DestinationPort { get; set; } = string.Empty;
-
         public DateTime StartDate { get; set; }
         public int DurationDays { get; set; }
         public string CargoDesc { get; set; } = string.Empty;
-
         public BookingStatus Status { get; private set; } = BookingStatus.Requested;
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // NEW: navigasi M-N
         public ICollection<BookingTongkang> BookingTongkangs { get; set; } = new List<BookingTongkang>();
 
 
