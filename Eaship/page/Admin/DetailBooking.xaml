@@ -41,89 +41,90 @@
                 <Border Background="White"
                         Padding="25"
                         CornerRadius="20"
-                        Width="849"
                         BorderBrush="#D6E4F0"
                         BorderThickness="1"
                         Margin="0 0 0 40"
-                        Effect="{DynamicResource Shadow}" Height="208">
+                        Effect="{DynamicResource Shadow}">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- ORIGIN -->
-                        <TextBlock Text="Origin" FontSize="13"/>
-                        <TextBox x:Name="OriginBox"
-                                 Grid.Row="0"
-                                 Margin="0 22 40 20"
-                                 Height="35"
-                                 Background="#F8FBFF"
-                                 BorderBrush="#D6E4F0"
-                                 IsReadOnly="True"/>
 
-                        <!-- DEST -->
-                        <TextBlock Text="Destination" Grid.Column="1" FontSize="13"/>
-                        <TextBox x:Name="DestinationBox"
-                                 Grid.Row="0"
-                                 Grid.Column="1"
-                                 Margin="0 22 0 20"
-                                 Height="35"
+                        <!-- ORIGIN -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0 0 20 20">
+                            <TextBlock Text="Origin" FontSize="13"/>
+                            <TextBox x:Name="OriginBox"
+                                 Height="38"
                                  Background="#F8FBFF"
                                  BorderBrush="#D6E4F0"
                                  IsReadOnly="True"/>
+                        </StackPanel>
+
+                        <!-- DESTINATION -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0 0 20">
+                            <TextBlock Text="Destination" FontSize="13"/>
+                            <TextBox x:Name="DestinationBox"
+                                         Height="38"
+                                         Background="#F8FBFF"
+                                         BorderBrush="#D6E4F0"
+                                         IsReadOnly="True"/>
+                        </StackPanel>
 
 
                         <!-- START -->
-                        <TextBlock Text="Start" Grid.Row="1" FontSize="13"/>
-                        <TextBox x:Name="StartBox"
-                                 Grid.Row="1"
-                                 Margin="0 22 40 20"
-                                 Height="35"
-                                 Background="#F8FBFF"
-                                 BorderBrush="#D6E4F0"
-                                 IsReadOnly="True"/>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 0 20 20">
+                            <TextBlock Text="Start" FontSize="13"/>
+                            <TextBox x:Name="StartBox"
+                                     Height="38"
+                                     Background="#F8FBFF"
+                                     BorderBrush="#D6E4F0"
+                                     IsReadOnly="True"/>
+                        </StackPanel>
 
                         <!-- DURATION -->
-                        <TextBlock Text="Duration" Grid.Row="1" Grid.Column="1" FontSize="13"/>
-                        <TextBox x:Name="DurationBox"
-                                 Grid.Row="1"
-                                 Grid.Column="1"
-                                 Margin="0 22 0 20"
-                                 Height="35"
-                                 Background="#F8FBFF"
-                                 BorderBrush="#D6E4F0"
-                                 IsReadOnly="True"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20 0 0 20">
+                            <TextBlock Text="Duration" FontSize="13"/>
+                            <TextBox x:Name="DurationBox"
+                                     Height="38"
+                                     Background="#F8FBFF"
+                                     BorderBrush="#D6E4F0"
+                                     IsReadOnly="True"/>
+                        </StackPanel>
+
 
                         <!-- CARGO -->
-                        <TextBlock Text="Cargo" Grid.Row="2" FontSize="13"/>
-                        <TextBox x:Name="CargoBox"
-                                 Grid.Row="2"
-                                 Margin="0 22 40 20"
-                                 Height="35"
-                                 Background="#F8FBFF"
-                                 BorderBrush="#D6E4F0"
-                                 IsReadOnly="True"/>
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 0 20 0">
+                            <TextBlock Text="Cargo" FontSize="13"/>
+                            <TextBox x:Name="CargoBox"
+                                     Height="38"
+                                     Background="#F8FBFF"
+                                     BorderBrush="#D6E4F0"
+                                     IsReadOnly="True"/>
+                        </StackPanel>
 
                         <!-- STATUS -->
-                        <TextBlock Text="Status" Grid.Row="2" Grid.Column="1" FontSize="13"/>
-                        <TextBox x:Name="StatusBox"
-                                 Grid.Row="2"
-                                 Grid.Column="1"
-                                 Margin="0 22 0 20"
-                                 Height="35"
-                                 Background="#F8FBFF"
-                                 BorderBrush="#D6E4F0"
-                                 IsReadOnly="True"/>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="20 0 0 0">
+                            <TextBlock Text="Status" FontSize="13"/>
+                            <TextBox x:Name="StatusBox"
+                                     Height="38"
+                                     Background="#F8FBFF"
+                                     BorderBrush="#D6E4F0"
+                                     IsReadOnly="True"/>
+                        </StackPanel>
+
                     </Grid>
                 </Border>
+
+
 
                 <!-- ASSIGN TONGKANG -->
                 <TextBlock Text="Assign Tongkang"
@@ -134,37 +135,32 @@
                 <Border Background="White"
                         Padding="25"
                         CornerRadius="20"
-                        Width="841"
                         BorderBrush="#D6E4F0"
                         BorderThickness="1"
-                        Margin="0 0 0 30" Height="192">
+                        Margin="0 0 0 30">
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                    <StackPanel>
 
-                        <TextBlock Text="Tongkang" FontSize="13"/>
-                        <ComboBox x:Name="TongkangBox"
-                                  Grid.Row="0"
-                                  Margin="0 20 0 10"
-                                  Height="35"/>
+                        <!-- TONGKANG -->
+                        <StackPanel Margin="0 0 0 20">
+                            <TextBlock Text="Tongkang" FontSize="13"/>
+                            <ComboBox x:Name="TongkangBox"
+                                                             Height="38"/>
+                        </StackPanel>
 
-                        <TextBlock Text="Days Allocated" Grid.Row="1" FontSize="13"/>
-                        <TextBox x:Name="DaysBox"
-                                 Grid.Row="1"
-                                 Margin="0 20 0 10"
-                                 Height="35"/>
 
-                        <TextBlock Text="Tugboat" Grid.Row="2" FontSize="13"/>
-                        <ComboBox x:Name="TugboatBox"
-                                  Grid.Row="2"
-                                  Margin="0 20 0 10"
-                                  Height="35"/>
-                    </Grid>
+                        <!-- TUGBOAT -->
+                        <StackPanel Margin="0">
+                            <TextBlock Text="Tugboat" FontSize="13"/>
+                            <ComboBox x:Name="TugboatBox"
+                      Height="38"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
                 </Border>
+
+
 
                 <!-- BUTTONS -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">

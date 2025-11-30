@@ -34,33 +34,36 @@ namespace Eaship.page.Renter
             TxtHp!.Text = _tugboat.TugboatHp;
             TxtStatusDetail!.Text = _tugboat.Status.ToString();
 
-            var assigned = _context.TongkangTugboats
-                .Where(x => x.TugboatId == _tugboat.TugboatId)
-                .Select(x => x.Tongkang!.Name)
+         
+            var assignedTongkang = _context.Contracts
+                .Where(c => c.TugboatId == _tugboat.TugboatId && c.Status == ContractStatus.Approved)
+                .Select(c => c.Tongkang!.Name)
                 .FirstOrDefault();
 
-            TxtAssigned!.Text = assigned ?? "Not Assigned";
+            TxtAssigned!.Text = assignedTongkang ?? "Not Assigned";
+
 
             // Load image jika ada
             if (!string.IsNullOrEmpty(_tugboat.PhotoUrl))
-            {
-                try
-                {
-                    TugboatImage.Source = new BitmapImage(new Uri(_tugboat.PhotoUrl, UriKind.Absolute));
-                }
-                catch
-                {
-                    // fallback ke default
-                    TugboatImage.Source = new BitmapImage(
-                        new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
-                }
-            }
-            else
-            {
-                // fallback ke default
-                TugboatImage.Source = new BitmapImage(
-                    new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
-            }
+{
+    try
+    {
+        TugboatImage.Source = new BitmapImage(new Uri(_tugboat.PhotoUrl, UriKind.Absolute));
+    }
+    catch
+    {
+        // fallback ke default
+        TugboatImage.Source = new BitmapImage(
+            new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+    }
+}
+else
+{
+    // fallback ke default
+    TugboatImage.Source = new BitmapImage(
+        new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+}
+
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

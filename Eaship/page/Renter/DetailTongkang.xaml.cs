@@ -50,10 +50,17 @@ namespace Eaship.page.Renter
             TxtCapacity.Text = _tongkang!.KapasitasDwt;
             TxtIncludeTug.Text = _tongkang!.IncludeTugboat ? "Yes" : "No";
 
-            var tugCount = _context.TongkangTugboats
-                                   .Count(x => x.TongkangId == _tongkang!.TongkangId);
+           
+            var tugCount = _context.Contracts
+                .Where(c => c.TongkangId == _tongkang!.TongkangId &&
+                            c.Status == ContractStatus.Approved &&
+                            c.TugboatId != null)
+                .Select(c => c.TugboatId)
+                .Distinct()
+                .Count();
 
             TxtTugCount.Text = tugCount.ToString();
+
 
             // ===== FOTO FROM CLOUDINARY =====
             if (!string.IsNullOrWhiteSpace(_tongkang.PhotoUrl))

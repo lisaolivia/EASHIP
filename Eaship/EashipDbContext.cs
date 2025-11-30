@@ -19,7 +19,7 @@ namespace Eaship.Models
 
         public DbSet<Booking> Bookings => Set<Booking>();
         public DbSet<Contract> Contracts => Set<Contract>();
-        public DbSet<TongkangTugboat> TongkangTugboats => Set<TongkangTugboat>();
+
         public DbSet<Notification> Notifications => Set<Notification>();
 
 
@@ -95,25 +95,7 @@ namespace Eaship.Models
             });
 
 
-            // ========================
-            // MANY-TO-MANY: TONGKANG <-> TUGBOAT
-            // ========================
-            modelBuilder.Entity<TongkangTugboat>(e =>
-            {
-                e.ToTable("tongkang_tugboat", "eaship");
-                e.HasKey(x => new { x.TongkangId, x.TugboatId });
 
-                e.Property(x => x.TongkangId).HasColumnName("tongkang_id");
-                e.Property(x => x.TugboatId).HasColumnName("tugboat_id");
-
-                e.HasOne(x => x.Tongkang)
-                    .WithMany()
-                    .HasForeignKey(x => x.TongkangId);
-
-                e.HasOne(x => x.Tugboat)
-                    .WithMany()
-                    .HasForeignKey(x => x.TugboatId);
-            });
 
             // ========================
             // BOOKING
@@ -130,11 +112,12 @@ namespace Eaship.Models
                 e.Property(b => b.StartDate).HasColumnName("start_date");
                 e.Property(b => b.DurationDays).HasColumnName("duration_days");
                 e.Property(b => b.CargoDesc).HasColumnName("cargo_desc");
-                e.Property(b => b.HargaTotal).HasColumnName("harga_total").HasColumnType("numeric(18,2)");
                 e.Property(b => b.Status).HasColumnName("status").HasConversion<string>();
                 e.Property(b => b.CreatedAt).HasColumnName("created_at");
+                e.Property(b => b.RenterCompanyId).HasColumnName("RenterCompanyId");
 
-                    e.HasOne(b => b.User)
+
+                e.HasOne(b => b.User)
                     .WithMany()
                     .HasForeignKey(b => b.UserId);
             });

@@ -63,11 +63,40 @@ namespace Eaship.page.Admin
                 );
             }
 
+            // =========================
+            // STATUS PENGGUNAAN TONGKANG
+            // =========================
+            var activeContract = await _context.Contracts
+                .Include(c => c.Booking)
+                    .ThenInclude(b => b.User)
+                        .ThenInclude(u => u.RenterCompany)
+                .Include(c => c.Tugboat)
+                .FirstOrDefaultAsync(c =>
+                    c.TongkangId == _id &&
+                    c.Status == ContractStatus.Approved);
+
+            if (activeContract != null)
+            {
+                var renter = activeContract.Booking?.User?.RenterCompany?.Nama ?? "Perusahaan tidak ditemukan";
+                var tugboatName = activeContract.Tugboat?.Nama ?? "Tidak ada tugboat";
+                var durasi = activeContract.Booking?.DurationDays ?? 0;
+
+                CompanyText.Text =
+                    $"Sedang Digunakan\n\n" +
+                    $"Booking ID: {activeContract.BookingId}\n" +
+                    $"Renter: {renter}\n" +
+                    $"Tugboat: {tugboatName}\n" +
+                    $"Durasi: {durasi} hari\n" +
+                    $"Status Kontrak: {activeContract.Status}";
+            }
+            else
+            {
+                CompanyText.Text = "Tongkang tidak sedang digunakan.";
+            }
+
             // COMPANY (jika kamu aktifkan lagi relasi)
             CompanyText.Text = "Belum ada";
         }
-
-
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
