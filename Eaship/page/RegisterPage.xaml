@@ -66,20 +66,7 @@
                         CornerRadius="8" Background="White">
                     <StackPanel Width="440">
 
-                        <!-- SELECT ROLE -->
-                        <TextBlock Text="Select Role" FontSize="13" Foreground="#1A1A1A" Margin="0,0,0,6"/>
-                        <ComboBox x:Name="cmbRole" Height="38" BorderBrush="#D1D5DB" BorderThickness="1"
-                                  Background="White" Padding="12,9" FontSize="13" Foreground="#1A1A1A"
-                                  Margin="0,0,0,14">
-                            <ComboBoxItem Content="Renter" IsSelected="True"/>
-                            <ComboBoxItem Content="Admin"/>
-                            <ComboBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="6"/>
-                                </Style>
-                            </ComboBox.Resources>
-                        </ComboBox>
-
+                 
                         <!-- FULL NAME -->
                         <TextBlock Text="Full Name" FontSize="13" Foreground="#1A1A1A" Margin="0,0,0,6"/>
                         <TextBox x:Name="txtFullName" Height="38" BorderBrush="#D1D5DB" BorderThickness="1"

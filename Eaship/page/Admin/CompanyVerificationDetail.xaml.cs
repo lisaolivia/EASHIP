@@ -21,6 +21,7 @@ namespace Eaship.page.Admin
             InitializeComponent();
 
             _context = App.Services.GetRequiredService<EashipDbContext>();
+            _companies = App.Services.GetRequiredService<ICompanyService>();
             _notif = App.Services.GetRequiredService<INotificationService>();
             _companyId = companyId;
 

@@ -76,10 +76,23 @@ namespace Eaship.Models
             HargaTotal = HitungTotalHarga(itemsPerTongkang);
             Status = BookingStatus.Confirmed;
         }
-        public void SetStatus(BookingStatus status)
+
+        public void Approve()
         {
-            Status = status;
+            if (Status != BookingStatus.Requested)
+                throw new InvalidOperationException("Hanya booking Requested yang bisa di-approve.");
+
+            Status = BookingStatus.Confirmed;
         }
+
+        public void Decline()
+        {
+            if (Status != BookingStatus.Requested)
+                throw new InvalidOperationException("Hanya booking Requested yang bisa di-decline.");
+
+            Status = BookingStatus.Cancelled;
+        }
+
 
         public void Start()
         {

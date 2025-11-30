@@ -168,7 +168,8 @@
 
                 <!-- BUTTONS -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
-                    <Button Content="Decline"
+                    <Button x:Name="DeclineButton"
+                            Content="Decline"
                             Width="140"
                             Height="40"
                             Background="#D9534F"
@@ -177,7 +178,8 @@
                             Margin="0 0 20 0"
                             Click="Decline_Click"/>
 
-                    <Button Content="Confirm"
+                    <Button x:Name="ConfirmButton"
+                            Content="Confirm"
                             Width="140"
                             Height="40"
                             Background="#E8F1FA"
@@ -185,6 +187,7 @@
                             Foreground="#3355AA"
                             FontWeight="SemiBold"
                             Click="Confirm_Click"/>
+
                 </StackPanel>
 
             </StackPanel>
