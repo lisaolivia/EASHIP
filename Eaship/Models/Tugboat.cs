@@ -29,12 +29,19 @@ public class Tugboat
         if (tongkang is null)
             throw new ArgumentNullException(nameof(tongkang));
 
-
         if (this.Status != TugboatStatus.AVAILABLE)
             throw new InvalidOperationException("Tugboat tidak tersedia untuk assignment.");
 
         tongkang.AttachTugboat(this);
+
+        // WAJIB
+        this.SetAssigned();
     }
+    public void SetStatus(TugboatStatus status)
+    {
+        Status = status;
+    }
+
 
     internal void SetAssigned() => Status = TugboatStatus.ASSIGNED;
     internal void SetAvailable() => Status = TugboatStatus.AVAILABLE;

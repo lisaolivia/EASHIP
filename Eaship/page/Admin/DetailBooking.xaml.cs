@@ -141,6 +141,29 @@ namespace Eaship.page.Admin
                 return;
             }
 
+            if (TugboatBox.SelectedItem is Tugboat selectedTugboat)
+            {
+                bool tugboatUsed = await _context.Contracts
+                    .AnyAsync(c => c.TugboatId == selectedTugboat.TugboatId
+                                && c.Status == ContractStatus.Approved);
+
+                if (tugboatUsed)
+                {
+                    MessageBox.Show("Tugboat sedang dipakai kontrak lain!", "Error");
+                    return;
+                }
+
+                if (selectedTugboat.Status != TugboatStatus.AVAILABLE)
+                {
+                    MessageBox.Show("Tugboat ini tidak tersedia!", "Error");
+                    return;
+                }
+
+                selectedTugboat.SetAssigned();
+                _context.Tugboats.Update(selectedTugboat);
+            }
+
+
             // SET STATUS
             selectedTongkang.SetStatus(TongkangStatus.Assigned);
             _context.Tongkangs.Update(selectedTongkang);

@@ -48,6 +48,15 @@
                     <WebBrowser x:Name="PdfViewer" Margin="0,0,-1,-1"/>
                 </Border>
 
+                <Button Content="Mark as Completed"
+                        Margin="0 20 0 0"
+                        Background="{StaticResource NavyBrush}"
+                        Foreground="White"
+                        Width="160"
+                        Height="40"
+                        Click="CompleteContract_Click"/>
+
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

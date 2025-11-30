@@ -14,8 +14,8 @@ namespace Eaship.Models.nondb
         public string CompanyAddress { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; }
-        public string Status { get; set; } = string.Empty;
         public string? PdfUrl { get; set; }
+        public string Status { get; set; } = "Pending";
     }
 
 }

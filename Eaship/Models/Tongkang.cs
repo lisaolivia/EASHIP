@@ -38,12 +38,13 @@ public class Tongkang
 
     public void SetStatus(TongkangStatus status)
     {
-
-        if (Status == TongkangStatus.Assigned)
+     
+        if (Status == TongkangStatus.Assigned && status == TongkangStatus.Assigned)
             throw new InvalidOperationException("Tongkang sudah digunakan!");
 
         Status = status;
     }
+
 
     public decimal HitungHarga(string cargoDesc, int durasiHari)
     {
