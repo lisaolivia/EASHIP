@@ -60,8 +60,37 @@ namespace Eaship.page.Admin
             }
 
 
-            // Tongkang relation info: sementara
-            TongkangInfo.Text = "Belum terhubung dengan tongkang.";
+            // =========================
+            // CEK APAKAH TUGBOAT SEDANG DIPAKAI DI KONTRAK
+            // =========================
+            var activeContract = await _context.Contracts
+                .Include(c => c.Tongkang)
+                .Include(c => c.Booking)
+                    .ThenInclude(b => b.User)
+                        .ThenInclude(u => u.RenterCompany)
+                .FirstOrDefaultAsync(c =>
+                    c.TugboatId == _id &&
+                    c.Status == ContractStatus.Approved);
+
+            if (activeContract != null)
+            {
+                var tongkangName = activeContract.Tongkang?.Name ?? "Unknown";
+                var renter = activeContract.Booking?.User?.RenterCompany?.Nama ?? "-";
+                var durasi = activeContract.Booking?.DurationDays ?? 0;
+
+                TongkangInfo.Text =
+                    $"Sedang Digunakan\n\n" +
+                    $"Booking ID: {activeContract.BookingId}\n" +
+                    $"Tongkang: {tongkangName}\n" +
+                    $"Renter: {renter}\n" +
+                    $"Durasi: {durasi} hari\n" +
+                    $"Status Kontrak: {activeContract.Status}";
+            }
+            else
+            {
+                TongkangInfo.Text = "Tugboat tidak sedang digunakan.";
+            }
+
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)

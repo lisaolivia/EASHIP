@@ -46,6 +46,7 @@ namespace Eaship.page.Admin
             CargoBox.Text = _booking.CargoDesc;
             StatusBox.Text = _booking.Status.ToString();
 
+
             TongkangBox.ItemsSource = await _context.Tongkangs
             .Where(t => t.Status == TongkangStatus.Available)
             .ToListAsync();
@@ -87,12 +88,6 @@ namespace Eaship.page.Admin
                 return;
             }
 
-            // VALIDASI DURASI
-            if (!int.TryParse(DaysBox.Text, out int days) || days <= 0)
-            {
-                MessageBox.Show("Invalid days!");
-                return;
-            }
 
             // ============== 1. Tambahkan relasi booking - tongkang ============
             var existingRelation = await _context.BookingTongkangs

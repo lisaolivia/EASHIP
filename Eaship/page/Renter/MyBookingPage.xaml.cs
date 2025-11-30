@@ -55,9 +55,7 @@ namespace Eaship.page.Renter
                     Destination = $"Destination : {b.DestinationPort}",
                     Route = $"{b.OriginPort} → {b.DestinationPort}",
                     DueDate = b.StartDate.AddDays(b.DurationDays).ToString("dd MMM yyyy"),
-                    Status = b.Status.ToString(),
-                    FreightCost = $"USD {b.HargaTotal:N0}",
-                    Outstanding = "USD 0"   // placeholder, nanti dari Invoice
+                    Status = b.Status.ToString()
                 }).ToList();
 
                 BookingList.ItemsSource = bookingVm;

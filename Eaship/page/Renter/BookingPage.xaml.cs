@@ -56,6 +56,7 @@ namespace Eaship.page.Renter
             var booking = new Booking
             {
                 UserId = currentUser.UserId,
+                RenterCompanyId = currentUser.RenterCompanyId,
                 OriginPort = origin,
                 DestinationPort = destination,
                 StartDate = DateTime.SpecifyKind(startDate, DateTimeKind.Utc),

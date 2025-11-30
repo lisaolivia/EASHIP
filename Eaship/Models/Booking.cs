@@ -20,9 +20,9 @@ namespace Eaship.Models
         public User? User { get; set; }
         public int UserId { get; set; }
 
-        // public int TongkangId { get; set; }  // HAPUS: pindah ke M-N via BookingTongkang
-
         public string OriginPort { get; set; } = string.Empty;
+
+        public int? RenterCompanyId { get; set; }
         public RenterCompany? RenterCompany { get; set; }
 
         public string DestinationPort { get; set; } = string.Empty;
@@ -31,7 +31,6 @@ namespace Eaship.Models
         public int DurationDays { get; set; }
         public string CargoDesc { get; set; } = string.Empty;
 
-        public decimal HargaTotal { get; private set; }
         public BookingStatus Status { get; private set; } = BookingStatus.Requested;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

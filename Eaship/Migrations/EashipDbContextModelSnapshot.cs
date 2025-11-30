@@ -52,9 +52,6 @@ namespace Eaship.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("duration_days");
 
-                    b.Property<decimal>("HargaTotal")
-                        .HasColumnType("numeric(18,2)")
-                        .HasColumnName("harga_total");
 
                     b.Property<string>("OriginPort")
                         .IsRequired()

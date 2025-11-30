@@ -97,7 +97,8 @@
                                                Margin="16,0,0,2"/>
 
                                     <!-- CAPACITY -->
-                                    <TextBlock Text="{Binding KapasitasDwt}"
+                                    <TextBlock  
+                                              Text="{Binding KapasitasDwt}"
                                                Foreground="#6B7280"
                                                FontSize="13"
                                                Margin="16,0,0,10"/>
