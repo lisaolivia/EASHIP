@@ -13,8 +13,6 @@
     <SolidColorBrush x:Key="MutedBrush" Color="#5B7083"/>
     <SolidColorBrush x:Key="LightBrush" Color="#F7F9FC"/>
 
-
-
     <!-- ===== TYPOGRAPHY ===== -->
     <Style x:Key="H1" TargetType="TextBlock">
         <Setter Property="FontSize" Value="40"/>

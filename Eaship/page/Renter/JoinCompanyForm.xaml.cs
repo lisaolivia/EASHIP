@@ -35,52 +35,54 @@ namespace Eaship.page
 
         private async void JoinCompany_Click(object sender, RoutedEventArgs e)
         {
-            var currentUser = Session.CurrentUser;
-            if (currentUser == null)
+            var user = Session.CurrentUser;
+            if (user == null)
             {
-                MessageBox.Show("Anda belum login!");
+                MessageBox.Show("Anda belum login.");
                 return;
             }
 
-            // Validasi input company ID
-            if (!int.TryParse(TxtCompanyId.Text, out int companyId))
+            string code = TxtJoinCode.Text.Trim().ToUpper();
+            if (string.IsNullOrWhiteSpace(code))
             {
-                MessageBox.Show("Company ID tidak valid.");
+                MessageBox.Show("Join code tidak boleh kosong.");
                 return;
             }
 
-            // Ambil DbContext
-            var db = App.Services.GetRequiredService<EashipDbContext>();
+            using var scope = App.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<EashipDbContext>();
 
-            // Cari company berdasarkan ID
+
             var company = await db.RenterCompanies
-                .FirstOrDefaultAsync(c => c.RenterCompanyId == companyId);
+                .FirstOrDefaultAsync(c => c.JoinCode == code);
 
             if (company == null)
             {
-                MessageBox.Show("Perusahaan tidak ditemukan.");
+                MessageBox.Show("Join code tidak valid.");
                 return;
             }
 
-            // Set relasi user → company
-            currentUser.RenterCompanyId = companyId;
+            // Ambil user dari database
+            var dbUser = await db.Users.FirstAsync(u => u.UserId == user.UserId);
 
-            // Simpan ke database
+            if (dbUser.RenterCompanyId != null)
+            {
+                MessageBox.Show("Anda sudah tergabung dalam perusahaan.");
+                return;
+            }
+
+            dbUser.RenterCompanyId = company.RenterCompanyId;
+            db.Users.Update(dbUser);
             await db.SaveChangesAsync();
 
-            await Session.RefreshAsync(db);
+            // refresh session
+            Session.Set(dbUser);
 
+            MessageBox.Show("Berhasil bergabung dengan perusahaan!");
 
-            // Refresh session user (WAJIB)
-            var freshUser = await db.Users
-                .FirstAsync(u => u.UserId == currentUser.UserId);
-            Session.Set(freshUser);
-
-            MessageBox.Show("Berhasil join perusahaan! Menunggu verifikasi admin.");
-
-            // Navigate ke Dashboard (renter)
             Main?.Navigate(new Dashboard());
         }
+
 
     }
 }

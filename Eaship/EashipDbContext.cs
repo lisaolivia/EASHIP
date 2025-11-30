@@ -24,6 +24,7 @@ namespace Eaship.Models
 
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Schema setup
@@ -202,6 +203,40 @@ namespace Eaship.Models
                 e.Property(n => n.CompanyId).HasColumnName("company_id");
                 e.Property(n => n.CreatedAt).HasColumnName("created_at");
             });
+
+            // ========================
+            // RENTER COMPANY
+            // ========================
+            // ========================
+            // RENTER COMPANY (PAKAI TABEL LAMA)
+            // ========================
+            modelBuilder.Entity<RenterCompany>(e =>
+            {
+                e.ToTable("RenterCompanies", "eaship");  // EXACT seperti di database
+
+                e.HasKey(x => x.RenterCompanyId);
+
+                e.Property(x => x.RenterCompanyId).HasColumnName("RenterCompanyId");
+                e.Property(x => x.Nama).HasColumnName("Nama");
+                e.Property(x => x.NPWP).HasColumnName("NPWP");
+                e.Property(x => x.Address).HasColumnName("Address");
+                e.Property(x => x.CityProvince).HasColumnName("CityProvince");
+                e.Property(x => x.EmailBilling).HasColumnName("EmailBilling");
+                e.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber");
+                e.Property(x => x.CreatedAt).HasColumnName("CreatedAt");
+                e.Property(x => x.UpdatedAt).HasColumnName("UpdatedAt");
+                e.Property(x => x.ApprovedAt).HasColumnName("ApprovedAt");
+                e.Property(x => x.RejectedAt).HasColumnName("RejectedAt");
+                e.Property(x => x.PICName).HasColumnName("PICName");
+                e.Property(x => x.PICPosition).HasColumnName("PICPosition");
+                e.Property(x => x.PICEmail).HasColumnName("PICEmail");
+                e.Property(x => x.Status).HasColumnName("Status");
+                e.Property(x => x.CreatedBy).HasColumnName("CreatedBy");
+                e.Property(x => x.RejectedReason).HasColumnName("RejectedReason");
+                e.Property(x => x.JoinCode).HasColumnName("join_code");
+            });
+
+
 
 
 

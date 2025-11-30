@@ -31,52 +31,52 @@
             <Grid Grid.Row="1" Margin="60,40,60,0">
 
                 <Border Background="#DCE7F0"
-            CornerRadius="16"
-            Padding="50,40"
-            VerticalAlignment="Top"
-            MaxWidth="1080">
+                        CornerRadius="16"
+                        Padding="50,40"
+                        VerticalAlignment="Top"
+                        MaxWidth="1080">
 
                     <StackPanel>
 
                         <!-- Title -->
                         <TextBlock Text="Join Existing Company"
-                       FontSize="32"
-                       FontWeight="Bold"
-                       Foreground="#2C3E50"
-                       Margin="0,0,0,20"/>
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,20"/>
 
                         <!-- Description -->
                         <TextBlock Text="Enter the Company ID provided by your administrator."
-                       FontSize="16"
-                       Foreground="#4A5568"
-                       Margin="0,0,0,30"/>
+                                   FontSize="16"
+                                   Foreground="#4A5568"
+                                   Margin="0,0,0,30"/>
 
                         <!-- Company ID Input -->
                         <TextBlock Text="Company ID"
-                       FontSize="14"
-                       FontWeight="Medium"
-                       Foreground="#2C3E50"
-                       Margin="0,0,0,8"/>
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,8"/>
 
-                        <TextBox x:Name="TxtCompanyId"
-                     Height="44"
-                     Padding="12,0"
-                     FontSize="14"
-                     Background="White"
-                     BorderBrush="#CBD5E0"
-                     BorderThickness="1"
-                     Margin="0,0,0,20"/>
+                        <TextBox x:Name="TxtJoinCode"
+                                 Height="44"
+                                 Padding="12,0"
+                                 FontSize="14"
+                                 Background="White"
+                                 BorderBrush="#CBD5E0"
+                                 BorderThickness="1"
+                                 Margin="0,0,0,20"/>
 
                         <!-- Join Button -->
-                        <Button Content="Join Company"
-                    Width="200"
-                    Height="48"
-                    Background="#163A63"
-                    Foreground="White"
-                    FontSize="16"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="JoinCompany_Click"/>
+                            <Button Content="Join Company"
+                                    Width="200"
+                                    Height="48"
+                                    Background="#163A63"
+                                    Foreground="White"
+                                    FontSize="16"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="JoinCompany_Click"/>
 
                     </StackPanel>
                 </Border>

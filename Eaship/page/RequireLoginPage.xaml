@@ -23,7 +23,6 @@
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
 
-
         <!-- ========== NAVBAR ========== -->
         <Border Background="#1E3A5F" Grid.Row="0">
             <Grid Margin="48,0">
