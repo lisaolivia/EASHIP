@@ -49,6 +49,7 @@
                 </Border>
 
                 <Button Content="Mark as Completed"
+                        Style="{StaticResource LogoutButton}"
                         Margin="0 20 0 0"
                         Background="{StaticResource NavyBrush}"
                         Foreground="White"

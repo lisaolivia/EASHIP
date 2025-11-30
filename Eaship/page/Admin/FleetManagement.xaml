@@ -37,12 +37,12 @@
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0,0,0,20"/>
-                <!-- Tongkang Big Card -->
+                <!-- Barge Big Card -->
                 <!-- ===== BIG CARDS SECTION ===== -->
                 <StackPanel Orientation="Horizontal"
                              Margin="0,0,0,30">
 
-                    <!-- === CARD TONGKANG === -->
+                    <!-- === CARD Barge === -->
                     <Border Width="354"
                             Height="194"
                             Background="#D6E4F0"
@@ -54,20 +54,17 @@
                         
                         <!-- SPACING -->
                         <Grid>
-                            <TextBlock Text="Tongkang"
+                            <TextBlock Text="Barge"
                                        FontSize="20"
                                        FontWeight="SemiBold"/>
                             <Button Content="See More"
+                                    Style="{StaticResource LogoutButton}"
                                     Width="90"
                                     Height="32"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
-                                    Background="White"
-                                    Foreground="{StaticResource NavyBrush}"
-                                    BorderBrush="Transparent"
-                                    FontWeight="SemiBold"
                                     Cursor="Hand"
-                                    Click="SeeMoreTongkang"/>
+                                    Click="SeeMoreBarge"/>
                         </Grid>
                     </Border>
                     <!-- === CARD TUGBOAT === -->
@@ -84,14 +81,11 @@
                                        FontWeight="SemiBold"/>
 
                             <Button Content="See More"
+                                    Style="{StaticResource LogoutButton}"
                                     Width="90"
                                     Height="32"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
-                                    Background="White"
-                                    Foreground="{StaticResource NavyBrush}"
-                                    BorderBrush="Transparent"
-                                    FontWeight="SemiBold"
                                     Cursor="Hand"
                                     Click="SeeMoreTugboat"/>
                         </Grid>
@@ -99,7 +93,7 @@
                 </StackPanel>
 
                 <!-- Section Title -->
-                <TextBlock Text="Data Terkini"
+                <TextBlock Text="Statistic"
                            FontSize="20"
                            FontWeight="Bold"
                            Margin="0,30,0,16"
@@ -108,20 +102,20 @@
                 <!-- Data Cards -->
                 <UniformGrid Columns="4" Margin="0,0,0,30">
 
-                    <!-- TONGKANG -->
+                    <!-- Barge -->
                     <Border Background="White"
                             CornerRadius="12"
                             Margin="20"
                             Padding="16"
                             Effect="{DynamicResource Shadow}">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock x:Name="TongkangCountText"
+                            <TextBlock x:Name="BargeCountText"
                        Text="0"
                        FontSize="36"
                        FontWeight="Bold"
                        Foreground="{StaticResource NavyBrush}"
                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tongkang" 
+                            <TextBlock Text="Barge" 
                                        FontSize="14"
                                        Foreground="Gray"
                                        TextAlignment="Center"/>

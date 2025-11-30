@@ -31,7 +31,7 @@
         <ScrollViewer Grid.Column="1">
             <StackPanel Margin="40">
 
-                <TextBlock Text="Tongkang"
+                <TextBlock Text="Barge"
                            FontSize="32"
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
@@ -63,7 +63,7 @@
                             <!-- REAL DETAILS -->
                             <StackPanel Margin="0 20 0 0">
 
-                                <TextBlock Text="Kapasitas:" FontWeight="Bold"/>
+                                <TextBlock Text="Capacity:" FontWeight="Bold"/>
                                 <TextBlock x:Name="KapasitasText" Margin="0 0 0 10"/>
 
                                 <TextBlock Text="Status:" FontWeight="Bold"/>
@@ -72,7 +72,7 @@
                                 <TextBlock Text="Include Tugboat:" FontWeight="Bold"/>
                                 <TextBlock x:Name="IncludeTugboatText" Margin="0 0 0 10"/>
 
-                                <TextBlock Text="Jumlah Tugboat Terhubung:" FontWeight="Bold"/>
+                                <TextBlock Text="Tugboats Connected:" FontWeight="Bold"/>
                                 <TextBlock x:Name="JumlahTugboatText" Margin="0 0 0 10"/>
 
                             </StackPanel>
@@ -91,7 +91,7 @@
 
                         <StackPanel>
 
-                            <TextBlock Text="Status Penggunaan"
+                            <TextBlock Text="Usage Status"
                                        FontSize="20"
                                        FontWeight="SemiBold"
                                        Margin="0 0 0 15"/>
@@ -109,15 +109,13 @@
 
                 <!-- BUTTON EDIT -->
                 <Button Content="Edit"
+                        Style="{StaticResource LogoutButton}"
                         Width="120"
                         Height="45"
                         HorizontalAlignment="Right"
                         Margin="0 40 0 0"
                         Background="#E8F1FA"
-                        BorderBrush="#C6D9F0"
-                        Foreground="#3355AA"
-                        FontSize="16"
-                        FontWeight="SemiBold"
+                        BorderBrush="#C6D9F0"                        
                         Click="Edit_Click"/>
 
             </StackPanel>

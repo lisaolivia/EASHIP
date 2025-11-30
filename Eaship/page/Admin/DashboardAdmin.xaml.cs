@@ -65,5 +65,10 @@ namespace Eaship.page.Admin
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(page);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

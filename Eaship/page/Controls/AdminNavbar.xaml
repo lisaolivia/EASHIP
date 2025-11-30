@@ -55,11 +55,7 @@
                 <!-- LOGOUT -->
                 <StackPanel VerticalAlignment="Bottom" Margin="0,40,0,0">
                     <Button Content="Log Out"
-                            Background="White"
-                            Foreground="{StaticResource NavyBrush}"
-                            FontWeight="SemiBold"
-                            Padding="10,6"
-                            BorderBrush="Transparent"
+                            Style="{StaticResource LogoutButton}"
                             Click="GoLogout"/>
                 </StackPanel>
 

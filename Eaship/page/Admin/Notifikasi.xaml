@@ -31,7 +31,7 @@
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="40">
 
-                <TextBlock Text="Notifikasi"
+                <TextBlock Text="Notification"
                            FontSize="32"
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"

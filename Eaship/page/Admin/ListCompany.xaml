@@ -85,7 +85,7 @@
             <StackPanel Margin="40">
 
                 <!-- Header -->
-                <TextBlock Text="List Company"
+                <TextBlock Text="Companies"
                            FontSize="28"
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
@@ -118,10 +118,10 @@
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Nama Perusahaan" Binding="{Binding Nama}" Width="*" />
+                            <DataGridTextColumn Header="Company Name" Binding="{Binding Nama}" Width="*" />
                             <DataGridTextColumn Header="NPWP" Binding="{Binding NPWP}" Width="200"/>
-                            <DataGridTextColumn Header="Kota/Provinsi" Binding="{Binding CityProvince}" Width="200"/>
-                            <DataGridTextColumn Header="Telepon" Binding="{Binding PhoneNumber}" Width="160"/>
+                            <DataGridTextColumn Header="City / Province" Binding="{Binding CityProvince}" Width="200"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding PhoneNumber}" Width="160"/>
                             <DataGridTemplateColumn Header="Status" Width="120"
                                                    CellTemplate="{StaticResource StatusTemplate}"/>
 

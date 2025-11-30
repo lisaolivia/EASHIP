@@ -41,14 +41,13 @@
                            Margin="0 0 0 20"/>
 
                 <!-- BUTTON TAMBAH -->
-                <Button Content="Tambah Tugboat"
+                <Button Content="Add Tugboat"
+                        Style="{StaticResource LogoutButton}" 
                         Width="180"
                         Height="40"
                         HorizontalAlignment="Right"
                         Background="#E8F1FA"
-                        BorderBrush="#C6D9F0"
                         Foreground="#3355AA"
-                        FontWeight="SemiBold"
                         Margin="0 0 0 20"
                         Click="AddTugboat"/>
 
