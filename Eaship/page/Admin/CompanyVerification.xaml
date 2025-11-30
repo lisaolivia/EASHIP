@@ -135,7 +135,7 @@
                                            Foreground="{StaticResource NavyBrush}"
                                            HorizontalAlignment="Center"/>
 
-                            <TextBlock Text="Perusahaan Terdaftar" 
+                            <TextBlock Text="Registered Company" 
                        FontSize="14"
                        Foreground="Gray"
                        TextAlignment="Center"/>
@@ -168,17 +168,13 @@
                             <Button
                                     Content="See More"
                                     Click="SeeMore_Click"
-                                    Height="34"
+                                    Style="{StaticResource LogoutButton}"
+                                    Width="90"
+                                    Height="32"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
-                                    Background="White"
-                                    BorderBrush="#D6E4F0"
-                                    BorderThickness="1"
-                                    Padding="6,2"
-                                    FontSize="14"
-                                    FontWeight="SemiBold"
-                                    Foreground="#123456"
                                     Cursor="Hand"
-                                    Effect="{StaticResource Shadow}" Margin="302,0,0,0" Grid.Row="1"/>
+                                    Grid.Row="1"/>
 
                         </Grid>
                     </Border>

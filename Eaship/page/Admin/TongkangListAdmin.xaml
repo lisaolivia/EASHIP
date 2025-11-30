@@ -37,21 +37,20 @@
             <StackPanel Margin="40">
 
                 <!-- PAGE TITLE -->
-                <TextBlock Text="Tongkang"
+                <TextBlock Text="Barge"
                            FontSize="32"
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
                            Margin="0 0 0 20"/>
 
                 <!-- ADD BUTTON -->
-                <Button Content="Tambah Tongkang"
+                <Button Content="Add Barge"
+                        Style="{StaticResource LogoutButton}" 
                         Width="180"
                         Height="40"
                         HorizontalAlignment="Right"
                         Background="#E8F1FA"
-                        BorderBrush="#C6D9F0"
                         Foreground="#3355AA"
-                        FontWeight="SemiBold"
                         Margin="0 0 0 20"
                         Click="AddTongkang"/>
 

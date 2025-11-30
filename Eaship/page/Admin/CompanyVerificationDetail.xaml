@@ -64,9 +64,9 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- NAMA -->
+                        <!-- NAME -->
                         <TextBlock Grid.Row="0" Grid.Column="0"
-                                   Text="Nama Perusahaan" Margin="0,7,15,0"/>
+                                   Text="Company Name" Margin="0,7,15,0"/>
                         <TextBox x:Name="CompanyNameBox" Grid.Row="0" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
@@ -76,15 +76,15 @@
                         <TextBox x:Name="NPWPBox" Grid.Row="1" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- ALAMAT -->
+                        <!-- ADDRESS -->
                         <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Alamat" Margin="0,7,15,0"/>
+                                   Text="Address" Margin="0,7,15,0"/>
                         <TextBox x:Name="AddressBox" Grid.Row="2" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- KOTA -->
+                        <!-- CITY -->
                         <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Kota/Provinsi" Margin="0,7,15,0"/>
+                                   Text="City / Province" Margin="0,7,15,0"/>
                         <TextBox x:Name="CityProvinceBox" Grid.Row="3" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
@@ -94,9 +94,9 @@
                         <TextBox x:Name="EmailBillingBox" Grid.Row="4" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
-                        <!-- TELEFON -->
+                        <!-- PHONE -->
                         <TextBlock Grid.Row="5" Grid.Column="0"
-                                   Text="Telepon"/>
+                                   Text="Phone"/>
                         <TextBox x:Name="PhoneBox" Grid.Row="5" Grid.Column="1"
                                  Height="30" Background="#F7F7F7"/>
                     </Grid>
@@ -130,17 +130,17 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
-                                   Text="Nama PIC" Margin="0,7,15,0"/>
+                                   Text="PIC Name" Margin="0,7,15,0"/>
                         <TextBox x:Name="PICNameBox" Grid.Row="0" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Jabatan" Margin="0,7,15,0"/>
+                                   Text="Position" Margin="0,7,15,0"/>
                         <TextBox x:Name="PICPositionBox" Grid.Row="1" Grid.Column="1"
                                  Height="30" Background="#F7F7F7" Margin="0,0,0,15"/>
 
                         <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Email PIC" Margin="0,7,15,0"/>
+                                   Text="Email" Margin="0,7,15,0"/>
                         <TextBox x:Name="PICEmailBox" Grid.Row="2" Grid.Column="1"
                                  Height="30" Background="#F7F7F7"/>
                     </Grid>

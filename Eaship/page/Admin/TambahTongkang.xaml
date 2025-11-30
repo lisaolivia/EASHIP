@@ -60,7 +60,7 @@
             <StackPanel Margin="60,40,60,40">
 
                 <!-- TITLE -->
-                <TextBlock Text="Tambah Tongkang"
+                <TextBlock Text="Add barge"
                            FontSize="32"
                            FontWeight="Bold"
                            Foreground="{StaticResource NavyBrush}"
@@ -80,32 +80,31 @@
                     <StackPanel>
 
                         <!-- NAME -->
-                        <TextBlock Text="Nama Tongkang" FontSize="14" Foreground="#555"/>
+                        <TextBlock Text="Barge Name" FontSize="14" Foreground="#555"/>
                         <TextBox x:Name="NameBox"
                                      Height="40"
                                      Margin="0 0 0 20"
                                      Style="{StaticResource PlaceholderTextBox}"
-                                     Tag="Masukkan nama tongkang"/>
+                                     Tag="Enter Barge Name" TextChanged="NameBox_TextChanged"/>
 
 
                         <!-- KAPASITAS -->
-                        <TextBlock Text="Kapasitas DWT" FontSize="14" Foreground="#555"/>
+                        <TextBlock Text="DWT Capacity" FontSize="14" Foreground="#555"/>
                         <TextBox x:Name="KapasitasBox"
                                      Height="40"
                                      Margin="0 0 0 20"
                                      Style="{StaticResource PlaceholderTextBox}"
-                                     Tag="Contoh: 3000 T"/>
+                                     Tag="Ex: 3000 T"/>
 
 
                         <!-- FOTO -->
-                        <TextBlock Text="Foto Tongkang" FontSize="14" Foreground="#555"/>
+                        <TextBlock Text="Barge Photo" FontSize="14" Foreground="#555"/>
 
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
 
                             <Button Content="Upload Foto"
+                                    Style="{StaticResource LogoutButton}"    
                                     Margin="0 5 0 0"
-                                    Width="94"
-                                    Height="33"
                                     Background="{StaticResource NavyBrush}"
                                     Foreground="White"
                                     Click="UploadFoto_Click"/>
@@ -127,12 +126,12 @@
                                   Margin="0 0 0 30"/>
 
                         <!-- ADD BUTTON -->
-                        <Button Content="Tambah"
+                        <Button Content="Add"
+                                Style="{StaticResource LogoutButton}" 
                                 Height="45"
                                 FontSize="16"
                                 Background="{StaticResource NavyBrush}"
                                 Foreground="White"
-                                FontWeight="SemiBold"
                                 Click="Add_Click"/>
 
                     </StackPanel>

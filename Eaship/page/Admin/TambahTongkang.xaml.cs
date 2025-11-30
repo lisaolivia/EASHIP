@@ -60,5 +60,10 @@ namespace Eaship.page.Admin
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(new TongkangListAdmin());
         }
+
+        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -111,15 +111,13 @@
 
                 <!-- BUTTON BACK -->
                 <Button Content="Back"
-                Width="150"
-                Height="40"
-                Margin="0 30 0 0"
-                HorizontalAlignment="Right"
-                Background="#E8F1FA"
-                BorderBrush="#C6D9F0"
-                Foreground="{StaticResource NavyBrush}"
-                FontWeight="SemiBold"
-                Click="Back_Click"/>
+                    Style="{StaticResource LogoutButton}"
+                    Width="150"
+                    Height="40"
+                    Margin="0 30 0 0"
+                    HorizontalAlignment="Right"
+                    Background="#E8F1FA"
+                    Click="Back_Click"/>
 
             </StackPanel>
         </ScrollViewer>

@@ -83,7 +83,7 @@
                             Margin="40 0 0 0">
 
                         <StackPanel>
-                            <TextBlock Text="Status Penggunaan"
+                            <TextBlock Text="Usage Status"
                                        FontSize="20"
                                        FontWeight="SemiBold"
                                        Margin="0 0 0 10"/>
@@ -102,15 +102,13 @@
 
                 <!-- BUTTON EDIT -->
                 <Button Content="Edit"
+                        Style="{StaticResource LogoutButton}"
                         Width="120"
                         Height="45"
                         HorizontalAlignment="Right"
                         Margin="0 40 0 0"
                         Background="#E8F1FA"
-                        BorderBrush="#C6D9F0"
-                        Foreground="#3355AA"
-                        FontSize="16"
-                        FontWeight="SemiBold"
+                        BorderBrush="#C6D9F0"    
                         Click="Edit_Click"/>
 
             </StackPanel>
