@@ -58,7 +58,7 @@
                             BorderThickness="0" Padding="16,8" FontSize="14" Cursor="Hand" Click="BtnContract_Click"/>
                     <Button x:Name="Btnnotifikasi" 
                               Style="{StaticResource NavButton}" 
-                              Content="Notifikasi"         
+                              Content="Notification"         
                               Margin="6,0,0,0"          
                               Click="Buttonnotifikasi_Click"/>
                     <Button x:Name="BtnProfile" Content="Profile" Foreground="White" Background="Transparent" 

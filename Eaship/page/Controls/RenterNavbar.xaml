@@ -50,7 +50,7 @@
 
                 <Button x:Name="BtnNotif"
                         Style="{StaticResource NavButton}"
-                        Content="Notifikasi"
+                        Content="Notification"
                         Margin="6,0,0,0"
                         Click="BtnNotif_Click"/>
 
@@ -61,11 +61,10 @@
                         Click="BtnProfile_Click"/>
 
                 <Button x:Name="BtnLogout"
-                        Background="White"
-                        Foreground="Navy"
-                        Padding="12,6"
+                        Style="{StaticResource LogoutButton}"
                         Content="Log Out"
                         Margin="6,0,0,0"
+                        Width="90"
                         Click="BtnLogout_Click"/>
             </StackPanel>
         </Grid>
