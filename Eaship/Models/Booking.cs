@@ -39,7 +39,9 @@ namespace Eaship.Models
         // NEW: navigasi M-N
         public ICollection<BookingTongkang> BookingTongkangs { get; set; } = new List<BookingTongkang>();
 
+
         public DateTime GetEndDate() => StartDate.Date.AddDays(DurationDays);
+
 
         public bool VerifikasiBooking()
         {
@@ -50,20 +52,7 @@ namespace Eaship.Models
                 && BookingTongkangs?.Count > 0; 
         }
 
-        
-        public decimal HitungTotalHarga(IEnumerable<(Tongkang tongkang, int days)> itemsPerTongkang)
-        {
-            if (itemsPerTongkang is null) throw new ArgumentNullException(nameof(itemsPerTongkang));
-            decimal total = 0m;
-            foreach (var (tongkang, days) in itemsPerTongkang)
-            {
-                if (days <= 0) throw new InvalidOperationException("DaysAllocated harus > 0.");
-                total += tongkang.HitungHarga(CargoDesc, days);
-            }
-            return total;
-        }
 
-        // NEW: Confirm untuk skenario multi-tongkang (service menghitung alokasi hari per tongkang)
         public void Confirm(IEnumerable<(Tongkang tongkang, int days)> itemsPerTongkang)
         {
             if (!VerifikasiBooking())
@@ -73,7 +62,6 @@ namespace Eaship.Models
             if (totalDays != DurationDays)
                 throw new InvalidOperationException("Total alokasi hari per tongkang tidak sama dengan DurationDays.");
 
-            HargaTotal = HitungTotalHarga(itemsPerTongkang);
             Status = BookingStatus.Confirmed;
         }
 

@@ -54,8 +54,29 @@ namespace Eaship.page.Renter
                                    .Count(x => x.TongkangId == _tongkang!.TongkangId);
 
             TxtTugCount.Text = tugCount.ToString();
-        }
 
+            // ===== FOTO FROM CLOUDINARY =====
+            if (!string.IsNullOrWhiteSpace(_tongkang.PhotoUrl))
+            {
+                try
+                {
+                    TongkangImage.Source = new BitmapImage(new Uri(_tongkang.PhotoUrl, UriKind.Absolute));
+                }
+                catch
+                {
+                    TongkangImage.Source = new BitmapImage(
+                        new Uri("pack://application:,,,/Eaship;component/Assets/default_barge.jpg")
+                    );
+                }
+            }
+            else
+            {
+                TongkangImage.Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Eaship;component/Assets/default_barge.jpg")
+                );
+            }
+
+        }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {

@@ -82,15 +82,12 @@
                                 <StackPanel>
 
                                     <!-- IMAGE WITH FALLBACK -->
-                                    <Image Height="180"
-                                           Stretch="UniformToFill"
-                                           Margin="0,0,0,10">
-                                        <Image.Source>
-                                            <Binding Path="ImageUrl"
-                                                     FallbackValue="{StaticResource DefaultTongkangImage}"
-                                                     TargetNullValue="{StaticResource DefaultTongkangImage}"/>
-                                        </Image.Source>
-                                    </Image>
+
+                                        <Image Height="180"
+                                                   Stretch="UniformToFill"
+                                                   Margin="0,0,0,10"
+                                                   Source="{Binding DisplayImageUrl}"/>
+                     
 
                                     <!-- NAME -->
                                     <TextBlock Text="{Binding Name}"

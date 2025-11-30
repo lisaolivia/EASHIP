@@ -73,7 +73,7 @@ namespace Eaship.page.Renter
             TxtCompanyStatus.Text = company.Status.ToString();
             TxtJoinCode.Text = company.JoinCode;
 
-            // Badge color based on status
+          
             StatusBadge.Background = company.Status switch
             {
                 CompanyStatus.Active => new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Green),

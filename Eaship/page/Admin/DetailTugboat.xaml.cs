@@ -39,10 +39,26 @@ namespace Eaship.page.Admin
             HpText.Text = _tugboat.TugboatHp;
             StatusText.Text = _tugboat.Status.ToString();
 
-            // Load image with fallback
-            TugboatImage.Source = new BitmapImage(
-                new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg")
-            );
+            if (!string.IsNullOrEmpty(_tugboat.PhotoUrl))
+            {
+                try
+                {
+                    TugboatImage.Source = new BitmapImage(new Uri(_tugboat.PhotoUrl));
+                }
+                catch
+                {
+                    // fallback
+                    TugboatImage.Source = new BitmapImage(
+                        new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+                }
+            }
+            else
+            {
+                // fallback
+                TugboatImage.Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+            }
+
 
             // Tongkang relation info: sementara
             TongkangInfo.Text = "Belum terhubung dengan tongkang.";

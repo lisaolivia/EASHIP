@@ -11,7 +11,9 @@ public enum TugboatStatus
 
 public class Tugboat
 {
-    public long TugboatId { get; set; } 
+    public long TugboatId { get; set; }
+
+    public string? PhotoUrl { get; set; }
     public string Nama { get; set; } = string.Empty; // varchar(250)
     public string TugboatHp { get; set; } = string.Empty; // varchar(250)
     public TugboatStatus Status { get; set; } = TugboatStatus.AVAILABLE;
@@ -41,6 +43,11 @@ public class Tugboat
     {
         Status = status;
     }
+
+    public string DisplayImageUrl =>
+    string.IsNullOrWhiteSpace(PhotoUrl)
+        ? "pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"
+        : PhotoUrl;
 
 
     internal void SetAssigned() => Status = TugboatStatus.ASSIGNED;
