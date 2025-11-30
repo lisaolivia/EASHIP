@@ -13,8 +13,12 @@
 	  <None Remove="Assets\Fonts\segoeui.ttf" />
 	  <None Remove="Assets\gambar1.png" />
 	  <None Remove="Assets\gambar2.png" />
+	  <None Remove="Assets\Icons\Booking.jpg" />
 	  <None Remove="Assets\Icons\clock.jpg" />
+	  <None Remove="Assets\Icons\company.png" />
 	  <None Remove="Assets\Icons\exchange.jpg" />
+	  <None Remove="Assets\Icons\Tongkang.jpg" />
+	  <None Remove="Assets\Icons\Tugboat.jpg" />
 	  <None Remove="Assets\Icons\weather.jpg" />
 	  <None Remove="Assets\image_rejected.jpg" />
 	  <None Remove="Assets\image_wait.png" />
@@ -30,6 +34,10 @@
 	  <Content Include="Assets\Fonts\segoeui.ttf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Assets\Icons\Tongkang.jpg" />
+	  <Resource Include="Assets\Icons\Tugboat.jpg" />
 	</ItemGroup>
 
 <ItemGroup>
@@ -60,7 +68,9 @@
 	  <Resource Include="Assets\default_barge.jpg" />
 	  <Resource Include="Assets\gambar1.png" />
 	  <Resource Include="Assets\gambar2.png" />
+	  <Resource Include="Assets\Icons\Booking.jpg" />
 	  <Resource Include="Assets\Icons\clock.jpg" />
+	  <Resource Include="Assets\Icons\company.png" />
 	  <Resource Include="Assets\Icons\exchange.jpg" />
 	  <Resource Include="Assets\Icons\weather.jpg" />
 	  <Resource Include="Assets\image_rejected.jpg" />

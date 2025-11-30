@@ -12,10 +12,8 @@ public class RenterCompany
     public string Address { get; set; } = string.Empty;
     public string? CityProvince { get; set; }
     public string JoinCode { get; set; } = GenerateJoinCode();
-
     public string EmailBilling { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
     public DateTime? ApprovedAt { get; set; }
