@@ -121,7 +121,7 @@
                        FontWeight="Bold"
                        Foreground="{StaticResource NavyBrush}"
                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tongkang Aktif" 
+                            <TextBlock Text="Tongkang" 
                                        FontSize="14"
                                        Foreground="Gray"
                                        TextAlignment="Center"/>
@@ -141,7 +141,7 @@
                                            FontWeight="Bold"
                                            Foreground="{StaticResource NavyBrush}"
                                            HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tugboat Aktif" 
+                            <TextBlock Text="Tugboat" 
                                        FontSize="14"
                                        Foreground="Gray"
                                        TextAlignment="Center"/>

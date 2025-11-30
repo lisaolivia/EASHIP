@@ -63,8 +63,7 @@ namespace Eaship.page.Renter
                 CargoDesc = cargo
             };
 
-            booking.SetStatus(BookingStatus.Requested);
-
+        
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 

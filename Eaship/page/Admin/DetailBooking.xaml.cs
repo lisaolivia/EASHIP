@@ -46,20 +46,37 @@ namespace Eaship.page.Admin
             CargoBox.Text = _booking.CargoDesc;
             StatusBox.Text = _booking.Status.ToString();
 
-            TongkangBox.ItemsSource = await _context.Tongkangs.ToListAsync();
+            TongkangBox.ItemsSource = await _context.Tongkangs
+            .Where(t => t.Status == TongkangStatus.Available)
+            .ToListAsync();
+
             TongkangBox.DisplayMemberPath = "Name";
             TongkangBox.SelectedValuePath = "TongkangId";
 
             TugboatBox.ItemsSource = await _context.Tugboats.ToListAsync();
             TugboatBox.DisplayMemberPath = "Nama";
             TugboatBox.SelectedValuePath = "TugboatId";
+
+            // Disable tombol kalau booking sudah bukan Requested
+            if (_booking.Status != BookingStatus.Requested)
+            {
+                ConfirmButton.IsEnabled = false;
+                DeclineButton.IsEnabled = false;
+            }
         }
+
 
         private async void Confirm_Click(object sender, RoutedEventArgs e)
         {
             if (_booking == null)
             {
                 MessageBox.Show("Booking not loaded.");
+                return;
+            }
+
+            if (_booking.Status != BookingStatus.Requested)
+            {
+                MessageBox.Show("Only requested bookings can be approved.");
                 return;
             }
 
@@ -71,15 +88,13 @@ namespace Eaship.page.Admin
             }
 
             // VALIDASI DURASI
-            if (!int.TryParse(DaysBox.Text, out int days))
+            if (!int.TryParse(DaysBox.Text, out int days) || days <= 0)
             {
                 MessageBox.Show("Invalid days!");
                 return;
             }
 
-            // ======================================================
-            // 1. TAMBAHKAN RELASI BOOKING–TONGKANG TANPA DUPLIKASI
-            // ======================================================
+            // ============== 1. Tambahkan relasi booking - tongkang ============
             var existingRelation = await _context.BookingTongkangs
                 .FirstOrDefaultAsync(bt =>
                     bt.BookingId == _booking.BookingId &&
@@ -87,26 +102,54 @@ namespace Eaship.page.Admin
 
             if (existingRelation == null)
             {
-                var relation = new BookingTongkang
+                _context.BookingTongkangs.Add(new BookingTongkang
                 {
                     BookingId = _booking.BookingId,
                     TongkangId = selectedTongkang.TongkangId
-                };
-
-                _context.BookingTongkangs.Add(relation);
+                });
             }
 
-            // ======================================================
-            // 2. UPDATE STATUS BOOKING + UPDATE TONGKANG
-            // ======================================================
-            _booking.SetStatus(BookingStatus.Confirmed);
-            selectedTongkang.MarkUnavailable();
+            // ============== 2. Approve booking & assign tongkang ===============
+
+            // CEK STATUS TONGKANG DULU
+
+            bool isUsedInContract = await _context.Contracts
+            .AnyAsync(c => c.TongkangId == selectedTongkang.TongkangId
+                        && c.Status == ContractStatus.Approved);
+
+            if (isUsedInContract)
+            {
+                MessageBox.Show("Tongkang sedang dipakai oleh kontrak lain!", "Error");
+                return;
+            }
+
+
+            if (selectedTongkang.Status != TongkangStatus.Available)
+            {
+                MessageBox.Show("Tongkang ini sedang digunakan dan tidak bisa diassign lagi!",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                _booking.Approve();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            // SET STATUS
+            selectedTongkang.SetStatus(TongkangStatus.Assigned);
+            _context.Tongkangs.Update(selectedTongkang);
+            await _context.SaveChangesAsync();
+
 
             await _context.SaveChangesAsync();
 
-            // ======================================================
-            // 3. RELOAD BOOKING SECARA LENGKAP (User + RenterCompany)
-            // ======================================================
+            // ============== 3. Reload booking lengkap ==========================
             var bookingFull = await _context.Bookings
                 .Include(b => b.User)
                     .ThenInclude(u => u.RenterCompany)
@@ -120,34 +163,26 @@ namespace Eaship.page.Admin
                 return;
             }
 
-            if (bookingFull.User == null)
+            var renterCompany = bookingFull.User?.RenterCompany;
+            if (renterCompany == null)
             {
-                MessageBox.Show("Booking has no user data!");
+                MessageBox.Show("User has no company data.");
                 return;
             }
 
-            if (bookingFull.User.RenterCompany == null)
-            {
-                MessageBox.Show("User has no registered company!");
-                return;
-            }
-
-            var renterCompany = bookingFull.User.RenterCompany;
-
-            // ======================================================
-            // 4. CREATE CONTRACT RECORD
-            // ======================================================
+            // ============== 4. Create contract ================================
             var contract = new Contract
             {
-                BookingId = bookingFull.BookingId
+                BookingId = bookingFull.BookingId,
+                TongkangId = selectedTongkang.TongkangId,
+                TugboatId = (TugboatBox.SelectedItem as Tugboat)?.TugboatId
             };
 
-            _context.Contracts.Add(contract);
-            await _context.SaveChangesAsync();   // agar ContractId terisi
 
-            // ======================================================
-            // 5. GENERATE CONTRACT PDF
-            // ======================================================
+            _context.Contracts.Add(contract);
+            await _context.SaveChangesAsync();
+
+            // ============== 5. GENERATE PDF ===================================
             string pdfPath = ContractPdfGenerator.GenerateContractPdf(
                 contract,
                 bookingFull,
@@ -155,22 +190,16 @@ namespace Eaship.page.Admin
             );
 
             contract.PdfUrl = pdfPath;
-
-            // ======================================================
-            // 6. SIMPAN URL PDF KE DATABASE
-            // ======================================================
-            contract.PdfUrl = pdfPath;
             contract.MarkPending();
+
             await _context.SaveChangesAsync();
 
-            MessageBox.Show("Booking confirmed & contract generated!");
+            MessageBox.Show("Booking approved & contract generated!");
 
-            // ======================================================
-            // 7. CREATE NOTIFICATION FOR USER
-            // ======================================================
-            var notifService = App.Services.GetRequiredService<INotificationService>();
+            // ============== 6. Create notification ============================
+            var notif = App.Services.GetRequiredService<INotificationService>();
 
-            notifService.Create(
+            notif.Create(
                 bookingFull.UserId,
                 "BookingApproved",
                 "Booking Approved",
@@ -178,7 +207,11 @@ namespace Eaship.page.Admin
                 bookingId: bookingFull.BookingId,
                 contractId: contract.ContractId
             );
+
+            ConfirmButton.IsEnabled = false;
+            DeclineButton.IsEnabled = false;
         }
+
 
         private async void Decline_Click(object sender, RoutedEventArgs e)
         {
@@ -188,25 +221,40 @@ namespace Eaship.page.Admin
                 return;
             }
 
-            // 1. Update Status Booking
-            _booking.SetStatus(BookingStatus.Cancelled);
+            if (_booking.Status != BookingStatus.Requested)
+            {
+                MessageBox.Show("This booking can no longer be declined.");
+                return;
+            }
+
+            // ============ Decline Booking (VALIDATED) ==============
+            try
+            {
+                _booking.Decline();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
             await _context.SaveChangesAsync();
 
-            // 2. Reload Booking + User
+            // ============ Reload User =============
             var bookingFull = await _context.Bookings
                 .Include(b => b.User)
                 .FirstOrDefaultAsync(b => b.BookingId == _booking.BookingId);
 
-            if (bookingFull == null || bookingFull.User == null)
+            if (bookingFull?.User == null)
             {
-                MessageBox.Show("Failed to load booking user.");
+                MessageBox.Show("Failed to load user.");
                 return;
             }
 
-            // 3. Send Notification
-            var notifService = App.Services.GetRequiredService<INotificationService>();
+            // ============ Notification =============
+            var notif = App.Services.GetRequiredService<INotificationService>();
 
-            notifService.Create(
+            notif.Create(
                 bookingFull.User.UserId,
                 "BookingDeclined",
                 "Booking Declined",
@@ -214,26 +262,10 @@ namespace Eaship.page.Admin
                 bookingId: bookingFull.BookingId
             );
 
-            // 4. Alert Admin
-            MessageBox.Show("Booking declined and notification sent!");
+            MessageBox.Show("Booking declined!");
 
-            // (Optional) refresh page or navigate
-            // Navigate(new BookingRequest());
-        }
-
-
-        private void Navigate(Page page)
-        {
-            var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
-            frame?.Navigate(page);
-        }
-
-  
-        private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
-        private void EditTongkang(object s, RoutedEventArgs e)
-        {
-            if (s is Button b && b.Tag is long id)
-                Navigate(new EditTongkang(id));
+            ConfirmButton.IsEnabled = false;
+            DeclineButton.IsEnabled = false;
         }
     }
 }

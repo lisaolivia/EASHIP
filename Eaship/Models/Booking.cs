@@ -47,10 +47,10 @@ namespace Eaship.Models
                 && !string.IsNullOrWhiteSpace(DestinationPort)
                 && DurationDays > 0
                 && StartDate.Date >= DateTime.UtcNow.Date
-                && BookingTongkangs?.Count > 0; // minimal 1 tongkang
+                && BookingTongkangs?.Count > 0; 
         }
 
-        // NEW: hitung total untuk banyak tongkang
+        
         public decimal HitungTotalHarga(IEnumerable<(Tongkang tongkang, int days)> itemsPerTongkang)
         {
             if (itemsPerTongkang is null) throw new ArgumentNullException(nameof(itemsPerTongkang));
@@ -76,10 +76,23 @@ namespace Eaship.Models
             HargaTotal = HitungTotalHarga(itemsPerTongkang);
             Status = BookingStatus.Confirmed;
         }
-        public void SetStatus(BookingStatus status)
+
+        public void Approve()
         {
-            Status = status;
+            if (Status != BookingStatus.Requested)
+                throw new InvalidOperationException("Hanya booking Requested yang bisa di-approve.");
+
+            Status = BookingStatus.Confirmed;
         }
+
+        public void Decline()
+        {
+            if (Status != BookingStatus.Requested)
+                throw new InvalidOperationException("Hanya booking Requested yang bisa di-decline.");
+
+            Status = BookingStatus.Cancelled;
+        }
+
 
         public void Start()
         {

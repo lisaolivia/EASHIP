@@ -1,35 +1,23 @@
 ﻿using Eaship.Models;
 using Eaship.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace Eaship.page.Admin
 {
-    /// <summary>
-    /// Interaction logic for DashboardAdmin.xaml
-    /// </summary>
-    //private readonly ICompanyService _companies;
-    public partial class DashboardAdmin : Page // Ensure this matches the base class in all partial declarations
+    public partial class DashboardAdmin : Page
     {
+        private readonly EashipDbContext _context;
         private readonly ICompanyService _companies;
 
         public DashboardAdmin()
         {
             InitializeComponent();
+
+            _context = App.Services.GetRequiredService<EashipDbContext>();
             _companies = App.Services.GetRequiredService<ICompanyService>();
 
             Loaded += DashboardAdmin_Loaded;
@@ -37,15 +25,31 @@ namespace Eaship.page.Admin
 
         private async void DashboardAdmin_Loaded(object sender, RoutedEventArgs e)
         {
-            // load data
-            var pending = await _companies.GetPendingAsync();
-            var active = await _companies.GetActiveAsync();
+            // 1. COMPANY
+            var pendingCompany = await _companies.GetPendingAsync();
+            var activeCompany = await _companies.GetActiveAsync();
+            txtCompanyVerified.Text = activeCompany.Count.ToString();
 
-            // update cards
-            txtCompanyVerified.Text = active.Count.ToString();
+            // 2. TONGKANG (status: Available)
+            int tongkangAktif = await _context.Tongkangs
+                .Where(t => t.Status == TongkangStatus.Available)
+                .CountAsync();
+            txtTongkangAktif.Text = tongkangAktif.ToString();
 
-            // update notifications
-            NotificationList.ItemsSource = pending.Select(c => new
+            // 3. TUGBOAT (status: AVAILABLE)
+            int tugboatAktif = await _context.Tugboats
+                .Where(t => t.Status == TugboatStatus.AVAILABLE)
+                .CountAsync();
+            txtTugboatAktif.Text = tugboatAktif.ToString();
+
+            // 4. BOOKING (status: Requested = pending)
+            int bookingPending = await _context.Bookings
+                .Where(b => b.Status == BookingStatus.Requested)
+                .CountAsync();
+            txtBookingPending.Text = bookingPending.ToString();
+
+            // 5. NOTIFICATION
+            NotificationList.ItemsSource = pendingCompany.Select(c => new
             {
                 Title = "Company Verification",
                 Company = c.Nama,
@@ -55,18 +59,11 @@ namespace Eaship.page.Admin
         }
 
 
+
         private void Navigate(Page page)
         {
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(page);
         }
-
-        private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
-        private void EditTongkang(object s, RoutedEventArgs e)
-        {
-            if (s is Button b && b.Tag is long id)
-                Navigate(new EditTongkang(id));
-        }
-
     }
 }

@@ -93,86 +93,218 @@
                            Foreground="{StaticResource NavyBrush}"/>
 
                 <!-- Data Cards -->
+                <!-- Data Cards -->
                 <UniformGrid Columns="4" Margin="0,0,0,30">
-                    <!-- Card 1 -->
+
+                    <!-- Card 1 — Perusahaan Terdaftar -->
                     <Border Background="White"
                             CornerRadius="12"
                             Margin="8"
-                            Padding="16"
+                            Padding="18"
                             Effect="{DynamicResource Shadow}">
                         <StackPanel HorizontalAlignment="Center">
+
+                            <!-- Icon -->
+                            <StackPanel HorizontalAlignment="Center">
+                                <Grid Width="48" Height="48">
+                                    <Ellipse Fill="#EEF6FF" />
+
+                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
+                                           Width="22" Height="22"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <!-- Value -->
                             <TextBlock x:Name="txtCompanyVerified"
+                                       Text="0"
+                                       FontSize="36"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource NavyBrush}"
+                                       Margin="0,10,0,2"
+                                       HorizontalAlignment="Center"/>
+
+                            <!-- Label -->
+                            <TextBlock Text="Perusahaan Terdaftar"
+                                       FontSize="14"
+                                       Foreground="Gray"
+                                       TextAlignment="Center"/>
+
+                            <!-- Growth -->
+                            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,6,0,0">
+                                <TextBlock x:Name="txtCompanyGrowth"
+                           
+                           Foreground="#16A34A"
+                           FontWeight="SemiBold"
+                           FontSize="12"/>
+                  <TextBlock 
+                           FontSize="12"
+                           Foreground="#9CA3AF"
+                           Margin="4,0,0,0"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+
+
+                    <!-- Card 2 — Tongkang Aktif -->
+                    <Border Background="White"
+                            CornerRadius="12"
+                            Margin="8"
+                            Padding="18"
+                            Effect="{DynamicResource Shadow}">
+                        <StackPanel HorizontalAlignment="Center">
+
+                            <StackPanel HorizontalAlignment="Center">
+                                <Grid Width="48" Height="48">
+                                    <Ellipse Fill="#EEF6FF" />
+
+                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
+                                           Width="22" Height="22"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <TextBlock x:Name="txtTongkangAktif"
+                                       Text="0"
+                                       FontSize="36"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource NavyBrush}"
+                                       Margin="0,10,0,2"
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Tongkang Aktif"
+                                       FontSize="14"
+                                       Foreground="Gray"
+                                       TextAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,6,0,0">
+                                <TextBlock x:Name="txtTongkangGrowth"
+                                           
+                                           Foreground="#16A34A"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"/>
+                                <TextBlock 
+                                           FontSize="12"
+                                           Foreground="#9CA3AF"
+                                           Margin="4,0,0,0"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+
+
+                    <!-- Card 3 — Tugboat Aktif -->
+                    <Border Background="White"
+                            CornerRadius="12"
+                            Margin="8"
+                            Padding="18"
+                            Effect="{DynamicResource Shadow}">
+                        <StackPanel HorizontalAlignment="Center">
+
+                            <StackPanel HorizontalAlignment="Center">
+                                <Grid Width="48" Height="48">
+                                    <Ellipse Fill="#EEF6FF" />
+
+                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
+                                           Width="22" Height="22"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <TextBlock x:Name="txtTugboatAktif"
                                            Text="0"
                                            FontSize="36"
                                            FontWeight="Bold"
                                            Foreground="{StaticResource NavyBrush}"
+                                           Margin="0,10,0,2"
                                            HorizontalAlignment="Center"/>
 
-                            <TextBlock Text="Perusahaan Terdaftar" 
-                                       FontSize="14"
-                                       Foreground="Gray"
-                                       TextAlignment="Center"/>
+                            <TextBlock Text="Tugboat Aktif"
+                       FontSize="14"
+                       Foreground="Gray"
+                       TextAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,6,0,0">
+                                <TextBlock x:Name="txtTugboatGrowth"
+                           Foreground="#DC2626"
+                           FontWeight="SemiBold"
+                           FontSize="12"/>
+                                <TextBlock 
+                           FontSize="12"
+                           Foreground="#9CA3AF"
+                           Margin="4,0,0,0"/>
+                            </StackPanel>
+
                         </StackPanel>
                     </Border>
 
-                    <!-- Card 2 -->
+
+                    <!-- Card 4 — Booking Pending -->
                     <Border Background="White"
                             CornerRadius="12"
                             Margin="8"
-                            Padding="16"
+                            Padding="18"
                             Effect="{DynamicResource Shadow}">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="10" 
-                                       FontSize="36"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource NavyBrush}"
-                                       HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tongkang Aktif" 
-                                       FontSize="14"
-                                       Foreground="Gray"
-                                       TextAlignment="Center"/>
+
+                            <StackPanel HorizontalAlignment="Center">
+                                <Grid Width="48" Height="48">
+                                    <Ellipse Fill="#EEF6FF" />
+
+                                    <Image Source="/Eaship;component/Assets/Icons/company.png"
+                                           Width="22" Height="22"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <TextBlock x:Name="txtBookingPending"
+                       Text="0"
+                       FontSize="36"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource NavyBrush}"
+                       Margin="0,10,0,2"
+                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Booking Pending"
+                       FontSize="14"
+                       Foreground="Gray"
+                       TextAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,6,0,0">
+                                <TextBlock x:Name="txtBookingGrowth"
+                           
+                           Foreground="#DC2626"
+                           FontWeight="SemiBold"
+                           FontSize="12"/>
+                                <TextBlock 
+                           FontSize="12"
+                           Foreground="#9CA3AF"
+                           Margin="4,0,0,0"/>
+                            </StackPanel>
+
                         </StackPanel>
                     </Border>
 
-                    <!-- Card 3 -->
-                    <Border Background="White"
-                            CornerRadius="12"
-                            Margin="8"
-                            Padding="16"
-                            Effect="{DynamicResource Shadow}">
-                        <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="10" 
-                                       FontSize="36"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource NavyBrush}"
-                                       HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tugboat Aktif" 
-                                       FontSize="14"
-                                       Foreground="Gray"
-                                       TextAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Card 4 -->
-                    <Border Background="White"
-                            CornerRadius="12"
-                            Margin="8"
-                            Padding="16"
-                            Effect="{DynamicResource Shadow}">
-                        <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="10" 
-                                       FontSize="36"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource NavyBrush}"
-                                       HorizontalAlignment="Center"/>
-                            <TextBlock Text="Booking Pending" 
-                                       FontSize="14"
-                                       Foreground="Gray"
-                                       TextAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
                 </UniformGrid>
-                
+
+
                 <TextBlock Text="Notifikasi"
                            FontSize="15"
                            FontWeight="Medium"

@@ -16,322 +16,505 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="#F8FAFB">
         <Grid.RowDefinitions>
-            <RowDefinition Height="64"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
 
-        <!-- ===================== NAVBAR ===================== -->
+        <!-- NAVBAR -->
         <controls:RenterNavbar Grid.Row="0"/>
 
-        <!-- ================= CONTENT ================= -->
-        <Grid Grid.Row="1" Margin="60,40,60,0">
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="60,40,60,40">
 
-            <!-- ========== Section 1: Welcome (Default) ========== -->
-            <Border x:Name="SectionWelcome"
-                    Background="#DCE7F0" 
-                    CornerRadius="16"
-                    Padding="50,40"
-                    VerticalAlignment="Top"
-                    MaxWidth="1080"
-                    Visibility="Visible">
-                <Border.Effect>
-                    <DropShadowEffect Color="#000000" 
-                                      Opacity="0.08" 
-                                      BlurRadius="15" 
-                                      ShadowDepth="2"/>
-                </Border.Effect>
+                <!-- ========== Section 1: Welcome (Default) ========== -->
+                <Border x:Name="SectionWelcome"
+                        Background="#DCE7F0" 
+                        CornerRadius="16"
+                        Padding="50,40"
+                        Visibility="Visible"
+                        Margin="0,0,0,40">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" 
+                                          Opacity="0.08" 
+                                          BlurRadius="15" 
+                                          ShadowDepth="2"/>
+                    </Border.Effect>
 
-                <StackPanel>
-                    <!-- Title -->
-                    <TextBlock Text="Welcome Aboard!" 
-                               FontSize="42"
-                               FontWeight="Bold"
-                               Foreground="#2C3E50"
-                               Margin="0,0,0,16"/>
+                    <StackPanel>
+                        <TextBlock Text="Welcome Aboard!" 
+                                   FontSize="42"
+                                   FontWeight="Bold"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,16"/>
 
-                    <!-- Description -->
-                    <TextBlock FontSize="18"
-                               Foreground="#4A5568"
-                               TextWrapping="Wrap"
-                               LineHeight="28"
-                               Margin="0,0,0,40">
-                        <Run Text="Create a new company profile or join an existing one to start booking barges"/>
-                        <LineBreak/>
-                        <Run Text="and ships."/>
-                    </TextBlock>
+                        <TextBlock FontSize="18"
+                                   Foreground="#4A5568"
+                                   TextWrapping="Wrap"
+                                   LineHeight="28"
+                                   Margin="0,0,0,40">
+                            <Run Text="Create a new company profile or join an existing one to start booking barges"/>
+                            <LineBreak/>
+                            <Run Text="and ships."/>
+                        </TextBlock>
 
-                    <!-- Buttons -->
-                    <StackPanel Orientation="Horizontal" 
-                                HorizontalAlignment="Right">
-                        <Button x:Name="BtnCreateCompany"
-                                Content="Create Company"
-                                Width="200"
-                                Height="50"
-                                FontSize="16"
-                                FontWeight="Medium"
-                                Background="White"
-                                Foreground="#2C3E50"
-                                BorderBrush="#2C3E50"
-                                BorderThickness="2"
-                                Cursor="Hand"
-                                Margin="0,0,16,0" Click="BtnCreateCompany_Click"/>
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Right">
+                            <Button x:Name="BtnCreateCompany"
+                                    Content="Create Company"
+                                    Width="200"
+                                    Height="50"
+                                    FontSize="16"
+                                    FontWeight="Medium"
+                                    Background="White"
+                                    Foreground="#2C3E50"
+                                    BorderBrush="#2C3E50"
+                                    BorderThickness="2"
+                                    Cursor="Hand"
+                                    Margin="0,0,16,0" 
+                                    Click="BtnCreateCompany_Click"/>
 
-                        <Button x:Name="BtnJoinExisting"
-                                Content="Join Existing"
-                                Width="200"
-                                Height="50"
-                                FontSize="16"
-                                FontWeight="Medium"
-                                Background="#2C3E50"
-                                Foreground="White"
-                                BorderThickness="0"
-                                Cursor="Hand" 
-                                Click="BtnJoinExisting_Click"/>
+                            <Button x:Name="BtnJoinExisting"
+                                    Content="Join Existing"
+                                    Width="200"
+                                    Height="50"
+                                    FontSize="16"
+                                    FontWeight="Medium"
+                                    Background="#2C3E50"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Cursor="Hand" 
+                                    Click="BtnJoinExisting_Click"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </Border>
+                </Border>
 
-            <!-- ========== Section 2: Waiting (Company sedang divalidasi admin) ========== -->
-            <Border x:Name="SectionWaiting"
+                <!-- ========== Section 2: Waiting ========== -->
+                <Border x:Name="SectionWaiting"
                         Background="#DCE7F0"
                         CornerRadius="16"
                         Padding="60,50"
-                        VerticalAlignment="Top"
-                        MaxWidth="1080"
-                        Visibility="Collapsed"> 
-                <Border.Effect>
-                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
-                </Border.Effect>
+                        Visibility="Collapsed"
+                        Margin="0,0,0,40">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
+                    </Border.Effect>
 
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <!-- Title -->
-                    <TextBlock Text="Please Wait!" 
-                               FontSize="40"
-                               FontWeight="Bold"
-                               Foreground="#2C3E50"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,10"/>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Please Wait!" 
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="#2C3E50"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
 
-                    <!-- Subtitle -->
                         <TextBlock Text="Our Admin will confirm your company soon."
                                    FontSize="20"
                                    Foreground="#2C3E50"
                                    TextAlignment="Center"
                                    Margin="0,0,0,30"/>
 
-                    <!-- Illustration -->
-                    <Image Source="pack://application:,,,/Eaship;component/Assets/image_wait.png"
-                        Width="420" Height="260"
-                        Margin="0,0,0,30"/>
+                        <Image Source="pack://application:,,,/Eaship;component/Assets/image_wait.png"
+                               Width="420" Height="260"
+                               Margin="0,0,0,30"/>
 
-                    <!-- Progress Bar -->
-                    <ProgressBar IsIndeterminate="True"
-                                 Width="400"
-                                 Height="8"
-                                 Foreground="#2C3E50"
-                                 Margin="0,0,0,25"/>
+                        <ProgressBar IsIndeterminate="True"
+                                     Width="400"
+                                     Height="8"
+                                     Foreground="#2C3E50"
+                                     Margin="0,0,0,25"/>
 
-                    <!-- Additional text -->
-                    <TextBlock Text="Your company information has been submitted and is waiting for admin validation."
-                               FontSize="16"
-                               Foreground="#4A5568"
-                               TextWrapping="Wrap"
-                               Width="600"
-                               TextAlignment="Center"
-                               Margin="0,0,0,10"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ========== Section 3: VERIFIED (Company Sudah Diverifikasi Admin) ========== -->
-
-            <Grid x:Name="SectionVerified"
-                      Visibility="Collapsed"
-                      Margin="60,0,60,0">   
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <!-- ===== HERO BANNER ===== -->
-                <Border Grid.Row="0"
-                        CornerRadius="15"
-                        Height="360"
-                        BorderBrush="#96B5D1"
-                        BorderThickness="2"
-                        Margin="0,0,0,40">
-
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Eaship;component/Assets/wave.png" 
-                                     Stretch="UniformToFill"
-                                    AlignmentX="Center"
-                                    AlignmentY="Center"/>   
-                    </Border.Background>
-
-                    <Grid Margin="40">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="220"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- TEXT -->
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Welcome Aboard!"
-                                       FontSize="40"
-                                       FontWeight="Bold"
-                                       Foreground="#1C2A39"
-                                       Margin="0,0,0,10"/>
-
-                            <TextBlock Text="Start Booking Your Vessel!"
-                                       FontSize="24"
-                                       Foreground="#44566C"/>
-                        </StackPanel>
-
-                        <!-- BUTTON -->
-                        <Button Grid.Column="1"
-                                Content="Booking"
-                                Width="190"
-                                Height="60"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Background="#163A63"
-                                Foreground="White"
-                                FontSize="20"
-                                FontWeight="SemiBold"
-                                Cursor="Hand"
-                                BorderThickness="0"
-                                Click="BtnBooking_Click"/>
-                    </Grid>
-                </Border>
-
-
-                <!-- ===== NOTIFICATION TITLE ===== -->
-                <TextBlock Grid.Row="1"
-                           Text="Notification"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Foreground="#1C2A39"
-                           Margin="0,0,0,12"/>
-
-                <!-- ===== NOTIFICATION CARD ===== -->
-                <Border Grid.Row="2"
-                        Background="White"
-                        CornerRadius="10"
-                        Padding="20"
-                        BorderBrush="#CBD5E0"
-                        BorderThickness="1">
-
-                    <StackPanel>
-
-                        <!-- Judul -->
-                        <TextBlock x:Name="TxtNotifTitle"
+                        <TextBlock Text="Your company information has been submitted and is waiting for admin validation."
                                    FontSize="16"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,8"/>
-
-                        <!-- Isi Notifikasi -->
-                        <TextBlock x:Name="TxtNotifMessage"
-                                       TextWrapping="Wrap"
-                                       FontSize="14"
-                                       Foreground="#4A5568"
-                                       Margin="0,0,0,14"/>
-
-                        <!-- Waktu -->
-                        <TextBlock x:Name="TxtNotifTime"
-                                   FontSize="12"
-                                   Foreground="#718096"/>
-
-                        <!-- See All -->
-                        <Button Content="See All"
-                                HorizontalAlignment="Right"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Foreground="#163A63"
-                                FontSize="14"
-                                FontWeight="Medium"
-                                Cursor="Hand"
-                                Click="BtnSeeAllNotification_Click"
-                                Margin="0,10,0,0"/>
-
+                                   Foreground="#4A5568"
+                                   TextWrapping="Wrap"
+                                   Width="600"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,10"/>
                     </StackPanel>
                 </Border>
 
-            </Grid>
+                <!-- ========== Section 3: VERIFIED ========== -->
+                <StackPanel x:Name="SectionVerified"
+                            Visibility="Collapsed"
+                            Margin="0,0,0,40">
 
-            <!-- ========== Section 4: Rejected (Company Ditolak Admin) ========== -->
-            <Border x:Name="SectionRejected"
-        Background="#FDECEC"
-        CornerRadius="16"
-        Padding="60,50"
-        VerticalAlignment="Top"
-        MaxWidth="1080"
-        Visibility="Collapsed">
+                    <!-- HERO BANNER -->
+                    <Border CornerRadius="15"
+                            Height="280"
+                            BorderBrush="#96B5D1"
+                            BorderThickness="2"
+                            Margin="0,0,0,40">
 
-                <Border.Effect>
-                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
-                </Border.Effect>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Eaship;component/Assets/wave.png" 
+                                         Stretch="UniformToFill"
+                                        AlignmentX="Center"
+                                        AlignmentY="Center"/>
+                        </Border.Background>
 
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid Margin="40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="220"/>
+                            </Grid.ColumnDefinitions>
 
-                    <!-- Title -->
-                    <TextBlock Text="Company Rejected"
-                   FontSize="40"
-                   FontWeight="Bold"
-                   Foreground="#C53030"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,10"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Welcome Aboard!"
+                                           FontSize="40"
+                                           FontWeight="Bold"
+                                           Foreground="#1C2A39"
+                                           Margin="0,0,0,10"/>
 
-                    <!-- Subtitle -->
-                    <TextBlock Text="Your company request has been rejected by our admin."
-                   FontSize="20"
-                   Foreground="#9B2C2C"
-                   TextAlignment="Center"
-                   Margin="0,0,0,20"/>
+                                <TextBlock Text="Start Booking Your Vessel!"
+                                           FontSize="24"
+                                           Foreground="#44566C"/>
+                            </StackPanel>
 
-                    <!-- Illustration (optional; bisa kamu ganti) -->
-                    <Image Source="pack://application:,,,/Eaship;component/Assets/image_rejected.jpg"
-               Width="360" Height="220"
-               Margin="0,0,0,30"
-               Stretch="Uniform"/>
+                            <Button Grid.Column="1"
+                                    Content="Booking"
+                                    Width="190"
+                                    Height="60"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="#163A63"
+                                    Foreground="White"
+                                    FontSize="20"
+                                    FontWeight="SemiBold"
+                                    Cursor="Hand"
+                                    BorderThickness="0"
+                                    Click="BtnBooking_Click"/>
+                        </Grid>
+                    </Border>
 
-                    <!-- Reason Text -->
-                    <TextBlock Text="Reason:"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="#C53030"
-                   Margin="0,0,0,8"/>
+                    <!-- API INFO CARDS GRID -->
+                    <Grid Margin="0,0,0,40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <!-- Admin Reason -->
-                    <TextBlock x:Name="TxtRejectedReason"
-                   FontSize="16"
-                   Foreground="#742A2A"
-                   TextWrapping="Wrap"
-                   Width="700"
-                   TextAlignment="Center"
-                   Margin="0,0,0,25"/>
+                        <!-- PORT 1 - TANJUNG PRIOK -->
+                        <Border Grid.Column="0" Grid.Row="0"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,12,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/weather.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Tanjung Priok"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtP1Temp"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtP1Wind"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
 
-                    <!-- Button to resubmit -->
-                    <Button Content="Edit Company"
-                            Width="260"
-                            Height="50"
-                            Background="#C53030"
-                            Foreground="White"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Click="BtnCreateCompany_Click"/>
+                        <!-- PORT 2 - TANJUNG PERAK -->
+                        <Border Grid.Column="1" Grid.Row="0"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,12,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/weather.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Tanjung Perak"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtP2Temp"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtP2Wind"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PORT 3 - BALIKPAPAN -->
+                        <Border Grid.Column="2" Grid.Row="0"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,0,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/weather.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Balikpapan"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtP3Temp"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtP3Wind"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PORT 4 - MAKASSAR -->
+                        <Border Grid.Column="0" Grid.Row="1"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,12,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/weather.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Makassar"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtP4Temp"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtP4Wind"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PORT 5 - BELAWAN -->
+                        <Border Grid.Column="1" Grid.Row="1"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,12,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/weather.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Belawan"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtP5Temp"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtP5Wind"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- EXCHANGE RATE CARD -->
+                        <Border Grid.Column="2" Grid.Row="1"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Margin="0,0,0,12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/exchange.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="USD → IDR"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="TxtRateIDR"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,6"/>
+                                <TextBlock x:Name="TxtRateLastUpdate"
+                                           FontSize="13"
+                                           Foreground="#718096"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- LOCAL TIME CARD -->
+                        <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"
+                                Background="White"
+                                Padding="24,20"
+                                CornerRadius="12"
+                                Effect="{StaticResource Shadow}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Image Source="/Eaship;component/Assets/Icons/clock.jpg"
+                                           Width="24" Height="24" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Local Time"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0,0,40,0">
+                                        <TextBlock x:Name="TxtTime"
+                                                   FontSize="32"
+                                                   FontWeight="Bold"
+                                                   Margin="0,0,0,4"/>
+                                        <TextBlock x:Name="TxtDate"
+                                                   FontSize="13"
+                                                   Foreground="#718096"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- NOTIFICATION SECTION -->
+                    <TextBlock Text="Notification"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#1C2A39"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="White"
+                            CornerRadius="12"
+                            Padding="24"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="1"
+                            Effect="{StaticResource Shadow}">
+
+                        <StackPanel>
+                            <TextBlock x:Name="TxtNotifTitle"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="#1C2A39"
+                                       Margin="0,0,0,12"/>
+
+                            <TextBlock x:Name="TxtNotifMessage"
+                                       TextWrapping="Wrap"
+                                       FontSize="14"
+                                       Foreground="#4A5568"
+                                       Margin="0,0,0,16"
+                                       LineHeight="22"/>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,0,12">
+                                <TextBlock x:Name="TxtNotifTime"
+                                           FontSize="12"
+                                           Foreground="#A0AEC0"/>
+                                <TextBlock Text="•"
+                                           FontSize="12"
+                                           Foreground="#CBD5E0"
+                                           Margin="8,0,8,0"/>
+                                <TextBlock Text="New"
+                                           FontSize="12"
+                                           Foreground="#3182CE"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+
+                            <Button Content="See All"
+                                    HorizontalAlignment="Right"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Foreground="#163A63"
+                                    FontSize="14"
+                                    FontWeight="Medium"
+                                    Cursor="Hand"
+                                    Click="BtnSeeAllNotification_Click"
+                                    Padding="0"/>
+                        </StackPanel>
+                    </Border>
+
                 </StackPanel>
 
-            </Border>
+                <!-- ========== Section 4: Rejected ========== -->
+                <Border x:Name="SectionRejected"
+                        Background="#FDECEC"
+                        CornerRadius="16"
+                        Padding="60,50"
+                        Visibility="Collapsed"
+                        Margin="0,0,0,40">
 
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="15" ShadowDepth="2"/>
+                    </Border.Effect>
 
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        </Grid>
+                        <TextBlock Text="Company Rejected"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="#C53030"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Your company request has been rejected by our admin."
+                                   FontSize="20"
+                                   Foreground="#9B2C2C"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <Image Source="pack://application:,,,/Eaship;component/Assets/image_rejected.jpg"
+                               Width="360" Height="220"
+                               Margin="0,0,0,30"
+                               Stretch="Uniform"/>
+
+                        <TextBlock Text="Reason:"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Foreground="#C53030"
+                                   Margin="0,0,0,8"/>
+
+                        <TextBlock x:Name="TxtRejectedReason"
+                                   FontSize="16"
+                                   Foreground="#742A2A"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,25"
+                                   LineHeight="24"/>
+
+                        <Button Content="Edit Company"
+                                Width="260"
+                                Height="50"
+                                Background="#C53030"
+                                Foreground="White"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Cursor="Hand"
+                                BorderThickness="0"
+                                Click="BtnCreateCompany_Click"/>
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
 
         <!-- FOOTER -->
         <Border Grid.Row="2" Background="#D6E3F2" Margin="0,60,0,0">
@@ -344,4 +527,3 @@
         </Border>
     </Grid>
 </Page>
-    

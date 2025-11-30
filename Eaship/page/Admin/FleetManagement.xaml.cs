@@ -36,8 +36,7 @@ namespace Eaship.page.Admin
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(page);
         }
-
-  
+ 
         private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
         private void EditTongkang(object s, RoutedEventArgs e)
         {

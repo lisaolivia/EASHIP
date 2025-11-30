@@ -23,8 +23,9 @@ namespace Eaship.page
         // ====== REGISTER BUTTON ======
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
-            // Get selected role from ComboBox
-            var selectedRole = (cmbRole.SelectedItem as ComboBoxItem)?.Content?.ToString();
+          
+            var role = "RENTER";
+
             var name = txtFullName.Text.Trim();
             var email = txtEmail.Text.Trim();
             var phone = txtPhone.Text.Trim();
@@ -32,8 +33,7 @@ namespace Eaship.page
             var confirm = txtConfirm.Password;
 
             // Input validation
-            if (string.IsNullOrWhiteSpace(selectedRole) ||
-                string.IsNullOrWhiteSpace(name) ||
+            if (string.IsNullOrWhiteSpace(name) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(phone) ||
                 string.IsNullOrWhiteSpace(pass))
@@ -50,15 +50,12 @@ namespace Eaship.page
 
             try
             {
-                // Register with the service (you may need to update IUserService to accept role and phone)
-                // For now, we're just passing name, email, and password
-                await _users.RegisterAsync(name, email, pass, selectedRole, phone);
+                // Register dengan role yang sudah dikunci
+                await _users.RegisterAsync(name, email, pass, role, phone);
 
+                MessageBox.Show($"Registration successful as {role}! Please login.",
+                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // TODO: If you want to store role and phone, update your IUserService.RegisterAsync method
-                // Example: await _users.RegisterAsync(name, email, pass, selectedRole, phone);
-
-                MessageBox.Show($"Registration successful as {selectedRole}! Please login.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 Main?.Navigate(new LoginPage());
             }
             catch (InvalidOperationException ex)
@@ -67,9 +64,11 @@ namespace Eaship.page
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Registration failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Registration failed: {ex.Message}",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void Brand_Click(object sender, RoutedEventArgs e)
         {
             
