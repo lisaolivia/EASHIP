@@ -76,12 +76,8 @@
                                     <!-- IMAGE -->
                                     <Image Height="180"
                                            Stretch="UniformToFill"
-                                           Margin="0,0,0,10">
-                                        <Image.Source>
-                                            <Binding Path="ImageUrl" FallbackValue="{StaticResource DefaultTugboatImage}" TargetNullValue="{StaticResource DefaultTugboatImage}"/>
-                                        </Image.Source>
-                                    </Image>
-
+                                           Margin="0,0,0,10"
+                                           Source="{Binding DisplayImageUrl}" />
 
                                     <!-- NAME -->
                                     <TextBlock Text="{Binding Nama}"

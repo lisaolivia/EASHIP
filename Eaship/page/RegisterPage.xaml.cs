@@ -71,7 +71,6 @@ namespace Eaship.page
 
         private void Brand_Click(object sender, RoutedEventArgs e)
         {
-            
             NavigationService?.Navigate(new Pagelanding());
         }
 

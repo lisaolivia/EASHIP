@@ -15,6 +15,9 @@ public class Tongkang
     public long TongkangId { get; set; }
    
     private string _name = string.Empty;
+
+    public string? PhotoUrl { get; set; }
+
     public string Name
     {
         get => _name;
@@ -38,24 +41,18 @@ public class Tongkang
 
     public void SetStatus(TongkangStatus status)
     {
-
-        if (Status == TongkangStatus.Assigned)
+     
+        if (Status == TongkangStatus.Assigned && status == TongkangStatus.Assigned)
             throw new InvalidOperationException("Tongkang sudah digunakan!");
 
         Status = status;
     }
 
-    public decimal HitungHarga(string cargoDesc, int durasiHari)
-    {
-        if (durasiHari <= 0) throw new ArgumentOutOfRangeException(nameof(durasiHari));
-        // jika butuh angka dari KapasitasDwt, parse dulu (mis. "8000 DWT" → 8000)
-        // sementara abaikan untuk contoh singkat
-        decimal baseRate = 100_000m;
-        var kapasitas = 1m; // TODO: parse dari KapasitasDwt
-        var harga = kapasitas * durasiHari * baseRate;
-        if (IncludeTugboat) harga *= 1.10m;
-        return harga;
-    }
+    public string DisplayImageUrl =>
+    string.IsNullOrWhiteSpace(PhotoUrl)
+    ? "pack://application:,,,/Eaship;component/Assets/default_barge.jpg"
+    : PhotoUrl;
+
 
     public void AttachTugboat(Tugboat tug)
     {
@@ -75,10 +72,6 @@ public class Tongkang
         Status = TongkangStatus.Assigned;
         tug.SetAssigned();
     }
-
-
-
-
 
     public void DetachTugboat(Tugboat tug)
     {

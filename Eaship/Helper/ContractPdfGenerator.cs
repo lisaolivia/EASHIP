@@ -60,15 +60,11 @@ public static class ContractPdfGenerator
                 textFont,
                 XBrushes.Black,
                 new XRect(
-                    40,
-                    y,
-                    page.Width - 80,
-                    20
-                ),
+                40, y,page.Width - 80,20),
                 XStringFormats.TopLeft
             );
 
-
+             
             y += 25;
         }
 

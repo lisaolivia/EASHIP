@@ -26,8 +26,10 @@
 
                         <!-- Gambar Tongkang -->
                         <Border CornerRadius="10" Grid.Column="0" Margin="0,0,12,0">
-                            <Image Source="/Eaship;component/Assets/default_barge.jpg"
-                       Stretch="UniformToFill" />
+                            <Image Stretch="UniformToFill"
+                                   Source="{Binding DisplayImageUrl}" />
+
+
                         </Border>
 
                         <!-- Info -->
@@ -62,13 +64,20 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Gambar Tugboat -->
-                        <Border CornerRadius="10" Margin="0,0,12,0">
-                            <Image Source="/Eaship;component/Assets/tugboat_default.jpeg"
-                                     Stretch="UniformToFill"/>
+                        <Border Width="220" Height="220"
+                                    CornerRadius="12"
+                                    BorderBrush="#D6E4F0"
+                                    Background="White"
+                                    BorderThickness="1">
+                            <Image Name="TugboatImage"
+                                    Source="{Binding DisplayImageUrl}"
+
+                                       Stretch="UniformToFill"
+                                       ClipToBounds="True"/>
                         </Border>
 
                         <!-- Info -->
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Nama}"
                            FontSize="20" FontWeight="Bold"/>
                             <TextBlock Text="{Binding HP, StringFormat='HP: {0}'}"
@@ -77,6 +86,7 @@
                             <Button Content="View Details"
                                     Background="#163A63"
                                     Foreground="White"
+                                    Margin="3"
                                     Padding="6"
                                     Width="120"
                                     HorizontalAlignment="Left"

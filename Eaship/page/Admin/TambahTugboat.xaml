@@ -47,6 +47,29 @@
                             <TextBox x:Name="TxtHp" Height="35" Margin="0,5,0,0"/>
                         </StackPanel>
 
+
+                        <!-- FOTO -->
+                        <TextBlock Text="Foto Tugboat" FontSize="14" Foreground="#555"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+
+                            <Button Content="Upload Foto"
+                                    Margin="0 5 0 0"
+                                    Width="94"
+                                    Height="33"
+                                    Background="{StaticResource NavyBrush}"
+                                    Foreground="White"
+                                    Click="UploadFoto_Click"/>
+
+                            <Image x:Name="PreviewFoto"
+                                       Width="120"
+                                       Height="80"
+                                       Margin="20 0 0 0"
+                                       Stretch="UniformToFill"
+                                       Visibility="Collapsed"/>
+                        </StackPanel>
+
+
                         <!-- STATUS -->
                         <StackPanel Margin="0 0 0 20">
                             <TextBlock Text="Status" FontWeight="Bold"/>

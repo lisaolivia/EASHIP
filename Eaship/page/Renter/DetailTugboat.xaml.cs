@@ -41,9 +41,26 @@ namespace Eaship.page.Renter
 
             TxtAssigned!.Text = assigned ?? "Not Assigned";
 
-            TugboatImage!.Source = new BitmapImage(
-                new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg")
-            );
+            // Load image jika ada
+            if (!string.IsNullOrEmpty(_tugboat.PhotoUrl))
+            {
+                try
+                {
+                    TugboatImage.Source = new BitmapImage(new Uri(_tugboat.PhotoUrl, UriKind.Absolute));
+                }
+                catch
+                {
+                    // fallback ke default
+                    TugboatImage.Source = new BitmapImage(
+                        new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+                }
+            }
+            else
+            {
+                // fallback ke default
+                TugboatImage.Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Eaship;component/Assets/tugboat_default.jpeg"));
+            }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

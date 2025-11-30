@@ -1,34 +1,44 @@
 ﻿using Eaship.Models;
-using Microsoft.EntityFrameworkCore;
+using Eaship.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eaship.page.Admin
 {
-    /// <summary>
-    /// Interaction logic for TambahTongkang.xaml
-    /// </summary>
     public partial class TambahTongkang : Page
     {
         private readonly EashipDbContext _context;
+
+        private string? PhotoUrl = null;   // <== VARIABLE WAJIB
 
         public TambahTongkang()
         {
             InitializeComponent();
             _context = App.Services.GetRequiredService<EashipDbContext>();
+        }
+
+        private void UploadFoto_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                // preview
+                PreviewFoto.Source = new BitmapImage(new Uri(dialog.FileName));
+                PreviewFoto.Visibility = Visibility.Visible;
+
+                var cloud = new CloudinaryService();
+                PhotoUrl = cloud.UploadImage(dialog.FileName); // <=== FIX
+
+                MessageBox.Show("Foto berhasil diupload!");
+            }
         }
 
         private async void Add_Click(object sender, RoutedEventArgs e)
@@ -37,7 +47,9 @@ namespace Eaship.page.Admin
             {
                 Name = NameBox.Text,
                 KapasitasDwt = KapasitasBox.Text,
-                // Status optional, kalau ada StatusBox
+                PhotoUrl = PhotoUrl,                   // <== SIMPAN URL
+                IncludeTugboat = false,
+                // Status default = Available (private setter)
             };
 
             _context.Tongkangs.Add(tongkang);
@@ -48,20 +60,5 @@ namespace Eaship.page.Admin
             var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
             frame?.Navigate(new TongkangListAdmin());
         }
-
-        private void Navigate(Page page)
-        {
-            var frame = (Application.Current.MainWindow as MainWindow)?.MainFrame;
-            frame?.Navigate(page);
-        }
-
-     
-        private void AddTongkang(object s, RoutedEventArgs e) => Navigate(new TambahTongkang());
-        private void EditTongkang(object s, RoutedEventArgs e)
-        {
-            if (s is Button b && b.Tag is long id)
-                Navigate(new EditTongkang(id));
-        }
-
     }
 }

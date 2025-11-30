@@ -5,7 +5,8 @@ public enum ContractStatus
     Pending,
     Approved,
     Rejected,
-    Cancelled
+    Cancelled,
+    Completed
 }
 
 public class Contract
@@ -16,23 +17,18 @@ public class Contract
     public long? TongkangId { get; set; }
     public long? TugboatId { get; set; }
 
-
-
-
-
     public string? PdfUrl { get; set; }
-    public ContractStatus Status { get; private set; } = ContractStatus.Pending;
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-    public DateTime? UpdatedAt { get; private set; }
 
+    public ContractStatus Status { get; internal set; } = ContractStatus.Pending;
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; internal set; }
 
     // NAVIGATION
     public Booking? Booking { get; set; }
     public Tongkang? Tongkang { get; set; }
     public Tugboat? Tugboat { get; set; }
 
-
-    // --- METHODS (simple) ---
+    // --- METHODS ---
     public void MarkPending()
     {
         Status = ContractStatus.Pending;
@@ -54,6 +50,12 @@ public class Contract
     public void Cancel()
     {
         Status = ContractStatus.Cancelled;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Complete()
+    {
+        Status = ContractStatus.Completed;
         UpdatedAt = DateTime.UtcNow;
     }
 }

@@ -71,7 +71,8 @@ namespace Eaship.Models
                 e.Property(x => x.Nama).HasColumnName("nama");
                 e.Property(x => x.TugboatHp).HasColumnName("tugboat_hp");
                 e.Property(x => x.Status).HasColumnName("status").HasConversion<string>();
-              
+                e.Property(x => x.PhotoUrl).HasColumnName("photo_url");
+
             });
 
             // ========================
@@ -89,6 +90,7 @@ namespace Eaship.Models
     
                 e.Property(x => x.IncludeTugboat).HasColumnName("include_tugboat");
                 e.Property(x => x.Status).HasColumnName("status").HasConversion<string>();
+                e.Property(x => x.PhotoUrl).HasColumnName("photo_url");
 
             });
 

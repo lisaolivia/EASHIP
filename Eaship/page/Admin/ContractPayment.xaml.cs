@@ -51,15 +51,13 @@ namespace Eaship.page.Admin
                 CompanyName = c.Booking.User.RenterCompany?.Nama ?? "-",
                 CompanyAddress = c.Booking.User.RenterCompany?.Address ?? "-",
                 CreatedAt = c.CreatedAt,
-                PdfUrl = c.PdfUrl
+                PdfUrl = c.PdfUrl,
+                Status = c.Status.ToString() 
             }).ToList();
+
 
             ContractList.ItemsSource = list;
         }
-
-
-
-
 
 
         // ======================

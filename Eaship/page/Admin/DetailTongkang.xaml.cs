@@ -42,7 +42,26 @@ namespace Eaship.page.Admin
 
 
             // IMAGE SEMENTARA STATIC
-            TongkangImage.Source = new BitmapImage(new Uri("/Assets/default_barge.jpg", UriKind.Relative));
+            // ===== FOTO FROM CLOUDINARY =====
+            if (!string.IsNullOrWhiteSpace(_tongkang.PhotoUrl))
+            {
+                try
+                {
+                    TongkangImage.Source = new BitmapImage(new Uri(_tongkang.PhotoUrl, UriKind.Absolute));
+                }
+                catch
+                {
+                    TongkangImage.Source = new BitmapImage(
+                        new Uri("pack://application:,,,/Eaship;component/Assets/default_barge.jpg")
+                    );
+                }
+            }
+            else
+            {
+                TongkangImage.Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Eaship;component/Assets/default_barge.jpg")
+                );
+            }
 
             // COMPANY (jika kamu aktifkan lagi relasi)
             CompanyText.Text = "Belum ada";
