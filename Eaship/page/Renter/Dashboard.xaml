@@ -66,28 +66,25 @@
                         <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Right">
                             <Button x:Name="BtnCreateCompany"
+                                    Style="{StaticResource LogoutButton}"
                                     Content="Create Company"
                                     Width="200"
                                     Height="50"
                                     FontSize="16"
-                                    FontWeight="Medium"
                                     Background="White"
                                     Foreground="#2C3E50"
-                                    BorderBrush="#2C3E50"
-                                    BorderThickness="2"
                                     Cursor="Hand"
                                     Margin="0,0,16,0" 
                                     Click="BtnCreateCompany_Click"/>
 
                             <Button x:Name="BtnJoinExisting"
                                     Content="Join Existing"
+                                    Style="{StaticResource LogoutButton}"
                                     Width="200"
                                     Height="50"
                                     FontSize="16"
-                                    FontWeight="Medium"
                                     Background="#2C3E50"
                                     Foreground="White"
-                                    BorderThickness="0"
                                     Cursor="Hand" 
                                     Click="BtnJoinExisting_Click"/>
                         </StackPanel>

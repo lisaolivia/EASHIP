@@ -107,12 +107,11 @@
 
                     <!-- LOGIN BUTTON -->
                     <Button x:Name="BtnLoginSubmit" 
+                            Style="{StaticResource LogoutButton}"
                             Content="Login" 
                             Height="42" 
                             Background="#123B61"
                             Foreground="White" 
-                            BorderThickness="0" 
-                            FontWeight="SemiBold"
                             FontSize="16"
                             Click="Login_Click"
                             Margin="0,0,0,16"/>
@@ -127,12 +126,12 @@
                     <!-- SIGN UP NOW BUTTON -->
                     <Button x:Name="BtnGoSignUp"
                             Content="Sign Up Now" 
+                            Style="{StaticResource LogoutButton}"
                             Height="42"
                             Background="#E6F0FA"
                             Foreground="#123B61"
-                            FontWeight="SemiBold"
+
                             FontSize="16"
-                            BorderThickness="0"
                             Click="GoRegister_Click"/>
                 </StackPanel>
             </Grid>

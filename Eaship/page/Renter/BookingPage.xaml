@@ -32,7 +32,7 @@
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="60,40,60,40">
 
-                <TextBlock Text="Booking your Tongkang"
+                <TextBlock Text="Booking your Barge"
                            FontSize="32"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
@@ -65,6 +65,7 @@
 
                         <!-- Submit -->
                         <Button Content="Submit Booking"
+                                Style="{StaticResource LogoutButton}"
                                 Height="45"
                                 Background="{StaticResource NavyBrush}"
                                 Foreground="White"

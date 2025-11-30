@@ -69,12 +69,12 @@
 
                         <!-- Join Button -->
                             <Button Content="Join Company"
+                                    Style="{StaticResource LogoutButton}"
                                     Width="200"
                                     Height="48"
                                     Background="#163A63"
                                     Foreground="White"
                                     FontSize="16"
-                                    BorderThickness="0"
                                     Cursor="Hand"
                                     Click="JoinCompany_Click"/>
 
