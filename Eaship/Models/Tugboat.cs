@@ -17,16 +17,25 @@ public class Tugboat
     public TugboatStatus Status { get; set; } = TugboatStatus.AVAILABLE;
     public TugboatStatus CekStatus() => Status;
     public void SendToMaintenance() => Status = TugboatStatus.MAINTENANCE;
-    public void AssignToTongkang(Tongkang tongkang)
-    {
-        if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
-        tongkang.AttachTugboat(this);
-    }
+
     public void ReleaseFromTongkang(Tongkang tongkang)
     {
         if (tongkang is null) throw new ArgumentNullException(nameof(tongkang));
         tongkang.DetachTugboat(this);
     }
+
+    public void AssignToTongkang(Tongkang tongkang)
+    {
+        if (tongkang is null)
+            throw new ArgumentNullException(nameof(tongkang));
+
+
+        if (this.Status != TugboatStatus.AVAILABLE)
+            throw new InvalidOperationException("Tugboat tidak tersedia untuk assignment.");
+
+        tongkang.AttachTugboat(this);
+    }
+
     internal void SetAssigned() => Status = TugboatStatus.ASSIGNED;
     internal void SetAvailable() => Status = TugboatStatus.AVAILABLE;
 }

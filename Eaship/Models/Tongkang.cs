@@ -24,14 +24,9 @@ public class Tongkang
     }
     public string KapasitasDwt { get; set; } = string.Empty;
 
-
-
-
     public bool IncludeTugboat { get; set; }
 
     public TongkangStatus Status { get; private set; } = TongkangStatus.Available;
-
-
 
     private readonly HashSet<long> _tugboatIds = new();
     public IReadOnlyCollection<long> TugboatIds => _tugboatIds;
@@ -39,8 +34,14 @@ public class Tongkang
     public TongkangStatus CekStatus() => Status;
 
     //method
+
+
     public void SetStatus(TongkangStatus status)
     {
+
+        if (Status == TongkangStatus.Assigned)
+            throw new InvalidOperationException("Tongkang sudah digunakan!");
+
         Status = status;
     }
 
@@ -59,6 +60,13 @@ public class Tongkang
     public void AttachTugboat(Tugboat tug)
     {
         if (tug is null) throw new ArgumentNullException(nameof(tug));
+
+        if (this.Status != TongkangStatus.Available)
+            throw new InvalidOperationException("Tongkang tidak tersedia untuk assignment.");
+
+        if (tug.CekStatus() != TugboatStatus.AVAILABLE)
+            throw new InvalidOperationException("Tugboat tidak tersedia untuk assignment.");
+
         if (tug.CekStatus() == TugboatStatus.MAINTENANCE)
             throw new InvalidOperationException("Tugboat sedang maintenance.");
 
@@ -67,6 +75,10 @@ public class Tongkang
         Status = TongkangStatus.Assigned;
         tug.SetAssigned();
     }
+
+
+
+
 
     public void DetachTugboat(Tugboat tug)
     {

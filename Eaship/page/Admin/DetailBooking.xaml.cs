@@ -46,7 +46,10 @@ namespace Eaship.page.Admin
             CargoBox.Text = _booking.CargoDesc;
             StatusBox.Text = _booking.Status.ToString();
 
-            TongkangBox.ItemsSource = await _context.Tongkangs.ToListAsync();
+            TongkangBox.ItemsSource = await _context.Tongkangs
+            .Where(t => t.Status == TongkangStatus.Available)
+            .ToListAsync();
+
             TongkangBox.DisplayMemberPath = "Name";
             TongkangBox.SelectedValuePath = "TongkangId";
 
@@ -107,6 +110,27 @@ namespace Eaship.page.Admin
             }
 
             // ============== 2. Approve booking & assign tongkang ===============
+
+            // CEK STATUS TONGKANG DULU
+
+            bool isUsedInContract = await _context.Contracts
+            .AnyAsync(c => c.TongkangId == selectedTongkang.TongkangId
+                        && c.Status == ContractStatus.Approved);
+
+            if (isUsedInContract)
+            {
+                MessageBox.Show("Tongkang sedang dipakai oleh kontrak lain!", "Error");
+                return;
+            }
+
+
+            if (selectedTongkang.Status != TongkangStatus.Available)
+            {
+                MessageBox.Show("Tongkang ini sedang digunakan dan tidak bisa diassign lagi!",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
                 _booking.Approve();
@@ -117,7 +141,11 @@ namespace Eaship.page.Admin
                 return;
             }
 
+            // SET STATUS
             selectedTongkang.SetStatus(TongkangStatus.Assigned);
+            _context.Tongkangs.Update(selectedTongkang);
+            await _context.SaveChangesAsync();
+
 
             await _context.SaveChangesAsync();
 
@@ -145,8 +173,11 @@ namespace Eaship.page.Admin
             // ============== 4. Create contract ================================
             var contract = new Contract
             {
-                BookingId = bookingFull.BookingId
+                BookingId = bookingFull.BookingId,
+                TongkangId = selectedTongkang.TongkangId,
+                TugboatId = (TugboatBox.SelectedItem as Tugboat)?.TugboatId
             };
+
 
             _context.Contracts.Add(contract);
             await _context.SaveChangesAsync();

@@ -169,9 +169,20 @@ namespace Eaship.Models
                 e.Property(x => x.PdfUrl).HasColumnName("pdf_url");
                 e.Property(x => x.CreatedAt).HasColumnName("created_at");
                 e.Property(x => x.UpdatedAt).HasColumnName("updated_at");
-              
 
+                // ⬇⬇⬇ FIX WAJIB ⬇⬇⬇
+                e.Property(x => x.TongkangId).HasColumnName("tongkang_id");
+                e.Property(x => x.TugboatId).HasColumnName("tugboat_id");
+
+                e.HasOne(x => x.Tongkang)
+                    .WithMany()
+                    .HasForeignKey(x => x.TongkangId);
+
+                e.HasOne(x => x.Tugboat)
+                    .WithMany()
+                    .HasForeignKey(x => x.TugboatId);
             });
+
 
             // ========================
             // NOTIFICATION
