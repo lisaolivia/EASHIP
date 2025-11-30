@@ -11,6 +11,7 @@ public class RenterCompany
     public string NPWP { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
     public string? CityProvince { get; set; }
+    public string JoinCode { get; set; } = GenerateJoinCode();
 
     public string EmailBilling { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
@@ -58,6 +59,14 @@ public class RenterCompany
         if (Status != CompanyStatus.Validating)
             throw new InvalidOperationException("Perusahaan belum dalam status Validating.");
         Status = CompanyStatus.Rejected;
+    }
+    public static string GenerateJoinCode()
+    {
+        const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 6)
+            .Select(s => s[random.Next(s.Length)])
+            .ToArray());
     }
 
     public void SetCompanyInfo(string nama, string npwp, string address, string cityProvince,

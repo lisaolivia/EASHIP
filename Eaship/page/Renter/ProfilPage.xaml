@@ -128,6 +128,20 @@
                             </Border>
                         </StackPanel>
 
+                        <StackPanel Margin="0,10">
+                            <TextBlock Text="Join Code" FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="TxtJoinCode" Margin="0,0,10,0"/>
+                                <Button Content="Copy"
+                                        Width="60"
+                                        Height="26"
+                                        Background="#163A63"
+                                        Foreground="White"
+                                        Click="BtnCopyJoinCode_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+
+
                     </StackPanel>
                 </Border>
 

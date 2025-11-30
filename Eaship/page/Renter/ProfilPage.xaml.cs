@@ -71,6 +71,7 @@ namespace Eaship.page.Renter
             TxtPICPosition.Text = company.PICPosition;
             TxtPICEmail.Text = company.PICEmail;
             TxtCompanyStatus.Text = company.Status.ToString();
+            TxtJoinCode.Text = company.JoinCode;
 
             // Badge color based on status
             StatusBadge.Background = company.Status switch
@@ -83,7 +84,15 @@ namespace Eaship.page.Renter
         }
 
 
-      
+        private void BtnCopyJoinCode_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtJoinCode.Text))
+            {
+                Clipboard.SetText(TxtJoinCode.Text);
+                MessageBox.Show("Join code copied!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
 
         private void BtnCreateCompany_Click(object sender, RoutedEventArgs e)
         {
