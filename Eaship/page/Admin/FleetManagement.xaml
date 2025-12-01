@@ -64,7 +64,7 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
                                     Cursor="Hand"
-                                    Click="SeeMoreBarge"/>
+                                    Click="SeeMoreTongkang"/>
                         </Grid>
                     </Border>
                     <!-- === CARD TUGBOAT === -->
@@ -109,7 +109,7 @@
                             Padding="16"
                             Effect="{DynamicResource Shadow}">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock x:Name="BargeCountText"
+                            <TextBlock x:Name="TongkangCountText"
                        Text="0"
                        FontSize="36"
                        FontWeight="Bold"
